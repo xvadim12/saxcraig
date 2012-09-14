@@ -31,7 +31,7 @@
 #define AD_LOCATION_TAG_CLASS @"itempn"
 
 /*
- Parser lis of ads: http://losangeles.craigslist.org/bka/  :
+ Parser of list of ads: http://losangeles.craigslist.org/bka/  :
  
  <h4 class="ban">    Tue Sep 11</h4>
  
@@ -58,7 +58,7 @@
  
  so, we can just have a counter of nesting level for unused tags and inc/dec this value.
  
- more common way is using stack for states, but this is for expensive
+ more common way is using stack for states, but this is more expensive
  */
 
 @interface SAXAdListParser ()
