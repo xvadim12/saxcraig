@@ -30,6 +30,37 @@
 #define AD_LOCATION_TAG @"span"
 #define AD_LOCATION_TAG_CLASS @"itempn"
 
+/*
+ Parser lis of ads: http://losangeles.craigslist.org/bka/  :
+ 
+ <h4 class="ban">    Tue Sep 11</h4>
+ 
+ <p class="row" data-latitude="" data-longitude="">
+ <span class="ih" id="images:5I15Hd5Jb3Ld3I63Jec96234d7c389377190b.jpg">&nbsp;</span>
+ <span class="itemdate"></span>
+ <a href="http://losangeles.craigslist.org/sfv/bks/3253676408.html">THE PLAYMATE BOOK</a>
+ <span class="itemsep"> - </span>
+ <span class="itemph"></span>
+ <span class="itempp"> $30</span>
+ <span class="itempn"><font size="-1"> (Studio City)</font></span>
+ <span class="itempx"> <span class="p"> pic</span></span>
+ <span class="itemcg" title="bks"> <small class="gc"><a href="http://losangeles.craigslist.org/bks/">books &amp; magazines - by owner</a></small></span><br class="c">
+ </p>
+ 
+ States diagramme of parsing:
+ 
+ Init -> ad list title -> init
+ 
+ Init -> ad -> ad title -> ad
+            -> ad price -> ad
+            -> ad location -> unused (font tag) -> ad location -> ad
+            -> unused* (like last line of block) -> ad
+ 
+ so, we can just have a counter of nesting level for unused tags and inc/dec this value.
+ 
+ more common way is using stack for states, but this is for expensive
+ */
+
 @interface SAXAdListParser ()
 
 @property (nonatomic, retain) NSMutableString *listTitle;
