@@ -1,0 +1,512 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DDF344BE15FF8F5500C1D426 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344BD15FF8F5500C1D426 /* Foundation.framework */; };
+		DDF344C115FF8F5500C1D426 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344C015FF8F5500C1D426 /* main.m */; };
+		DDF344C515FF8F5500C1D426 /* saxcraig.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDF344C415FF8F5500C1D426 /* saxcraig.1 */; };
+		DDF344DE15FF901100C1D426 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDF344DC15FF901100C1D426 /* InfoPlist.strings */; };
+		DDF344E715FF904900C1D426 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344E615FF904900C1D426 /* Cocoa.framework */; };
+		DDF344E915FF905100C1D426 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344E815FF905100C1D426 /* SenTestingKit.framework */; };
+		DDF344EF15FF93A800C1D426 /* BooksAndMagAd.html in Resources */ = {isa = PBXBuildFile; fileRef = DDF344EE15FF93A800C1D426 /* BooksAndMagAd.html */; };
+		DDF344F316007D7700C1D426 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344F216007D7700C1D426 /* libxml2.2.dylib */; };
+		DDF344F61600808000C1D426 /* UnitTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344F51600808000C1D426 /* UnitTestHelper.m */; };
+		DDF344FC1600835B00C1D426 /* SAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344FB1600835A00C1D426 /* SAXParserTest.m */; };
+		DDF344FF1600843000C1D426 /* SAXAdListParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344FE1600843000C1D426 /* SAXAdListParserTest.m */; };
+		DDF34502160088DE00C1D426 /* SAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF34501160088DE00C1D426 /* SAXParser.m */; };
+		DDF34503160088DE00C1D426 /* SAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF34501160088DE00C1D426 /* SAXParser.m */; };
+		DDF3450616008AAB00C1D426 /* SAXAdListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3450516008AAB00C1D426 /* SAXAdListParser.m */; };
+		DDF3450716008AAB00C1D426 /* SAXAdListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3450516008AAB00C1D426 /* SAXAdListParser.m */; };
+		DDF3450C1600ABCD00C1D426 /* SimpleAdList.html in Resources */ = {isa = PBXBuildFile; fileRef = DDF3450B1600ABCD00C1D426 /* SimpleAdList.html */; };
+		DDF3450D1600D16E00C1D426 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344F216007D7700C1D426 /* libxml2.2.dylib */; };
+		DDF345101601E74800C1D426 /* DTHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3450F1601E74800C1D426 /* DTHTMLParser.m */; };
+		DDF345111601E74800C1D426 /* DTHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3450F1601E74800C1D426 /* DTHTMLParser.m */; };
+		DDF3451616021E0100C1D426 /* ParsedAdData.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3451516021E0100C1D426 /* ParsedAdData.m */; };
+		DDF3451716021E0100C1D426 /* ParsedAdData.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3451516021E0100C1D426 /* ParsedAdData.m */; };
+		DDF3451A1602362A00C1D426 /* ParsedAdListTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF345191602362A00C1D426 /* ParsedAdListTitle.m */; };
+		DDF3451B1602362A00C1D426 /* ParsedAdListTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF345191602362A00C1D426 /* ParsedAdListTitle.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DDF344EA15FF90B900C1D426 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DDF344B015FF8F5500C1D426 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DDF344B815FF8F5500C1D426;
+			remoteInfo = saxcraig;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DDF344B715FF8F5500C1D426 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				DDF344C515FF8F5500C1D426 /* saxcraig.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DDF344B915FF8F5500C1D426 /* saxcraig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = saxcraig; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDF344BD15FF8F5500C1D426 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DDF344C015FF8F5500C1D426 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DDF344C315FF8F5500C1D426 /* saxcraig-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "saxcraig-Prefix.pch"; sourceTree = "<group>"; };
+		DDF344C415FF8F5500C1D426 /* saxcraig.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = saxcraig.1; sourceTree = "<group>"; };
+		DDF344D015FF901100C1D426 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDF344D615FF901100C1D426 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		DDF344D715FF901100C1D426 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		DDF344D815FF901100C1D426 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DDF344DB15FF901100C1D426 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
+		DDF344DD15FF901100C1D426 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DDF344E215FF901100C1D426 /* Unit Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unit Tests-Prefix.pch"; sourceTree = "<group>"; };
+		DDF344E615FF904900C1D426 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		DDF344E815FF905100C1D426 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		DDF344EE15FF93A800C1D426 /* BooksAndMagAd.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BooksAndMagAd.html; sourceTree = "<group>"; };
+		DDF344F216007D7700C1D426 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		DDF344F41600808000C1D426 /* UnitTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTestHelper.h; sourceTree = "<group>"; };
+		DDF344F51600808000C1D426 /* UnitTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitTestHelper.m; sourceTree = "<group>"; };
+		DDF344FA1600835A00C1D426 /* SAXParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXParserTest.h; sourceTree = "<group>"; };
+		DDF344FB1600835A00C1D426 /* SAXParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXParserTest.m; sourceTree = "<group>"; };
+		DDF344FD1600843000C1D426 /* SAXAdListParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdListParserTest.h; sourceTree = "<group>"; };
+		DDF344FE1600843000C1D426 /* SAXAdListParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXAdListParserTest.m; sourceTree = "<group>"; };
+		DDF34500160088DE00C1D426 /* SAXParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXParser.h; sourceTree = "<group>"; };
+		DDF34501160088DE00C1D426 /* SAXParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXParser.m; sourceTree = "<group>"; };
+		DDF3450416008AAB00C1D426 /* SAXAdListParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdListParser.h; sourceTree = "<group>"; };
+		DDF3450516008AAB00C1D426 /* SAXAdListParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXAdListParser.m; sourceTree = "<group>"; };
+		DDF3450816008BE900C1D426 /* Defs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Defs.h; path = saxcraig/Defs.h; sourceTree = "<group>"; };
+		DDF3450B1600ABCD00C1D426 /* SimpleAdList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleAdList.html; sourceTree = "<group>"; };
+		DDF3450E1601E73C00C1D426 /* DTHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTHTMLParser.h; sourceTree = "<group>"; };
+		DDF3450F1601E74800C1D426 /* DTHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTHTMLParser.m; sourceTree = "<group>"; };
+		DDF3451416021E0100C1D426 /* ParsedAdData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsedAdData.h; sourceTree = "<group>"; };
+		DDF3451516021E0100C1D426 /* ParsedAdData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsedAdData.m; sourceTree = "<group>"; };
+		DDF345181602362A00C1D426 /* ParsedAdListTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsedAdListTitle.h; sourceTree = "<group>"; };
+		DDF345191602362A00C1D426 /* ParsedAdListTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsedAdListTitle.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DDF344B615FF8F5500C1D426 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDF344F316007D7700C1D426 /* libxml2.2.dylib in Frameworks */,
+				DDF344BE15FF8F5500C1D426 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDF344CC15FF901100C1D426 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDF3450D1600D16E00C1D426 /* libxml2.2.dylib in Frameworks */,
+				DDF344E915FF905100C1D426 /* SenTestingKit.framework in Frameworks */,
+				DDF344E715FF904900C1D426 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DDF344AE15FF8F5500C1D426 = {
+			isa = PBXGroup;
+			children = (
+				DDF3450A16008E6000C1D426 /* Other Sources */,
+				DDF344F116007ACF00C1D426 /* Resources */,
+				DDF344BF15FF8F5500C1D426 /* saxcraig */,
+				DDF344D915FF901100C1D426 /* Unit Tests */,
+				DDF344BC15FF8F5500C1D426 /* Frameworks */,
+				DDF344BA15FF8F5500C1D426 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DDF344BA15FF8F5500C1D426 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDF344B915FF8F5500C1D426 /* saxcraig */,
+				DDF344D015FF901100C1D426 /* Unit Tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DDF344BC15FF8F5500C1D426 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DDF344F216007D7700C1D426 /* libxml2.2.dylib */,
+				DDF344E615FF904900C1D426 /* Cocoa.framework */,
+				DDF344E815FF905100C1D426 /* SenTestingKit.framework */,
+				DDF344BD15FF8F5500C1D426 /* Foundation.framework */,
+				DDF344D515FF901100C1D426 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DDF344BF15FF8F5500C1D426 /* saxcraig */ = {
+			isa = PBXGroup;
+			children = (
+				DDF344C015FF8F5500C1D426 /* main.m */,
+				DDF344C415FF8F5500C1D426 /* saxcraig.1 */,
+				DDF34500160088DE00C1D426 /* SAXParser.h */,
+				DDF34501160088DE00C1D426 /* SAXParser.m */,
+				DDF3450416008AAB00C1D426 /* SAXAdListParser.h */,
+				DDF3450516008AAB00C1D426 /* SAXAdListParser.m */,
+				DDF3451416021E0100C1D426 /* ParsedAdData.h */,
+				DDF3451516021E0100C1D426 /* ParsedAdData.m */,
+				DDF345181602362A00C1D426 /* ParsedAdListTitle.h */,
+				DDF345191602362A00C1D426 /* ParsedAdListTitle.m */,
+				DDF344C215FF8F5500C1D426 /* Supporting Files */,
+			);
+			path = saxcraig;
+			sourceTree = "<group>";
+		};
+		DDF344C215FF8F5500C1D426 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DDF344C315FF8F5500C1D426 /* saxcraig-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DDF344D515FF901100C1D426 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DDF344D615FF901100C1D426 /* AppKit.framework */,
+				DDF344D715FF901100C1D426 /* CoreData.framework */,
+				DDF344D815FF901100C1D426 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		DDF344D915FF901100C1D426 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				DDF344F41600808000C1D426 /* UnitTestHelper.h */,
+				DDF344F51600808000C1D426 /* UnitTestHelper.m */,
+				DDF344FA1600835A00C1D426 /* SAXParserTest.h */,
+				DDF344FB1600835A00C1D426 /* SAXParserTest.m */,
+				DDF344FD1600843000C1D426 /* SAXAdListParserTest.h */,
+				DDF344FE1600843000C1D426 /* SAXAdListParserTest.m */,
+				DDF344DA15FF901100C1D426 /* Supporting Files */,
+			);
+			path = "Unit Tests";
+			sourceTree = "<group>";
+		};
+		DDF344DA15FF901100C1D426 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DDF344DB15FF901100C1D426 /* Unit Tests-Info.plist */,
+				DDF344DC15FF901100C1D426 /* InfoPlist.strings */,
+				DDF344E215FF901100C1D426 /* Unit Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DDF344ED15FF932600C1D426 /* UnitTestResources */ = {
+			isa = PBXGroup;
+			children = (
+				DDF344EE15FF93A800C1D426 /* BooksAndMagAd.html */,
+				DDF3450B1600ABCD00C1D426 /* SimpleAdList.html */,
+			);
+			name = UnitTestResources;
+			sourceTree = "<group>";
+		};
+		DDF344F116007ACF00C1D426 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DDF344ED15FF932600C1D426 /* UnitTestResources */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		DDF3450A16008E6000C1D426 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DDF3450F1601E74800C1D426 /* DTHTMLParser.m */,
+				DDF3450E1601E73C00C1D426 /* DTHTMLParser.h */,
+				DDF3450816008BE900C1D426 /* Defs.h */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DDF344B815FF8F5500C1D426 /* saxcraig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDF344C815FF8F5500C1D426 /* Build configuration list for PBXNativeTarget "saxcraig" */;
+			buildPhases = (
+				DDF344B515FF8F5500C1D426 /* Sources */,
+				DDF344B615FF8F5500C1D426 /* Frameworks */,
+				DDF344B715FF8F5500C1D426 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = saxcraig;
+			productName = saxcraig;
+			productReference = DDF344B915FF8F5500C1D426 /* saxcraig */;
+			productType = "com.apple.product-type.tool";
+		};
+		DDF344CF15FF901100C1D426 /* Unit Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDF344E315FF901100C1D426 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
+			buildPhases = (
+				DDF344CB15FF901100C1D426 /* Sources */,
+				DDF344CC15FF901100C1D426 /* Frameworks */,
+				DDF344CD15FF901100C1D426 /* Resources */,
+				DDF344CE15FF901100C1D426 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DDF344EB15FF90B900C1D426 /* PBXTargetDependency */,
+			);
+			name = "Unit Tests";
+			productName = "Unit Tests";
+			productReference = DDF344D015FF901100C1D426 /* Unit Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DDF344B015FF8F5500C1D426 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Vadim A. Khohlov";
+			};
+			buildConfigurationList = DDF344B315FF8F5500C1D426 /* Build configuration list for PBXProject "saxcraig" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DDF344AE15FF8F5500C1D426;
+			productRefGroup = DDF344BA15FF8F5500C1D426 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DDF344B815FF8F5500C1D426 /* saxcraig */,
+				DDF344CF15FF901100C1D426 /* Unit Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DDF344CD15FF901100C1D426 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDF344DE15FF901100C1D426 /* InfoPlist.strings in Resources */,
+				DDF344EF15FF93A800C1D426 /* BooksAndMagAd.html in Resources */,
+				DDF3450C1600ABCD00C1D426 /* SimpleAdList.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DDF344CE15FF901100C1D426 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DDF344B515FF8F5500C1D426 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDF344C115FF8F5500C1D426 /* main.m in Sources */,
+				DDF34502160088DE00C1D426 /* SAXParser.m in Sources */,
+				DDF3450616008AAB00C1D426 /* SAXAdListParser.m in Sources */,
+				DDF345101601E74800C1D426 /* DTHTMLParser.m in Sources */,
+				DDF3451616021E0100C1D426 /* ParsedAdData.m in Sources */,
+				DDF3451A1602362A00C1D426 /* ParsedAdListTitle.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDF344CB15FF901100C1D426 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDF344F61600808000C1D426 /* UnitTestHelper.m in Sources */,
+				DDF344FC1600835B00C1D426 /* SAXParserTest.m in Sources */,
+				DDF344FF1600843000C1D426 /* SAXAdListParserTest.m in Sources */,
+				DDF34503160088DE00C1D426 /* SAXParser.m in Sources */,
+				DDF3450716008AAB00C1D426 /* SAXAdListParser.m in Sources */,
+				DDF345111601E74800C1D426 /* DTHTMLParser.m in Sources */,
+				DDF3451716021E0100C1D426 /* ParsedAdData.m in Sources */,
+				DDF3451B1602362A00C1D426 /* ParsedAdListTitle.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DDF344EB15FF90B900C1D426 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DDF344B815FF8F5500C1D426 /* saxcraig */;
+			targetProxy = DDF344EA15FF90B900C1D426 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DDF344DC15FF901100C1D426 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDF344DD15FF901100C1D426 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DDF344C615FF8F5500C1D426 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DDF344C715FF8F5500C1D426 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		DDF344C915FF8F5500C1D426 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "saxcraig/saxcraig-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DDF344CA15FF8F5500C1D426 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "saxcraig/saxcraig-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		DDF344E415FF901100C1D426 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Unit Tests/Unit Tests-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
+				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		DDF344E515FF901100C1D426 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Unit Tests/Unit Tests-Prefix.pch";
+				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
+				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DDF344B315FF8F5500C1D426 /* Build configuration list for PBXProject "saxcraig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDF344C615FF8F5500C1D426 /* Debug */,
+				DDF344C715FF8F5500C1D426 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDF344C815FF8F5500C1D426 /* Build configuration list for PBXNativeTarget "saxcraig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDF344C915FF8F5500C1D426 /* Debug */,
+				DDF344CA15FF8F5500C1D426 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDF344E315FF901100C1D426 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDF344E415FF901100C1D426 /* Debug */,
+				DDF344E515FF901100C1D426 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DDF344B015FF8F5500C1D426 /* Project object */;
+}
