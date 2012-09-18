@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC55168E160897CF0023B48A /* SAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55168D160897CF0023B48A /* SAXAdSearchParser.m */; };
+		AC55168F160897CF0023B48A /* SAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55168D160897CF0023B48A /* SAXAdSearchParser.m */; };
+		AC93ED551607780F00FA0603 /* BookSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC93ED541607780F00FA0603 /* BookSearch.html */; };
+		AC93ED581607783900FA0603 /* SimpleBookSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC93ED571607783900FA0603 /* SimpleBookSearch.html */; };
+		AC93ED5B16077A7700FA0603 /* SAXAdSearchParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC93ED5A16077A7700FA0603 /* SAXAdSearchParserTest.m */; };
 		DDF344BE15FF8F5500C1D426 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344BD15FF8F5500C1D426 /* Foundation.framework */; };
 		DDF344C115FF8F5500C1D426 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344C015FF8F5500C1D426 /* main.m */; };
 		DDF344C515FF8F5500C1D426 /* saxcraig.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDF344C415FF8F5500C1D426 /* saxcraig.1 */; };
@@ -56,6 +61,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AC55168C160897CF0023B48A /* SAXAdSearchParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdSearchParser.h; sourceTree = "<group>"; };
+		AC55168D160897CF0023B48A /* SAXAdSearchParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXAdSearchParser.m; sourceTree = "<group>"; };
+		AC93ED541607780F00FA0603 /* BookSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BookSearch.html; sourceTree = "<group>"; };
+		AC93ED571607783900FA0603 /* SimpleBookSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleBookSearch.html; sourceTree = "<group>"; };
+		AC93ED5916077A7700FA0603 /* SAXAdSearchParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdSearchParserTest.h; sourceTree = "<group>"; };
+		AC93ED5A16077A7700FA0603 /* SAXAdSearchParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXAdSearchParserTest.m; sourceTree = "<group>"; };
 		DDF344B915FF8F5500C1D426 /* saxcraig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = saxcraig; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF344BD15FF8F5500C1D426 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DDF344C015FF8F5500C1D426 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -161,6 +172,8 @@
 				DDF3451516021E0100C1D426 /* ParsedAdData.m */,
 				DDF345181602362A00C1D426 /* ParsedAdListTitle.h */,
 				DDF345191602362A00C1D426 /* ParsedAdListTitle.m */,
+				AC55168C160897CF0023B48A /* SAXAdSearchParser.h */,
+				AC55168D160897CF0023B48A /* SAXAdSearchParser.m */,
 				DDF344C215FF8F5500C1D426 /* Supporting Files */,
 			);
 			path = saxcraig;
@@ -193,6 +206,8 @@
 				DDF344FB1600835A00C1D426 /* SAXParserTest.m */,
 				DDF344FD1600843000C1D426 /* SAXAdListParserTest.h */,
 				DDF344FE1600843000C1D426 /* SAXAdListParserTest.m */,
+				AC93ED5916077A7700FA0603 /* SAXAdSearchParserTest.h */,
+				AC93ED5A16077A7700FA0603 /* SAXAdSearchParserTest.m */,
 				DDF344DA15FF901100C1D426 /* Supporting Files */,
 			);
 			path = "Unit Tests";
@@ -211,8 +226,10 @@
 		DDF344ED15FF932600C1D426 /* UnitTestResources */ = {
 			isa = PBXGroup;
 			children = (
+				AC93ED541607780F00FA0603 /* BookSearch.html */,
 				DDF344EE15FF93A800C1D426 /* BooksAndMagAd.html */,
 				DDF3450B1600ABCD00C1D426 /* SimpleAdList.html */,
+				AC93ED571607783900FA0603 /* SimpleBookSearch.html */,
 			);
 			name = UnitTestResources;
 			sourceTree = "<group>";
@@ -309,6 +326,8 @@
 				DDF344DE15FF901100C1D426 /* InfoPlist.strings in Resources */,
 				DDF344EF15FF93A800C1D426 /* BooksAndMagAd.html in Resources */,
 				DDF3450C1600ABCD00C1D426 /* SimpleAdList.html in Resources */,
+				AC93ED551607780F00FA0603 /* BookSearch.html in Resources */,
+				AC93ED581607783900FA0603 /* SimpleBookSearch.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +360,7 @@
 				DDF345101601E74800C1D426 /* DTHTMLParser.m in Sources */,
 				DDF3451616021E0100C1D426 /* ParsedAdData.m in Sources */,
 				DDF3451A1602362A00C1D426 /* ParsedAdListTitle.m in Sources */,
+				AC55168E160897CF0023B48A /* SAXAdSearchParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +376,8 @@
 				DDF345111601E74800C1D426 /* DTHTMLParser.m in Sources */,
 				DDF3451716021E0100C1D426 /* ParsedAdData.m in Sources */,
 				DDF3451B1602362A00C1D426 /* ParsedAdListTitle.m in Sources */,
+				AC93ED5B16077A7700FA0603 /* SAXAdSearchParserTest.m in Sources */,
+				AC55168F160897CF0023B48A /* SAXAdSearchParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

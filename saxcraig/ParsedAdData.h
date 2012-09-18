@@ -10,6 +10,7 @@
 
 @interface ParsedAdData : NSObject
 
+@property (nonatomic,retain) NSString* date;
 @property (nonatomic,retain) NSString* title;
 @property (nonatomic,retain) NSString* link;
 @property (nonatomic,retain) NSString* price;

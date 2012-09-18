@@ -10,12 +10,14 @@
 
 @implementation ParsedAdData
 
+@synthesize date;
 @synthesize title;
 @synthesize link;
 @synthesize price;
 @synthesize location;
 
 - (void) dealloc {
+    self.date = nil;
 	self.title = nil;
 	self.link = nil;
 	self.price = nil;
