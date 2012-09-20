@@ -105,7 +105,7 @@
 
 - (id) initWithData:(NSData *)data encoding:(NSStringEncoding)encoding {
     if (self = [super initWithData:data encoding:encoding]) {
-        self.listTitle = [[NSMutableString alloc] init];
+        self.listTitle = [[NSMutableString alloc] init];   
         
         self.adTitle = [[NSMutableString alloc] init];
         self.adLink = [[NSMutableString alloc] init];

@@ -32,7 +32,7 @@
     STAssertEqualObjects(adData.location, @"pasadena area", @"Wrong location %@", adData.location);
     
     adData = [ads objectAtIndex:1];
-    STAssertEqualObjects(adData.date, @"Sep 17", @"Wrong date %@", adData.date);
+    STAssertEqualObjects(adData.date, @"Sep 16", @"Wrong date %@", adData.date);
     STAssertEqualObjects(adData.title, @"Chapter 7 Bankruptcy by Nolo Press", @"Wrong title %@", adData.title);
     STAssertEqualObjects(adData.link, @"http://losangeles.craigslist.org/sfv/bks/3265772244.html", @"Wrong link %@", adData.link);
     STAssertEqualObjects(adData.price, @"$20", @"Wrong price %@", adData.price);

@@ -9,20 +9,21 @@
 /* Begin PBXBuildFile section */
 		AC55168E160897CF0023B48A /* SAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55168D160897CF0023B48A /* SAXAdSearchParser.m */; };
 		AC55168F160897CF0023B48A /* SAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55168D160897CF0023B48A /* SAXAdSearchParser.m */; };
+		AC55169C1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */; };
+		AC55169D1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */; };
+		AC5516B8160A03700023B48A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344BD15FF8F5500C1D426 /* Foundation.framework */; };
+		AC5516B9160A04730023B48A /* ParametrizedSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */; };
 		AC93ED551607780F00FA0603 /* BookSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC93ED541607780F00FA0603 /* BookSearch.html */; };
 		AC93ED581607783900FA0603 /* SimpleBookSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC93ED571607783900FA0603 /* SimpleBookSearch.html */; };
-		AC93ED5B16077A7700FA0603 /* SAXAdSearchParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC93ED5A16077A7700FA0603 /* SAXAdSearchParserTest.m */; };
 		DDF344BE15FF8F5500C1D426 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344BD15FF8F5500C1D426 /* Foundation.framework */; };
 		DDF344C115FF8F5500C1D426 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344C015FF8F5500C1D426 /* main.m */; };
 		DDF344C515FF8F5500C1D426 /* saxcraig.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDF344C415FF8F5500C1D426 /* saxcraig.1 */; };
 		DDF344DE15FF901100C1D426 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDF344DC15FF901100C1D426 /* InfoPlist.strings */; };
 		DDF344E715FF904900C1D426 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344E615FF904900C1D426 /* Cocoa.framework */; };
-		DDF344E915FF905100C1D426 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344E815FF905100C1D426 /* SenTestingKit.framework */; };
 		DDF344EF15FF93A800C1D426 /* BooksAndMagAd.html in Resources */ = {isa = PBXBuildFile; fileRef = DDF344EE15FF93A800C1D426 /* BooksAndMagAd.html */; };
 		DDF344F316007D7700C1D426 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344F216007D7700C1D426 /* libxml2.2.dylib */; };
 		DDF344F61600808000C1D426 /* UnitTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344F51600808000C1D426 /* UnitTestHelper.m */; };
 		DDF344FC1600835B00C1D426 /* SAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344FB1600835A00C1D426 /* SAXParserTest.m */; };
-		DDF344FF1600843000C1D426 /* SAXAdListParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344FE1600843000C1D426 /* SAXAdListParserTest.m */; };
 		DDF34502160088DE00C1D426 /* SAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF34501160088DE00C1D426 /* SAXParser.m */; };
 		DDF34503160088DE00C1D426 /* SAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF34501160088DE00C1D426 /* SAXParser.m */; };
 		DDF3450616008AAB00C1D426 /* SAXAdListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3450516008AAB00C1D426 /* SAXAdListParser.m */; };
@@ -63,6 +64,10 @@
 /* Begin PBXFileReference section */
 		AC55168C160897CF0023B48A /* SAXAdSearchParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdSearchParser.h; sourceTree = "<group>"; };
 		AC55168D160897CF0023B48A /* SAXAdSearchParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXAdSearchParser.m; sourceTree = "<group>"; };
+		AC55169A1609CA9F0023B48A /* ParametrizedSAXParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParametrizedSAXParser.h; sourceTree = "<group>"; };
+		AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParametrizedSAXParser.m; sourceTree = "<group>"; };
+		AC55169E1609DC630023B48A /* ParametrizedSAXParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParametrizedSAXParserTest.h; sourceTree = "<group>"; };
+		AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParametrizedSAXParserTest.m; sourceTree = "<group>"; };
 		AC93ED541607780F00FA0603 /* BookSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BookSearch.html; sourceTree = "<group>"; };
 		AC93ED571607783900FA0603 /* SimpleBookSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleBookSearch.html; sourceTree = "<group>"; };
 		AC93ED5916077A7700FA0603 /* SAXAdSearchParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdSearchParserTest.h; sourceTree = "<group>"; };
@@ -80,7 +85,6 @@
 		DDF344DD15FF901100C1D426 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DDF344E215FF901100C1D426 /* Unit Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unit Tests-Prefix.pch"; sourceTree = "<group>"; };
 		DDF344E615FF904900C1D426 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		DDF344E815FF905100C1D426 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		DDF344EE15FF93A800C1D426 /* BooksAndMagAd.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BooksAndMagAd.html; sourceTree = "<group>"; };
 		DDF344F216007D7700C1D426 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		DDF344F41600808000C1D426 /* UnitTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTestHelper.h; sourceTree = "<group>"; };
@@ -117,8 +121,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC5516B8160A03700023B48A /* Foundation.framework in Frameworks */,
 				DDF3450D1600D16E00C1D426 /* libxml2.2.dylib in Frameworks */,
-				DDF344E915FF905100C1D426 /* SenTestingKit.framework in Frameworks */,
 				DDF344E715FF904900C1D426 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,7 +156,6 @@
 			children = (
 				DDF344F216007D7700C1D426 /* libxml2.2.dylib */,
 				DDF344E615FF904900C1D426 /* Cocoa.framework */,
-				DDF344E815FF905100C1D426 /* SenTestingKit.framework */,
 				DDF344BD15FF8F5500C1D426 /* Foundation.framework */,
 				DDF344D515FF901100C1D426 /* Other Frameworks */,
 			);
@@ -174,6 +177,8 @@
 				DDF345191602362A00C1D426 /* ParsedAdListTitle.m */,
 				AC55168C160897CF0023B48A /* SAXAdSearchParser.h */,
 				AC55168D160897CF0023B48A /* SAXAdSearchParser.m */,
+				AC55169A1609CA9F0023B48A /* ParametrizedSAXParser.h */,
+				AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */,
 				DDF344C215FF8F5500C1D426 /* Supporting Files */,
 			);
 			path = saxcraig;
@@ -208,6 +213,8 @@
 				DDF344FE1600843000C1D426 /* SAXAdListParserTest.m */,
 				AC93ED5916077A7700FA0603 /* SAXAdSearchParserTest.h */,
 				AC93ED5A16077A7700FA0603 /* SAXAdSearchParserTest.m */,
+				AC55169E1609DC630023B48A /* ParametrizedSAXParserTest.h */,
+				AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */,
 				DDF344DA15FF901100C1D426 /* Supporting Files */,
 			);
 			path = "Unit Tests";
@@ -361,6 +368,7 @@
 				DDF3451616021E0100C1D426 /* ParsedAdData.m in Sources */,
 				DDF3451A1602362A00C1D426 /* ParsedAdListTitle.m in Sources */,
 				AC55168E160897CF0023B48A /* SAXAdSearchParser.m in Sources */,
+				AC55169C1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,14 +378,14 @@
 			files = (
 				DDF344F61600808000C1D426 /* UnitTestHelper.m in Sources */,
 				DDF344FC1600835B00C1D426 /* SAXParserTest.m in Sources */,
-				DDF344FF1600843000C1D426 /* SAXAdListParserTest.m in Sources */,
 				DDF34503160088DE00C1D426 /* SAXParser.m in Sources */,
 				DDF3450716008AAB00C1D426 /* SAXAdListParser.m in Sources */,
 				DDF345111601E74800C1D426 /* DTHTMLParser.m in Sources */,
 				DDF3451716021E0100C1D426 /* ParsedAdData.m in Sources */,
 				DDF3451B1602362A00C1D426 /* ParsedAdListTitle.m in Sources */,
-				AC93ED5B16077A7700FA0603 /* SAXAdSearchParserTest.m in Sources */,
 				AC55168F160897CF0023B48A /* SAXAdSearchParser.m in Sources */,
+				AC55169D1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */,
+				AC5516B9160A04730023B48A /* ParametrizedSAXParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,9 +461,17 @@
 		DDF344C915FF8F5500C1D426 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "saxcraig/saxcraig-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -463,9 +479,17 @@
 		DDF344CA15FF8F5500C1D426 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "saxcraig/saxcraig-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -474,11 +498,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Unit Tests/Unit Tests-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -488,11 +519,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Unit Tests/Unit Tests-Prefix.pch";
 				"HEADER_SEARCH_PATHS[arch=*]" = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
