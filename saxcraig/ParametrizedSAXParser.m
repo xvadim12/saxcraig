@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Vadim A. Khohlov. All rights reserved.
 //
 
+#define ID_ATTR @"id"
 #define CLASS_ATTR @"class"
 
 //Keys for data map
@@ -223,7 +224,10 @@
 
 - (void)parser:(DTHTMLParser *)parser didStartElement:(NSString *)elementName attributes:(NSDictionary *)attributeDict {
     
-    NSString *elementClass = [attributeDict valueForKey:CLASS_ATTR];
+    NSString *elementClass = [attributeDict valueForKey:ID_ATTR];   //get id of tag if present
+    
+    if (nil == elementClass)
+        elementClass = [attributeDict valueForKey:CLASS_ATTR];      //try to get class of tag
     
     NSString *subPath;
     if (nil != elementClass)
