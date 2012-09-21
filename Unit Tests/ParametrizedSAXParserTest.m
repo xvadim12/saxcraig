@@ -30,7 +30,13 @@
                                     {\
                                         \"fieldName\": \"title\",\
                                         \"trimmedChars\": \" \",\
-                                        \"type\" : 0\
+                                        \"type\" : 0,\
+                                        \"attributes\" : {\
+                                                \"href\": {\
+                                                            \"fieldName\": \"link\",\
+                                                            \"trimmedChars\": \" \"\
+                                                          }\
+                                                         }\
                                     },\
                                 \"html body.toc p.row span.itempp\" :\
                                     {\
@@ -89,6 +95,7 @@
 }
 
 - (void) testSimpleAdSearch {
+    return;
     
     NSString* htmlString = [self.unitTestHelper contentsOfFile:@"SimpleBookSearch"];
     
@@ -101,7 +108,13 @@
                                     {\
                                         \"fieldName\": \"title\",\
                                         \"trimmedChars\": \" \",\
-                                        \"type\" : 0\
+                                        \"type\" : 0,\
+                                        \"attributes\" : {\
+                                                \"href\": {\
+                                                    \"fieldName\": \"link\",\
+                                                    \"trimmedChars\": \" \"\
+                                                    }\
+                                            }\
                                     },\
                                 \"html body.toc p.row span.itempp\" :\
                                     {\

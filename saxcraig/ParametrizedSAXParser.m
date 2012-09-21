@@ -12,6 +12,7 @@
 #define kFieldName @"fieldName"
 #define kTrimmedChars @"trimmedChars"
 #define kObjectType @"type"
+#define kAttributesKey @"attributes"
 
 #define kScalarObject 0
 #define kDictObject 1
@@ -77,7 +78,7 @@
         _htmlParser = [[DTHTMLParser alloc] initWithData:data encoding:encoding];
         _htmlParser.delegate = self;
         
-        _dataMap = [self parseMapData:stringDataMap encoding:encoding];
+        _dataMap = [self parseDataMap:stringDataMap encoding:encoding];
         
         _pathStack = [NSMutableArray array];
         
@@ -105,9 +106,93 @@
 
 /**
  Parses string representation of map data.
+ 
+ Next structure is expected:
+ 
+ {
+    path_to_object1 : { - dict with information about object
+                        'fieldName': name of field in result dict,
+                        'trimmedChars': string with chars which will be trimmed from start and end of value
+                        'type': type of object - 0 for scalar, 1 for dict, i.e. nested object
+ 
+                        'attributes': { - subdictionary with information about html atg's attributes which whould be added to result
+ 
+                                        'attributeName1': dict with keys 'fieldName, trimmedChars (only scalar object in attributes are supported,
+                                        'attribiteName2': ...
+                                      }
+                     },
+ 
+   path_to_object2 : {
+                        ...
+                     }
+ }
+ 
+ For example, for page:
+ 
+ http://losangeles.craigslist.org/bka/
+ 
+ 
+ with content (fragment):
+ 
+ <body class="toc">
+ 
+     <h4 class="ban">    Tue Sep 11</h4>
+ 
+     <p class="row" data-latitude="" data-longitude="">
+         <span class="ih" id="images:5I15Hd5Jb3Ld3I63Jec96234d7c389377190b.jpg">&nbsp;</span>
+         <span class="itemdate"></span>
+         <a href="http://losangeles.craigslist.org/sfv/bks/3253676408.html">THE PLAYMATE BOOK</a>
+         <span class="itemsep"> - </span>
+         <span class="itemph"></span>
+         <span class="itempp"> $30</span>
+         <span class="itempn"><font size="-1"> (Studio City)</font></span>
+         <span class="itempx"> <span class="p"> pic</span></span>
+         <span class="itemcg" title="bks"> <small class="gc"><a href="http://losangeles.craigslist.org/bks/">books &amp; magazines - by owner</a></small></span><br class="c">
+     </p>
+ 
+ A data map will be:
+ 
+ {
+    "html body.toc h4.ban" :
+             {
+                 "fieldName": "listTitle",
+                 "trimmedChars": " ",
+                 "type" : 0
+             },
+    "html body.toc p.row" :
+             {
+                "fieldName": "ads",
+                "type" : 1
+             },
+    "html body.toc p.row a" :
+             {
+                 "fieldName": "title",
+                 "trimmedChars": " ",
+                 "type" : 0,
+                 "attributes" : {
+                     "href": {
+                            "fieldName": "link",
+                            "trimmedChars": " "
+                         }
+                     }
+             },
+    "html body.toc p.row span.itempp" :
+             {
+                 "fieldName": "price",
+                 "trimmedChars": " ",
+                 "type" : 0
+             },
+    "html body.toc p.row span.itempn" :
+             {
+                 "fieldName": "location",
+                 "trimmedChars": " ()",
+                 "type" : 0
+             }
+ }
+ 
  @return dictionary with mat data
  */
-- (NSDictionary*)parseMapData:(NSString*)stringMapData encoding:(NSStringEncoding)encoding{
+- (NSDictionary*)parseDataMap:(NSString*)stringMapData encoding:(NSStringEncoding)encoding{
     
     NSError *error;
     //TODO: error processing; check that all needed keys are present
@@ -140,7 +225,7 @@
     
     NSString *elementClass = [attributeDict valueForKey:CLASS_ATTR];
     
-    NSString *subPath; 
+    NSString *subPath;
     if (nil != elementClass)
         subPath = [NSString stringWithFormat:@"%@.%@", elementName, elementClass];
     else
@@ -152,12 +237,28 @@
     NSDictionary *dataInfoDict = [_dataMap valueForKey:strPath];
     if (nil != dataInfoDict)
     {
-        //NSLog(@"START %@", strPath);
         if ([[dataInfoDict valueForKey:kObjectType] intValue] == kScalarObject)
             [_dataString setString:@""];
         else
             _parsedObject = [[NSMutableDictionary alloc] init];
+        
+        NSDictionary *subDataMap = [dataInfoDict objectForKey:kAttributesKey];
+        if (nil != subDataMap)
+            [self parseAttributes:attributeDict withDataMap:subDataMap];
     }
+}
+
+- (void)parseAttributes:(NSDictionary *)attributeDict withDataMap:(NSDictionary*)subDataMap {
+    [subDataMap enumerateKeysAndObjectsUsingBlock:^(id key, id dataInfoDict, BOOL *stop) {
+        NSString *attrValue = [attributeDict valueForKey:key];
+        if (nil != attrValue)
+        {
+            //assume that tag's attributes contain only scalar objects
+            NSString *fieldName = [dataInfoDict valueForKey:kFieldName];
+            NSMutableArray *dataArray = [self getDataArrayForObjectWithType:kScalarObject forField:fieldName];
+            [self saveScalarObject:attrValue to:dataArray withFieldName:fieldName andDataInfo:dataInfoDict];
+        }
+    }];
 }
 
 - (void)parser:(DTHTMLParser *)parser foundCharacters:(NSString *)string {
@@ -173,27 +274,13 @@
     {
         NSString *fieldName = [dataInfoDict valueForKey:kFieldName];        
         int objType = [[dataInfoDict valueForKey:kObjectType] intValue];
-        NSMutableArray *dataArray;
         
-        //create a new key in results only for objects or scalars of first level
-        if ((nil == _parsedObject && objType == kScalarObject) || objType == kDictObject)
-        {
-            //assume that all objects are arrays (for more simple parser)
-            //some objects like ad list title will be presented by array with one item
-            dataArray = (NSMutableArray*)[_resultDictionary valueForKey:fieldName];
-            if (nil == dataArray) {
-                dataArray = [NSMutableArray array];
-                [_resultDictionary setValue:dataArray forKey:fieldName];
-            }
-        }
+        //get object for saving
+        NSMutableArray *dataArray = [self getDataArrayForObjectWithType:objType forField:fieldName];
+
         //... and add a new value
         if (objType == kScalarObject)
-        {
-            if (nil == _parsedObject)
-                [dataArray addObject:[_dataString trimChars:[dataInfoDict valueForKey:kTrimmedChars]]];
-            else
-                [_parsedObject setValue:[_dataString trimChars:[dataInfoDict valueForKey:kTrimmedChars]] forKey:fieldName];
-        }
+            [self saveScalarObject:_dataString to:dataArray withFieldName:fieldName andDataInfo:dataInfoDict];
         else
         {
             [dataArray addObject: _parsedObject];
@@ -203,6 +290,37 @@
     }
     
     [_pathStack pop];
+}
+
+/**
+ Returns object for saving data. Creates a new one if key doesn't exists
+ @return NSMutableArray array
+ */
+-(NSMutableArray*)getDataArrayForObjectWithType:(int)objectType forField:(NSString*)fieldName {
+    NSMutableArray *dataArray = nil;
+    
+    //create a new key in results only for objects or scalars of first level
+    if ((nil == _parsedObject && objectType == kScalarObject) || objectType == kDictObject)
+    {
+        //assume that all objects are arrays (for more simple parser)
+        //some objects like ad list title will be presented by array with one item
+        dataArray = (NSMutableArray*)[_resultDictionary valueForKey:fieldName];
+        if (nil == dataArray) {
+            dataArray = [NSMutableArray array];
+            [_resultDictionary setValue:dataArray forKey:fieldName];
+        }
+    }
+    return dataArray;
+}
+
+/**
+ Saves scalar object to dataArray or to _parsedObject dictionary
+ */
+-(void)saveScalarObject:(NSString*)value to:(NSMutableArray*)dataArray withFieldName:(NSString*)fieldName andDataInfo:(NSDictionary*)dataInfoDict {
+    if (nil == _parsedObject)
+        [dataArray addObject:[value trimChars:[dataInfoDict valueForKey:kTrimmedChars]]];
+    else
+        [_parsedObject setValue:[value trimChars:[dataInfoDict valueForKey:kTrimmedChars]] forKey:fieldName];
 }
 
 @end
