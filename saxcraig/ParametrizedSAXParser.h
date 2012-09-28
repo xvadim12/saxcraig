@@ -10,10 +10,20 @@
 
 #import "DTHTMLParser.h"
 
+//Keys in result subdictionaries
+extern NSString* const kDataKey;
+extern NSString* const kFieldNameKey;
+
 @interface ParametrizedSAXParser : NSObject <DTHTMLParserDelegate>
 
+//the request URL of the page that is being parsed
+@property (nonatomic,retain) NSString* URL;
+
+//the requestInfo object for some information dealing with request
+@property (nonatomic,retain) NSDictionary* requestInfo;
+
 /**
- Inits parser with data, encoding and data map
+ Inits parser with data map
  
  The data map structure:
  {
@@ -24,11 +34,20 @@
                   }
  }
  */
-- (id)initWithData:(NSData *)data encoding:(NSStringEncoding)encoding dataMap:(NSString*)dataMap;
+- (id) initWithDataMap:(NSString*)stringDataMap;
+
+- (NSObject*) parseHTML:(NSString*) htmlString;
+
+/**
+ Sublasses should provide the correct implemenation
+ */
+- (NSObject*) parseResultArray:(NSArray*)resultArray;
+
 
 /**
  Performs parsing.
+ @return NSArray of data
  */
-- (NSObject *) parse;
+- (NSArray*) parse:(NSString*)htmlString;
 
 @end

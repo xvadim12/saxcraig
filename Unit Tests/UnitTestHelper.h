@@ -12,4 +12,5 @@
 
 
 - (NSString*)contentsOfFile:(NSString*)fileName;
+- (NSString*)contentsOfFile:(NSString*)fileName withType:(NSString*)fileType;
 @end

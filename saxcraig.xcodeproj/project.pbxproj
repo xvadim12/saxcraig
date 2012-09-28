@@ -12,9 +12,37 @@
 		AC55169C1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */; };
 		AC55169D1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */; };
 		AC5516B8160A03700023B48A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344BD15FF8F5500C1D426 /* Foundation.framework */; };
-		AC5516B9160A04730023B48A /* ParametrizedSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */; };
+		AC5516C4160CBFA30023B48A /* SimpleAdListBroken.html in Resources */ = {isa = PBXBuildFile; fileRef = AC5516C3160CBFA30023B48A /* SimpleAdListBroken.html */; };
+		AC928C151611DEEC0079D6B0 /* RusAdImages3.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C141611DEEB0079D6B0 /* RusAdImages3.html */; };
+		AC928C181611DEF70079D6B0 /* EnAdImages2.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C171611DEF60079D6B0 /* EnAdImages2.html */; };
+		AC928C1A1611DF030079D6B0 /* EnAdImages1.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C191611DF030079D6B0 /* EnAdImages1.html */; };
+		AC928C1C1611DF180079D6B0 /* RusAdNoImages.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C1B1611DF180079D6B0 /* RusAdNoImages.html */; };
+		AC928C1E1613513C0079D6B0 /* ad.json in Resources */ = {isa = PBXBuildFile; fileRef = AC928C1D1613513C0079D6B0 /* ad.json */; };
+		AC928C20161356940079D6B0 /* adlist.json in Resources */ = {isa = PBXBuildFile; fileRef = AC928C1F161356940079D6B0 /* adlist.json */; };
+		AC928C22161357E10079D6B0 /* adsearch.json in Resources */ = {isa = PBXBuildFile; fileRef = AC928C21161357E10079D6B0 /* adsearch.json */; };
+		AC928C25161454490079D6B0 /* AdData.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C24161454490079D6B0 /* AdData.m */; };
+		AC928C26161454490079D6B0 /* AdData.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C24161454490079D6B0 /* AdData.m */; };
+		AC928C29161466AC0079D6B0 /* PSAXAdParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C28161466AC0079D6B0 /* PSAXAdParser.m */; };
+		AC928C2A161466AC0079D6B0 /* PSAXAdParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C28161466AC0079D6B0 /* PSAXAdParser.m */; };
+		AC928C30161478600079D6B0 /* TattooAd.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C2F1614785F0079D6B0 /* TattooAd.html */; };
+		AC928C34161492C40079D6B0 /* CategoryMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C33161492C40079D6B0 /* CategoryMatcher.m */; };
+		AC928C35161492C40079D6B0 /* CategoryMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C33161492C40079D6B0 /* CategoryMatcher.m */; };
+		AC928C38161495590079D6B0 /* ParsingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C37161495590079D6B0 /* ParsingHelper.m */; };
+		AC928C39161495590079D6B0 /* ParsingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C37161495590079D6B0 /* ParsingHelper.m */; };
+		AC928C3C1614A8260079D6B0 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C3B1614A8260079D6B0 /* NSStringAdditions.m */; };
+		AC928C3D1614A8260079D6B0 /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C3B1614A8260079D6B0 /* NSStringAdditions.m */; };
+		AC928C411615969E0079D6B0 /* ApartmentAd.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C401615969D0079D6B0 /* ApartmentAd.html */; };
+		AC928C4316159CE60079D6B0 /* RefrigeratorAd.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C4216159CE60079D6B0 /* RefrigeratorAd.html */; };
+		AC928C451615A3350079D6B0 /* HouseAd.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C441615A3350079D6B0 /* HouseAd.html */; };
+		AC928C481615B08A0079D6B0 /* PSAXAdListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C471615B08A0079D6B0 /* PSAXAdListParser.m */; };
+		AC928C491615B08A0079D6B0 /* PSAXAdListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C471615B08A0079D6B0 /* PSAXAdListParser.m */; };
+		AC928C4C1615BE810079D6B0 /* AdListPSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C4B1615BE810079D6B0 /* AdListPSAXParserTest.m */; };
+		AC928C4E1615C0380079D6B0 /* AppliancesList.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C4D1615C0370079D6B0 /* AppliancesList.html */; };
+		AC928C521615F26B0079D6B0 /* SFbayareaOffice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C511615F26A0079D6B0 /* SFbayareaOffice.html */; };
+		AC928C531615FEF20079D6B0 /* AdPSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C2D161476030079D6B0 /* AdPSAXParserTest.m */; };
 		AC93ED551607780F00FA0603 /* BookSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC93ED541607780F00FA0603 /* BookSearch.html */; };
 		AC93ED581607783900FA0603 /* SimpleBookSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC93ED571607783900FA0603 /* SimpleBookSearch.html */; };
+		ACB823E81610AB480030D8BC /* ManyCategories.html in Resources */ = {isa = PBXBuildFile; fileRef = ACB823E71610AB480030D8BC /* ManyCategories.html */; };
 		DDF344BE15FF8F5500C1D426 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344BD15FF8F5500C1D426 /* Foundation.framework */; };
 		DDF344C115FF8F5500C1D426 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344C015FF8F5500C1D426 /* main.m */; };
 		DDF344C515FF8F5500C1D426 /* saxcraig.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDF344C415FF8F5500C1D426 /* saxcraig.1 */; };
@@ -68,10 +96,43 @@
 		AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParametrizedSAXParser.m; sourceTree = "<group>"; };
 		AC55169E1609DC630023B48A /* ParametrizedSAXParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParametrizedSAXParserTest.h; sourceTree = "<group>"; };
 		AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParametrizedSAXParserTest.m; sourceTree = "<group>"; };
+		AC5516C3160CBFA30023B48A /* SimpleAdListBroken.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleAdListBroken.html; sourceTree = "<group>"; };
+		AC928C141611DEEB0079D6B0 /* RusAdImages3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RusAdImages3.html; sourceTree = "<group>"; };
+		AC928C171611DEF60079D6B0 /* EnAdImages2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EnAdImages2.html; sourceTree = "<group>"; };
+		AC928C191611DF030079D6B0 /* EnAdImages1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EnAdImages1.html; sourceTree = "<group>"; };
+		AC928C1B1611DF180079D6B0 /* RusAdNoImages.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RusAdNoImages.html; sourceTree = "<group>"; };
+		AC928C1D1613513C0079D6B0 /* ad.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ad.json; sourceTree = "<group>"; };
+		AC928C1F161356940079D6B0 /* adlist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = adlist.json; sourceTree = "<group>"; };
+		AC928C21161357E10079D6B0 /* adsearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = adsearch.json; sourceTree = "<group>"; };
+		AC928C23161454490079D6B0 /* AdData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdData.h; sourceTree = "<group>"; };
+		AC928C24161454490079D6B0 /* AdData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdData.m; sourceTree = "<group>"; };
+		AC928C27161466AC0079D6B0 /* PSAXAdParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAXAdParser.h; sourceTree = "<group>"; };
+		AC928C28161466AC0079D6B0 /* PSAXAdParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAXAdParser.m; sourceTree = "<group>"; };
+		AC928C2B161475980079D6B0 /* UnitTestDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnitTestDefs.h; sourceTree = "<group>"; };
+		AC928C2C161476030079D6B0 /* AdPSAXParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdPSAXParserTest.h; sourceTree = "<group>"; };
+		AC928C2D161476030079D6B0 /* AdPSAXParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdPSAXParserTest.m; sourceTree = "<group>"; };
+		AC928C2F1614785F0079D6B0 /* TattooAd.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TattooAd.html; sourceTree = "<group>"; };
+		AC928C32161492C40079D6B0 /* CategoryMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryMatcher.h; sourceTree = "<group>"; };
+		AC928C33161492C40079D6B0 /* CategoryMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryMatcher.m; sourceTree = "<group>"; };
+		AC928C36161495590079D6B0 /* ParsingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsingHelper.h; sourceTree = "<group>"; };
+		AC928C37161495590079D6B0 /* ParsingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsingHelper.m; sourceTree = "<group>"; };
+		AC928C3A1614A8260079D6B0 /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
+		AC928C3B1614A8260079D6B0 /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
+		AC928C401615969D0079D6B0 /* ApartmentAd.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ApartmentAd.html; sourceTree = "<group>"; };
+		AC928C4216159CE60079D6B0 /* RefrigeratorAd.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RefrigeratorAd.html; sourceTree = "<group>"; };
+		AC928C441615A3350079D6B0 /* HouseAd.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HouseAd.html; sourceTree = "<group>"; };
+		AC928C461615B08A0079D6B0 /* PSAXAdListParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAXAdListParser.h; sourceTree = "<group>"; };
+		AC928C471615B08A0079D6B0 /* PSAXAdListParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAXAdListParser.m; sourceTree = "<group>"; };
+		AC928C4A1615BE810079D6B0 /* AdListPSAXParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdListPSAXParserTest.h; sourceTree = "<group>"; };
+		AC928C4B1615BE810079D6B0 /* AdListPSAXParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdListPSAXParserTest.m; sourceTree = "<group>"; };
+		AC928C4D1615C0370079D6B0 /* AppliancesList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AppliancesList.html; sourceTree = "<group>"; };
+		AC928C501615E5520079D6B0 /* URLDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLDefs.h; sourceTree = "<group>"; };
+		AC928C511615F26A0079D6B0 /* SFbayareaOffice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SFbayareaOffice.html; sourceTree = "<group>"; };
 		AC93ED541607780F00FA0603 /* BookSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BookSearch.html; sourceTree = "<group>"; };
 		AC93ED571607783900FA0603 /* SimpleBookSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleBookSearch.html; sourceTree = "<group>"; };
 		AC93ED5916077A7700FA0603 /* SAXAdSearchParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdSearchParserTest.h; sourceTree = "<group>"; };
 		AC93ED5A16077A7700FA0603 /* SAXAdSearchParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXAdSearchParserTest.m; sourceTree = "<group>"; };
+		ACB823E71610AB480030D8BC /* ManyCategories.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ManyCategories.html; sourceTree = "<group>"; };
 		DDF344B915FF8F5500C1D426 /* saxcraig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = saxcraig; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF344BD15FF8F5500C1D426 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DDF344C015FF8F5500C1D426 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -179,6 +240,19 @@
 				AC55168D160897CF0023B48A /* SAXAdSearchParser.m */,
 				AC55169A1609CA9F0023B48A /* ParametrizedSAXParser.h */,
 				AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */,
+				AC928C27161466AC0079D6B0 /* PSAXAdParser.h */,
+				AC928C28161466AC0079D6B0 /* PSAXAdParser.m */,
+				AC928C461615B08A0079D6B0 /* PSAXAdListParser.h */,
+				AC928C471615B08A0079D6B0 /* PSAXAdListParser.m */,
+				AC928C23161454490079D6B0 /* AdData.h */,
+				AC928C24161454490079D6B0 /* AdData.m */,
+				AC928C32161492C40079D6B0 /* CategoryMatcher.h */,
+				AC928C33161492C40079D6B0 /* CategoryMatcher.m */,
+				AC928C36161495590079D6B0 /* ParsingHelper.h */,
+				AC928C37161495590079D6B0 /* ParsingHelper.m */,
+				AC928C3A1614A8260079D6B0 /* NSStringAdditions.h */,
+				AC928C3B1614A8260079D6B0 /* NSStringAdditions.m */,
+				AC928C501615E5520079D6B0 /* URLDefs.h */,
 				DDF344C215FF8F5500C1D426 /* Supporting Files */,
 			);
 			path = saxcraig;
@@ -215,7 +289,12 @@
 				AC93ED5A16077A7700FA0603 /* SAXAdSearchParserTest.m */,
 				AC55169E1609DC630023B48A /* ParametrizedSAXParserTest.h */,
 				AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */,
+				AC928C2C161476030079D6B0 /* AdPSAXParserTest.h */,
+				AC928C2D161476030079D6B0 /* AdPSAXParserTest.m */,
 				DDF344DA15FF901100C1D426 /* Supporting Files */,
+				AC928C2B161475980079D6B0 /* UnitTestDefs.h */,
+				AC928C4A1615BE810079D6B0 /* AdListPSAXParserTest.h */,
+				AC928C4B1615BE810079D6B0 /* AdListPSAXParserTest.m */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -233,10 +312,25 @@
 		DDF344ED15FF932600C1D426 /* UnitTestResources */ = {
 			isa = PBXGroup;
 			children = (
+				AC928C1B1611DF180079D6B0 /* RusAdNoImages.html */,
+				AC928C191611DF030079D6B0 /* EnAdImages1.html */,
+				AC928C171611DEF60079D6B0 /* EnAdImages2.html */,
+				AC928C141611DEEB0079D6B0 /* RusAdImages3.html */,
+				ACB823E71610AB480030D8BC /* ManyCategories.html */,
 				AC93ED541607780F00FA0603 /* BookSearch.html */,
 				DDF344EE15FF93A800C1D426 /* BooksAndMagAd.html */,
 				DDF3450B1600ABCD00C1D426 /* SimpleAdList.html */,
 				AC93ED571607783900FA0603 /* SimpleBookSearch.html */,
+				AC5516C3160CBFA30023B48A /* SimpleAdListBroken.html */,
+				AC928C2F1614785F0079D6B0 /* TattooAd.html */,
+				AC928C401615969D0079D6B0 /* ApartmentAd.html */,
+				AC928C4216159CE60079D6B0 /* RefrigeratorAd.html */,
+				AC928C4D1615C0370079D6B0 /* AppliancesList.html */,
+				AC928C441615A3350079D6B0 /* HouseAd.html */,
+				AC928C1D1613513C0079D6B0 /* ad.json */,
+				AC928C1F161356940079D6B0 /* adlist.json */,
+				AC928C21161357E10079D6B0 /* adsearch.json */,
+				AC928C511615F26A0079D6B0 /* SFbayareaOffice.html */,
 			);
 			name = UnitTestResources;
 			sourceTree = "<group>";
@@ -335,6 +429,21 @@
 				DDF3450C1600ABCD00C1D426 /* SimpleAdList.html in Resources */,
 				AC93ED551607780F00FA0603 /* BookSearch.html in Resources */,
 				AC93ED581607783900FA0603 /* SimpleBookSearch.html in Resources */,
+				AC5516C4160CBFA30023B48A /* SimpleAdListBroken.html in Resources */,
+				ACB823E81610AB480030D8BC /* ManyCategories.html in Resources */,
+				AC928C151611DEEC0079D6B0 /* RusAdImages3.html in Resources */,
+				AC928C181611DEF70079D6B0 /* EnAdImages2.html in Resources */,
+				AC928C1A1611DF030079D6B0 /* EnAdImages1.html in Resources */,
+				AC928C1C1611DF180079D6B0 /* RusAdNoImages.html in Resources */,
+				AC928C1E1613513C0079D6B0 /* ad.json in Resources */,
+				AC928C20161356940079D6B0 /* adlist.json in Resources */,
+				AC928C22161357E10079D6B0 /* adsearch.json in Resources */,
+				AC928C30161478600079D6B0 /* TattooAd.html in Resources */,
+				AC928C411615969E0079D6B0 /* ApartmentAd.html in Resources */,
+				AC928C4316159CE60079D6B0 /* RefrigeratorAd.html in Resources */,
+				AC928C451615A3350079D6B0 /* HouseAd.html in Resources */,
+				AC928C4E1615C0380079D6B0 /* AppliancesList.html in Resources */,
+				AC928C521615F26B0079D6B0 /* SFbayareaOffice.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +478,12 @@
 				DDF3451A1602362A00C1D426 /* ParsedAdListTitle.m in Sources */,
 				AC55168E160897CF0023B48A /* SAXAdSearchParser.m in Sources */,
 				AC55169C1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */,
+				AC928C25161454490079D6B0 /* AdData.m in Sources */,
+				AC928C29161466AC0079D6B0 /* PSAXAdParser.m in Sources */,
+				AC928C34161492C40079D6B0 /* CategoryMatcher.m in Sources */,
+				AC928C38161495590079D6B0 /* ParsingHelper.m in Sources */,
+				AC928C3C1614A8260079D6B0 /* NSStringAdditions.m in Sources */,
+				AC928C481615B08A0079D6B0 /* PSAXAdListParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,7 +500,14 @@
 				DDF3451B1602362A00C1D426 /* ParsedAdListTitle.m in Sources */,
 				AC55168F160897CF0023B48A /* SAXAdSearchParser.m in Sources */,
 				AC55169D1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */,
-				AC5516B9160A04730023B48A /* ParametrizedSAXParserTest.m in Sources */,
+				AC928C26161454490079D6B0 /* AdData.m in Sources */,
+				AC928C2A161466AC0079D6B0 /* PSAXAdParser.m in Sources */,
+				AC928C35161492C40079D6B0 /* CategoryMatcher.m in Sources */,
+				AC928C39161495590079D6B0 /* ParsingHelper.m in Sources */,
+				AC928C3D1614A8260079D6B0 /* NSStringAdditions.m in Sources */,
+				AC928C491615B08A0079D6B0 /* PSAXAdListParser.m in Sources */,
+				AC928C4C1615BE810079D6B0 /* AdListPSAXParserTest.m in Sources */,
+				AC928C531615FEF20079D6B0 /* AdPSAXParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

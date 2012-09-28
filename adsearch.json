@@ -1,0 +1,43 @@
+{
+    "html body.toc blockquote p.row" :
+        {
+            "fieldName": "ad",
+            "type" : "Dict"
+        },
+    "html body.toc blockquote p.row a" :
+        {
+            "fieldName": "title",
+            "type" : "Scalar",
+            "attributes" : {
+                "href": {
+                    "fieldName": "link",
+                }
+            }
+        },
+    "html body.toc blockquote p.row span.itempp" :
+        {
+            "fieldName": "price",
+            "type" : "Scalar"
+        },
+    "html body.toc blockquote p.row span.itemdate" :
+        {
+            "fieldName": "date",
+            "type" : "Scalar"
+        },
+    "html body.toc blockquote p.row span.itempn" :
+        {
+            "fieldName": "location",
+            "trimmedChars": "()",
+            "type" : "Scalar"
+        },
+    "html body.toc blockquote h4.ban span a" :
+        {
+            "fieldName": "titleNext",
+            "type" : "Scalar",
+            "attributes" : {
+                "href": {
+                    "fieldName": "linkNext"
+                }
+            }
+        },
+}

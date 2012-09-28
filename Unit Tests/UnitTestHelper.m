@@ -12,9 +12,13 @@
 
 
 - (NSString*)contentsOfFile:(NSString*)fileName {
+    return [self contentsOfFile:fileName withType:@"html"];
+}
+
+- (NSString*)contentsOfFile:(NSString*)fileName withType:(NSString*)fileType {
 	NSError* err = nil;
 	NSBundle* bundle = [NSBundle bundleForClass:[self class]];
-	NSString* path = [bundle pathForResource:fileName ofType:@"html"];
+	NSString* path = [bundle pathForResource:fileName ofType:fileType];
 	NSString* testString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
     if (err) {
         NSLog(@"Error in %@: %@", NSStringFromSelector(_cmd), err);

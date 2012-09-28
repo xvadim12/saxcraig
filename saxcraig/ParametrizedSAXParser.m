@@ -6,40 +6,102 @@
 //  Copyright (c) 2012 Vadim A. Khohlov. All rights reserved.
 //
 
-#define ID_ATTR @"id"
-#define CLASS_ATTR @"class"
+#import "ParametrizedSAXParser.h"
+
+NSString* const ATTR_ID = @"id";
+NSString* const ATTR_CLASS = @"class";
+NSString* const ATTR_NAME = @"name";
 
 //Keys for data map
-#define kFieldName @"fieldName"
-#define kTrimmedChars @"trimmedChars"
-#define kObjectType @"type"
-#define kAttributesKey @"attributes"
+NSString* const kFieldName = @"fieldName";
+NSString* const kTrimmedChars = @"trimmedChars";
+NSString* const kObjectType = @"type";
+NSString* const kAttributesKey = @"attributes";
 
-#define kScalarObject 0
-#define kDictObject 1
+NSString* const kScalarObject = @"Scalar";
+NSString* const kDictObject   = @"Dict";
+
+//Keys in result subdictionaries
+NSString* const kDataKey = @"data";
+NSString* const kFieldNameKey = @"fieldName";
+
+@interface Stack: NSObject {
+    NSMutableArray* _data;
+}
+
+- (void) push: (id)item;
+- (id) pop;
+@end
 
 
-#import "ParametrizedSAXParser.h"
+@implementation Stack
+
+- (id)init; {
+    if (self = [super init])
+        _data = [NSMutableArray array];
+    return self;
+}
+
+- (void) dealloc {
+	_data = nil;
+    
+	[super dealloc];
+}
+
+- (void) push: (id)item {
+    [_data addObject:item];
+}
+
+- (id) pop {
+    id obj = nil;
+    if ([_data count] != 0)
+    {
+        obj = [[[_data lastObject] retain] autorelease];
+        [_data removeLastObject];
+    }
+    return obj;
+}
+@end
 
 /**
  Simple stack for saving current path in the file
  */
-@interface NSMutableArray (PathStack)
-- (void) push: (id)item;
-- (void) pop;
+@interface PathStack: Stack
+
+- (NSString*) stringPath;
+- (NSString*) findMatchingPathInArray:(NSArray*)allPaths;
 @end
 
-@implementation NSMutableArray (PathStack)
-- (void) push: (id)item {
-    [self addObject:item];
+
+@implementation PathStack
+
+- (id) pop {
+    //in the path stack we don't need poped value. So, use more simple implementation without plaing with retain & autorelease
+    [_data removeLastObject];
+    return nil;
 }
 
-- (void) pop {
-    if ([self count] != 0) {
-        [self removeLastObject];
-    }
+/**
+ Builds string representation of current path from current state of path stack
+ */
+- (NSString*) stringPath {
+    
+    NSMutableString *strPath = [NSMutableString stringWithString:@""];
+    for(NSString *subPath in _data)
+        [strPath appendFormat:@" %@", subPath];
+    return [strPath substringFromIndex:1];
 }
+
+- (NSString*) findMatchingPathInArray:(NSArray*)allPaths {
+    NSString *strPath = [self stringPath];
+    if (NSNotFound == [allPaths indexOfObject:strPath])
+        return nil;
+    else
+        return strPath;
+}
+
 @end
+
 
 @interface NSString (StringWithTrim)
 - (NSString*)trimChars:(NSString*)trimmedChars;
@@ -47,7 +109,10 @@
 
 @implementation NSString (StringWithTrim)
 - (NSString*)trimChars:(NSString*)trimmedChars {
-    return [self stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:trimmedChars]];
+    NSString* s = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (nil != trimmedChars)
+        s = [s stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:trimmedChars]];
+    return s;
 }
 @end
 
@@ -58,7 +123,16 @@
     
     NSDictionary *_dataMap;
     
-    NSMutableArray* _pathStack;
+    /**
+     Stack for saving data for not finished tag
+     */
+    Stack* _dataStack;
+    /**
+     Flag that we should process chars foundCharacters method, i.e. when we process needed tag
+     */
+    BOOL  _isProcessedData;
+    
+    PathStack* _pathStack;
     
     /**
      String for accumulating current char data
@@ -70,37 +144,26 @@
      */
     NSMutableDictionary* _parsedObject;
     
-    NSMutableDictionary* _resultDictionary;
+    NSMutableArray* _resultObject;
 }
 
+@synthesize URL;
+@synthesize requestInfo;
 
-- (id) initWithData:(NSData *)data encoding:(NSStringEncoding)encoding dataMap:(NSString*)stringDataMap {
+- (id) initWithDataMap:(NSString*)stringDataMap {
     if (self = [super init]) {
-        _htmlParser = [[DTHTMLParser alloc] initWithData:data encoding:encoding];
-        _htmlParser.delegate = self;
         
-        _dataMap = [self parseDataMap:stringDataMap encoding:encoding];
-        
-        _pathStack = [NSMutableArray array];
-        
-        _dataString = [[NSMutableString alloc] init];
-        _parsedObject = nil;
-        
-        _resultDictionary = [NSMutableDictionary dictionary];
+        _dataMap = [self parseDataMap:stringDataMap encoding:NSUTF8StringEncoding];
     }
     return self;
 }
 
 - (void) dealloc {
     
-    [_htmlParser release];
-	_htmlParser = nil;
-    
-    _dataMap = nil;    
-    _pathStack = nil;    
-    _dataString = nil;
-    _parsedObject = nil;
-    _resultDictionary = nil;
+    self.requestInfo = nil;
+	self.URL = nil;
+
+    _dataMap = nil;
     
 	[super dealloc];
 }
@@ -114,7 +177,7 @@
     path_to_object1 : { - dict with information about object
                         'fieldName': name of field in result dict,
                         'trimmedChars': string with chars which will be trimmed from start and end of value
-                        'type': type of object - 0 for scalar, 1 for dict, i.e. nested object
+                        'type': type of object - 'Scalar' for scalar, 'Dict' for dict, i.e. nested object
  
                         'attributes': { - subdictionary with information about html atg's attributes which whould be added to result
  
@@ -158,18 +221,18 @@
              {
                  "fieldName": "listTitle",
                  "trimmedChars": " ",
-                 "type" : 0
+                 "type" : "Scalar"
              },
     "html body.toc p.row" :
              {
                 "fieldName": "ads",
-                "type" : 1
+                "type" : "Dict"
              },
     "html body.toc p.row a" :
              {
                  "fieldName": "title",
                  "trimmedChars": " ",
-                 "type" : 0,
+                 "type" : "Scalar",
                  "attributes" : {
                      "href": {
                             "fieldName": "link",
@@ -181,13 +244,13 @@
              {
                  "fieldName": "price",
                  "trimmedChars": " ",
-                 "type" : 0
+                 "type" : "Scalar"
              },
     "html body.toc p.row span.itempn" :
              {
                  "fieldName": "location",
                  "trimmedChars": " ()",
-                 "type" : 0
+                 "type" : "Scalar"
              }
  }
  
@@ -200,51 +263,90 @@
     return [NSJSONSerialization JSONObjectWithData:[stringMapData dataUsingEncoding:encoding] options:kNilOptions error:&error];
 }
 
-/**
- Build string representation of current path from current state of path stack
- */
-- (NSString*) stringPath {
+- (NSObject*) parseHTML:(NSString*)htmlString {
+    return [self parseResultArray:[self parse:htmlString]];
+}
+
+- (NSObject*) parseResultArray:(NSArray*)resultArray {
+	return [NSNull null];
+}
+
+- (NSArray*) parse:(NSString*)htmlString {
     
-    NSMutableString *strPath = [NSMutableString stringWithString:@""];
-    for(NSString *subPath in _pathStack)
-        [strPath appendFormat:@" %@", subPath];
-    return [strPath substringFromIndex:1];
-}
-
-- (NSObject*)buildResult {
-    return [NSNull null];
-}
-
-- (NSObject*) parse {
+    _htmlParser = [[DTHTMLParser alloc] initWithData:[htmlString dataUsingEncoding:NSUTF8StringEncoding] encoding:NSUTF8StringEncoding];
+    _htmlParser.delegate = self;
+    
+    _dataStack = [[Stack alloc] init];
+    _pathStack = [[PathStack alloc] init];
+    
+    _dataString = [[NSMutableString alloc] init];
+    _parsedObject = nil;
+    
+    _resultObject = [NSMutableArray array];
+    
+    [_dataString setString:@""];
     
     [_htmlParser parse];
+    
+    [_htmlParser release];
+	_htmlParser = nil;
+    
+    [_pathStack release];
+    _pathStack = nil;
+    
+    _dataString = nil;
+    _parsedObject = nil;
 
-    return _resultDictionary;
+    return _resultObject;
 }
 
 - (void)parser:(DTHTMLParser *)parser didStartElement:(NSString *)elementName attributes:(NSDictionary *)attributeDict {
     
-    NSString *elementClass = [attributeDict valueForKey:ID_ATTR];   //get id of tag if present
+    NSString* elementId = [attributeDict objectForKey:ATTR_ID];   //get id of tag if present
+    NSString* elementClass = [attributeDict objectForKey:ATTR_CLASS]; //try to get class of tag
+    NSString* elName = [attributeDict objectForKey:ATTR_NAME];
     
-    if (nil == elementClass)
-        elementClass = [attributeDict valueForKey:CLASS_ATTR];      //try to get class of tag
-    
-    NSString *subPath;
-    if (nil != elementClass)
+    NSString* subPath;
+    if (nil != elName)
+        subPath = [NSString stringWithFormat:@"%@[name=%@]", elementName, elName];
+    else if (nil != elementClass)
         subPath = [NSString stringWithFormat:@"%@.%@", elementName, elementClass];
+    else if (nil != elementId)
+        subPath = [NSString stringWithFormat:@"%@#%@", elementName, elementId];
     else
         subPath = [NSString stringWithString:elementName];
     
     [_pathStack push:subPath];
-    
-    NSString *strPath = [self stringPath];
-    NSDictionary *dataInfoDict = [_dataMap valueForKey:strPath];
-    if (nil != dataInfoDict)
+    //NSLog(@"START %@", [_pathStack stringPath]);
+    NSString* strPath = [_pathStack findMatchingPathInArray:[_dataMap allKeys]];
+    if (nil != strPath)
     {
-        if ([[dataInfoDict valueForKey:kObjectType] intValue] == kScalarObject)
-            [_dataString setString:@""];
+        NSDictionary *dataInfoDict = [_dataMap objectForKey:strPath];
+        if ([[dataInfoDict objectForKey:kObjectType] isEqualToString: kScalarObject])
+        {
+            /*
+             If processing of current tag is not finished, save currently accummulated data. For example, for fragment:
+             
+             <div id="userbody">
+                 i-phone text ...
+                 <br>
+                 <ul class="blurbs">
+                     <li> Location: &#1082;&#1080;&#1077;&#1074;</li>
+                     <li>it's NOT ok to contact this poster with services or other commercial interests</li>
+                 </ul>
+             </div>
+             
+             we should save data ('i-phone text ...') begore starting of processing <li> tag. Saved data will be added to result in processing </div>
+             */
+            if (![_dataString isEqualToString:@""])
+                [_dataStack push: [NSString stringWithString:_dataString]];
+            
+            //[_dataString setString:@""];
+        }
         else
             _parsedObject = [[NSMutableDictionary alloc] init];
+        
+        [_dataString setString:@""];
         
         NSDictionary *subDataMap = [dataInfoDict objectForKey:kAttributesKey];
         if (nil != subDataMap)
@@ -254,13 +356,11 @@
 
 - (void)parseAttributes:(NSDictionary *)attributeDict withDataMap:(NSDictionary*)subDataMap {
     [subDataMap enumerateKeysAndObjectsUsingBlock:^(id key, id dataInfoDict, BOOL *stop) {
-        NSString *attrValue = [attributeDict valueForKey:key];
+        NSString *attrValue = [attributeDict objectForKey:key];
         if (nil != attrValue)
         {
             //assume that tag's attributes contain only scalar objects
-            NSString *fieldName = [dataInfoDict valueForKey:kFieldName];
-            NSMutableArray *dataArray = [self getDataArrayForObjectWithType:kScalarObject forField:fieldName];
-            [self saveScalarObject:attrValue to:dataArray withFieldName:fieldName andDataInfo:dataInfoDict];
+            [self saveScalarObject:attrValue withFieldName:[dataInfoDict objectForKey:kFieldName] andDataInfo:dataInfoDict];
         }
     }];
 }
@@ -271,23 +371,32 @@
 
 - (void)parser:(DTHTMLParser *)parser didEndElement:(NSString *)elementName {
     
-    NSString *strPath = [self stringPath];
+    NSString* strPath = [_pathStack findMatchingPathInArray:[_dataMap allKeys]];
     
-    NSDictionary *dataInfoDict = [_dataMap valueForKey:strPath];
-    if (nil != dataInfoDict)
+    if (nil != strPath)
     {
-        NSString *fieldName = [dataInfoDict valueForKey:kFieldName];        
-        int objType = [[dataInfoDict valueForKey:kObjectType] intValue];
-        
-        //get object for saving
-        NSMutableArray *dataArray = [self getDataArrayForObjectWithType:objType forField:fieldName];
+        NSDictionary *dataInfoDict = [_dataMap objectForKey:strPath];
+        NSString *fieldName = [dataInfoDict objectForKey:kFieldName];
+        NSString *objType = [dataInfoDict objectForKey:kObjectType];
 
         //... and add a new value
-        if (objType == kScalarObject)
-            [self saveScalarObject:_dataString to:dataArray withFieldName:fieldName andDataInfo:dataInfoDict];
+        if ([objType isEqualToString: kScalarObject])
+        {
+            [self saveScalarObject:_dataString withFieldName:fieldName andDataInfo:dataInfoDict];
+            NSString* prevData = [_dataStack pop];
+            if (nil == prevData)
+            {
+                _isProcessedData = NO;
+                [_dataString setString: @""];
+            }
+            else
+                [_dataString setString:prevData];
+        }
         else
         {
-            [dataArray addObject: _parsedObject];
+            if (![_dataString isEqualToString:@""])
+                [self saveScalarObject:_dataString withFieldName:@"unparsed" andDataInfo:dataInfoDict];
+            [_resultObject addObject:[NSDictionary dictionaryWithObjectsAndKeys:fieldName, @"fieldName", _parsedObject, @"data", nil]];
             [_parsedObject release];
             _parsedObject = nil;
         }
@@ -297,34 +406,18 @@
 }
 
 /**
- Returns object for saving data. Creates a new one if key doesn't exists
- @return NSMutableArray array
+ Saves scalar object to _resultObject or to _parsedObject dictionary
  */
--(NSMutableArray*)getDataArrayForObjectWithType:(int)objectType forField:(NSString*)fieldName {
-    NSMutableArray *dataArray = nil;
-    
-    //create a new key in results only for objects or scalars of first level
-    if ((nil == _parsedObject && objectType == kScalarObject) || objectType == kDictObject)
-    {
-        //assume that all objects are arrays (for more simple parser)
-        //some objects like ad list title will be presented by array with one item
-        dataArray = (NSMutableArray*)[_resultDictionary valueForKey:fieldName];
-        if (nil == dataArray) {
-            dataArray = [NSMutableArray array];
-            [_resultDictionary setValue:dataArray forKey:fieldName];
-        }
-    }
-    return dataArray;
-}
-
-/**
- Saves scalar object to dataArray or to _parsedObject dictionary
- */
--(void)saveScalarObject:(NSString*)value to:(NSMutableArray*)dataArray withFieldName:(NSString*)fieldName andDataInfo:(NSDictionary*)dataInfoDict {
+-(void)saveScalarObject:(NSString*)value withFieldName:(NSString*)fieldName andDataInfo:(NSDictionary*)dataInfoDict {
     if (nil == _parsedObject)
-        [dataArray addObject:[value trimChars:[dataInfoDict valueForKey:kTrimmedChars]]];
+    {
+        if (![value isEqualToString:@""])
+            [_resultObject addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                fieldName, @"fieldName",
+                                [value trimChars:[dataInfoDict objectForKey:kTrimmedChars]], @"data", nil]];
+    }
     else
-        [_parsedObject setValue:[value trimChars:[dataInfoDict valueForKey:kTrimmedChars]] forKey:fieldName];
+        [_parsedObject setValue:[value trimChars:[dataInfoDict objectForKey:kTrimmedChars]] forKey:fieldName];
 }
 
 @end

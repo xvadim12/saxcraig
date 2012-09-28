@@ -1,0 +1,102 @@
+{
+    "html body.posting h2" :
+        {
+            "fieldName": "title",
+            "type" : "Scalar"
+        },
+    "html body.posting span.postingdate" :
+        {
+            "fieldName": "date",
+            "type" : "Scalar"
+        },
+    "html body.posting div#userbody" :
+        {
+            "fieldName": "body",
+            "type" : "Scalar"
+        },
+    "html body.posting small a" :
+        {
+            "fieldName": "mailto_title",
+            "type" : "Scalar",
+            "attributes" : {
+                "href": {
+                    "fieldName": "mailto"
+                }
+            }
+        },
+    "html body.posting a" :
+        {
+            "fieldName": "mailto_title",
+            "type" : "Scalar",
+            "attributes" : {
+                "href": {
+                    "fieldName": "mailto"
+                }
+            }
+        },
+    "html body.posting span.postingidtext" :
+        {
+            "fieldName": "postingid",
+            "type" : "Scalar"
+        },
+    "html body.posting form fieldset input[name=postingID]" :
+        {
+            "fieldName": "postingid",
+            "type" : "Scalar",
+            "attributes" : {
+                "value": {
+                    "fieldName": "postingid"
+                }
+            }
+        },
+    "html body.posting div#userbody ul.blurbs li" :
+        {
+            "fieldName": "location",
+            "type" : "Scalar"
+        },
+    "html body.posting div#userbody img" :
+        {
+            "fieldName": "images",
+            "type" : "Scalar",
+            "attributes" : {
+                "src": {
+                    "fieldName": "images"
+                }
+            }
+        },
+    "html body.posting div#userbody div.iw div#iwt div.tn a img" :
+        {
+            "fieldName": "images",
+            "type" : "Scalar",
+            "attributes" : {
+            "src": {
+                    "fieldName": "images"
+                }
+            }
+        },
+    "html body.posting div#userbody a img" :
+        {
+            "fieldName": "images",
+            "type" : "Scalar",
+            "attributes" : {
+                "src": {
+                    "fieldName": "images"
+                }
+            }
+        },
+    "html body.posting div#userbody table tr td img" :
+        {
+            "fieldName": "images",
+            "type" : "Scalar",
+            "attributes" : {
+                "src": {
+                    "fieldName": "images"
+                }
+            }
+        },
+    "html body.posting" :
+        {
+            "fieldName": "unparsed",
+            "type" : "Scalar"
+        },
+}
