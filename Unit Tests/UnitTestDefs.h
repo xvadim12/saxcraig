@@ -40,6 +40,11 @@
 #define FILE_JEWELRY_SEARCH @"jewelrySearch"
 #define FILE_PARIS_CATEGORIES @"ParisCategories_UTF8"
 
+#define FILE_RUS_AD_IMAGES3 @"RusAdImages3"
+#define FILE_EN_AD_IMAGES1 @"EnAdImages1"
+#define FILE_BOOKS_AND_MAGS @"BooksAndMagAd"
+#define FILE_BOOKS_SEARCH @"BookSearch"
+
 #define FILE_CHICAGO_ALLOFF_POLITICS @"ChicagoAllOfPolitics"
 #define FILE_CHICAGO_CITY_CUSTOMERSURVICE @"ChicagoCityCustomerSurvice"
 #define FILE_CHICAGO_ALLOFF_SERVICES @"ChicagoAllOfServices"

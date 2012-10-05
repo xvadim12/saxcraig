@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC1169391619D4DB0093DE3D /* ChicagoAllOfServices.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1169381619D4DB0093DE3D /* ChicagoAllOfServices.html */; };
+		AC11693B1619D6710093DE3D /* ChicagoCityCustomerSurvice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11693A1619D6710093DE3D /* ChicagoCityCustomerSurvice.html */; };
+		AC11693D1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11693C1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html */; };
+		AC1169401619EEAD0093DE3D /* PSAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC11693F1619EEAD0093DE3D /* PSAXAdSearchParser.m */; };
+		AC1169411619EEAD0093DE3D /* PSAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC11693F1619EEAD0093DE3D /* PSAXAdSearchParser.m */; };
+		AC1169481619F11D0093DE3D /* GlobalFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169471619F11D0093DE3D /* GlobalFunctions.m */; };
+		AC1169491619F11D0093DE3D /* GlobalFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169471619F11D0093DE3D /* GlobalFunctions.m */; };
+		AC11694B1619F2640093DE3D /* AppliancesSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11694A1619F2630093DE3D /* AppliancesSearch.html */; };
+		AC11694E161AF2C70093DE3D /* ChicagoAllOfPoliticsSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11694D161AF2C70093DE3D /* ChicagoAllOfPoliticsSearch.html */; };
+		AC116950161AF2FD0093DE3D /* ChicagoAllOfServicesSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11694F161AF2FC0093DE3D /* ChicagoAllOfServicesSearch.html */; };
+		AC116952161AF3270093DE3D /* ChicagoCityCustomerSurviceSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC116951161AF3270093DE3D /* ChicagoCityCustomerSurviceSearch.html */; };
+		AC116955161B2D640093DE3D /* w4wSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC116954161B2D630093DE3D /* w4wSearch.html */; };
+		AC116957161B2F080093DE3D /* NoResults.html in Resources */ = {isa = PBXBuildFile; fileRef = AC116956161B2F070093DE3D /* NoResults.html */; };
+		AC116959161B2FBE0093DE3D /* jewelrySearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC116958161B2FBD0093DE3D /* jewelrySearch.html */; };
+		AC11695B161B3DBA0093DE3D /* JobsSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11695A161B3DBA0093DE3D /* JobsSearch.html */; };
+		AC11695D161B3E0F0093DE3D /* HousingSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11695C161B3E0E0093DE3D /* HousingSearch.html */; };
+		AC116962161C86640093DE3D /* ParsedDataFields.m in Sources */ = {isa = PBXBuildFile; fileRef = AC116961161C86630093DE3D /* ParsedDataFields.m */; };
+		AC116963161C86640093DE3D /* ParsedDataFields.m in Sources */ = {isa = PBXBuildFile; fileRef = AC116961161C86630093DE3D /* ParsedDataFields.m */; };
+		AC116979161DEB270093DE3D /* AdListPSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C4B1615BE810079D6B0 /* AdListPSAXParserTest.m */; };
+		AC11697A161EDDC70093DE3D /* PSAXAdSearchParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169431619EF620093DE3D /* PSAXAdSearchParserTest.m */; };
+		AC11697B161F04400093DE3D /* AdPSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C2D161476030079D6B0 /* AdPSAXParserTest.m */; };
 		AC55168E160897CF0023B48A /* SAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55168D160897CF0023B48A /* SAXAdSearchParser.m */; };
 		AC55168F160897CF0023B48A /* SAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55168D160897CF0023B48A /* SAXAdSearchParser.m */; };
 		AC55169C1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */; };
@@ -36,10 +57,9 @@
 		AC928C451615A3350079D6B0 /* HouseAd.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C441615A3350079D6B0 /* HouseAd.html */; };
 		AC928C481615B08A0079D6B0 /* PSAXAdListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C471615B08A0079D6B0 /* PSAXAdListParser.m */; };
 		AC928C491615B08A0079D6B0 /* PSAXAdListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C471615B08A0079D6B0 /* PSAXAdListParser.m */; };
-		AC928C4C1615BE810079D6B0 /* AdListPSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C4B1615BE810079D6B0 /* AdListPSAXParserTest.m */; };
 		AC928C4E1615C0380079D6B0 /* AppliancesList.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C4D1615C0370079D6B0 /* AppliancesList.html */; };
 		AC928C521615F26B0079D6B0 /* SFbayareaOffice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C511615F26A0079D6B0 /* SFbayareaOffice.html */; };
-		AC928C531615FEF20079D6B0 /* AdPSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C2D161476030079D6B0 /* AdPSAXParserTest.m */; };
+		AC928C58161997640079D6B0 /* ChicagoAllOfPolitics.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C571619975D0079D6B0 /* ChicagoAllOfPolitics.html */; };
 		AC93ED551607780F00FA0603 /* BookSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC93ED541607780F00FA0603 /* BookSearch.html */; };
 		AC93ED581607783900FA0603 /* SimpleBookSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC93ED571607783900FA0603 /* SimpleBookSearch.html */; };
 		ACB823E81610AB480030D8BC /* ManyCategories.html in Resources */ = {isa = PBXBuildFile; fileRef = ACB823E71610AB480030D8BC /* ManyCategories.html */; };
@@ -90,6 +110,29 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AC1169381619D4DB0093DE3D /* ChicagoAllOfServices.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoAllOfServices.html; sourceTree = "<group>"; };
+		AC11693A1619D6710093DE3D /* ChicagoCityCustomerSurvice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoCityCustomerSurvice.html; sourceTree = "<group>"; };
+		AC11693C1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PeninsulaAllHousingClassifieds.html; sourceTree = "<group>"; };
+		AC11693E1619EEAD0093DE3D /* PSAXAdSearchParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAXAdSearchParser.h; sourceTree = "<group>"; };
+		AC11693F1619EEAD0093DE3D /* PSAXAdSearchParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAXAdSearchParser.m; sourceTree = "<group>"; };
+		AC1169421619EF620093DE3D /* PSAXAdSearchParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAXAdSearchParserTest.h; sourceTree = "<group>"; };
+		AC1169431619EF620093DE3D /* PSAXAdSearchParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAXAdSearchParserTest.m; sourceTree = "<group>"; };
+		AC1169461619F11D0093DE3D /* GlobalFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalFunctions.h; sourceTree = "<group>"; };
+		AC1169471619F11D0093DE3D /* GlobalFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalFunctions.m; sourceTree = "<group>"; };
+		AC11694A1619F2630093DE3D /* AppliancesSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AppliancesSearch.html; sourceTree = "<group>"; };
+		AC11694C161AE1780093DE3D /* PSAXAdListParser_Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSAXAdListParser_Protected.h; sourceTree = "<group>"; };
+		AC11694D161AF2C70093DE3D /* ChicagoAllOfPoliticsSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoAllOfPoliticsSearch.html; sourceTree = "<group>"; };
+		AC11694F161AF2FC0093DE3D /* ChicagoAllOfServicesSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoAllOfServicesSearch.html; sourceTree = "<group>"; };
+		AC116951161AF3270093DE3D /* ChicagoCityCustomerSurviceSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoCityCustomerSurviceSearch.html; sourceTree = "<group>"; };
+		AC116953161B20D30093DE3D /* Translate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Translate.h; sourceTree = "<group>"; };
+		AC116954161B2D630093DE3D /* w4wSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = w4wSearch.html; sourceTree = "<group>"; };
+		AC116956161B2F070093DE3D /* NoResults.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NoResults.html; sourceTree = "<group>"; };
+		AC116958161B2FBD0093DE3D /* jewelrySearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = jewelrySearch.html; sourceTree = "<group>"; };
+		AC11695A161B3DBA0093DE3D /* JobsSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = JobsSearch.html; sourceTree = "<group>"; };
+		AC11695C161B3E0E0093DE3D /* HousingSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HousingSearch.html; sourceTree = "<group>"; };
+		AC116960161C86630093DE3D /* ParsedDataFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsedDataFields.h; sourceTree = "<group>"; };
+		AC116961161C86630093DE3D /* ParsedDataFields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsedDataFields.m; sourceTree = "<group>"; };
+		AC116977161DB84A0093DE3D /* NSMutableArrayAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMutableArrayAdditions.h; sourceTree = "<group>"; };
 		AC55168C160897CF0023B48A /* SAXAdSearchParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdSearchParser.h; sourceTree = "<group>"; };
 		AC55168D160897CF0023B48A /* SAXAdSearchParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXAdSearchParser.m; sourceTree = "<group>"; };
 		AC55169A1609CA9F0023B48A /* ParametrizedSAXParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParametrizedSAXParser.h; sourceTree = "<group>"; };
@@ -128,6 +171,7 @@
 		AC928C4D1615C0370079D6B0 /* AppliancesList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AppliancesList.html; sourceTree = "<group>"; };
 		AC928C501615E5520079D6B0 /* URLDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLDefs.h; sourceTree = "<group>"; };
 		AC928C511615F26A0079D6B0 /* SFbayareaOffice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SFbayareaOffice.html; sourceTree = "<group>"; };
+		AC928C571619975D0079D6B0 /* ChicagoAllOfPolitics.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoAllOfPolitics.html; sourceTree = "<group>"; };
 		AC93ED541607780F00FA0603 /* BookSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BookSearch.html; sourceTree = "<group>"; };
 		AC93ED571607783900FA0603 /* SimpleBookSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleBookSearch.html; sourceTree = "<group>"; };
 		AC93ED5916077A7700FA0603 /* SAXAdSearchParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdSearchParserTest.h; sourceTree = "<group>"; };
@@ -244,6 +288,11 @@
 				AC928C28161466AC0079D6B0 /* PSAXAdParser.m */,
 				AC928C461615B08A0079D6B0 /* PSAXAdListParser.h */,
 				AC928C471615B08A0079D6B0 /* PSAXAdListParser.m */,
+				AC11694C161AE1780093DE3D /* PSAXAdListParser_Protected.h */,
+				AC11693E1619EEAD0093DE3D /* PSAXAdSearchParser.h */,
+				AC11693F1619EEAD0093DE3D /* PSAXAdSearchParser.m */,
+				AC116960161C86630093DE3D /* ParsedDataFields.h */,
+				AC116961161C86630093DE3D /* ParsedDataFields.m */,
 				AC928C23161454490079D6B0 /* AdData.h */,
 				AC928C24161454490079D6B0 /* AdData.m */,
 				AC928C32161492C40079D6B0 /* CategoryMatcher.h */,
@@ -253,7 +302,10 @@
 				AC928C3A1614A8260079D6B0 /* NSStringAdditions.h */,
 				AC928C3B1614A8260079D6B0 /* NSStringAdditions.m */,
 				AC928C501615E5520079D6B0 /* URLDefs.h */,
+				AC1169461619F11D0093DE3D /* GlobalFunctions.h */,
+				AC1169471619F11D0093DE3D /* GlobalFunctions.m */,
 				DDF344C215FF8F5500C1D426 /* Supporting Files */,
+				AC116977161DB84A0093DE3D /* NSMutableArrayAdditions.h */,
 			);
 			path = saxcraig;
 			sourceTree = "<group>";
@@ -291,10 +343,12 @@
 				AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */,
 				AC928C2C161476030079D6B0 /* AdPSAXParserTest.h */,
 				AC928C2D161476030079D6B0 /* AdPSAXParserTest.m */,
-				DDF344DA15FF901100C1D426 /* Supporting Files */,
-				AC928C2B161475980079D6B0 /* UnitTestDefs.h */,
 				AC928C4A1615BE810079D6B0 /* AdListPSAXParserTest.h */,
 				AC928C4B1615BE810079D6B0 /* AdListPSAXParserTest.m */,
+				AC1169421619EF620093DE3D /* PSAXAdSearchParserTest.h */,
+				AC1169431619EF620093DE3D /* PSAXAdSearchParserTest.m */,
+				DDF344DA15FF901100C1D426 /* Supporting Files */,
+				AC928C2B161475980079D6B0 /* UnitTestDefs.h */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -327,10 +381,23 @@
 				AC928C4216159CE60079D6B0 /* RefrigeratorAd.html */,
 				AC928C4D1615C0370079D6B0 /* AppliancesList.html */,
 				AC928C441615A3350079D6B0 /* HouseAd.html */,
+				AC928C511615F26A0079D6B0 /* SFbayareaOffice.html */,
+				AC928C571619975D0079D6B0 /* ChicagoAllOfPolitics.html */,
 				AC928C1D1613513C0079D6B0 /* ad.json */,
 				AC928C1F161356940079D6B0 /* adlist.json */,
 				AC928C21161357E10079D6B0 /* adsearch.json */,
-				AC928C511615F26A0079D6B0 /* SFbayareaOffice.html */,
+				AC1169381619D4DB0093DE3D /* ChicagoAllOfServices.html */,
+				AC11693A1619D6710093DE3D /* ChicagoCityCustomerSurvice.html */,
+				AC11693C1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html */,
+				AC11694A1619F2630093DE3D /* AppliancesSearch.html */,
+				AC11694D161AF2C70093DE3D /* ChicagoAllOfPoliticsSearch.html */,
+				AC11694F161AF2FC0093DE3D /* ChicagoAllOfServicesSearch.html */,
+				AC116951161AF3270093DE3D /* ChicagoCityCustomerSurviceSearch.html */,
+				AC116954161B2D630093DE3D /* w4wSearch.html */,
+				AC116956161B2F070093DE3D /* NoResults.html */,
+				AC116958161B2FBD0093DE3D /* jewelrySearch.html */,
+				AC11695A161B3DBA0093DE3D /* JobsSearch.html */,
+				AC11695C161B3E0E0093DE3D /* HousingSearch.html */,
 			);
 			name = UnitTestResources;
 			sourceTree = "<group>";
@@ -349,6 +416,7 @@
 				DDF3450F1601E74800C1D426 /* DTHTMLParser.m */,
 				DDF3450E1601E73C00C1D426 /* DTHTMLParser.h */,
 				DDF3450816008BE900C1D426 /* Defs.h */,
+				AC116953161B20D30093DE3D /* Translate.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -444,6 +512,19 @@
 				AC928C451615A3350079D6B0 /* HouseAd.html in Resources */,
 				AC928C4E1615C0380079D6B0 /* AppliancesList.html in Resources */,
 				AC928C521615F26B0079D6B0 /* SFbayareaOffice.html in Resources */,
+				AC928C58161997640079D6B0 /* ChicagoAllOfPolitics.html in Resources */,
+				AC1169391619D4DB0093DE3D /* ChicagoAllOfServices.html in Resources */,
+				AC11693B1619D6710093DE3D /* ChicagoCityCustomerSurvice.html in Resources */,
+				AC11693D1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html in Resources */,
+				AC11694B1619F2640093DE3D /* AppliancesSearch.html in Resources */,
+				AC11694E161AF2C70093DE3D /* ChicagoAllOfPoliticsSearch.html in Resources */,
+				AC116950161AF2FD0093DE3D /* ChicagoAllOfServicesSearch.html in Resources */,
+				AC116952161AF3270093DE3D /* ChicagoCityCustomerSurviceSearch.html in Resources */,
+				AC116955161B2D640093DE3D /* w4wSearch.html in Resources */,
+				AC116957161B2F080093DE3D /* NoResults.html in Resources */,
+				AC116959161B2FBE0093DE3D /* jewelrySearch.html in Resources */,
+				AC11695B161B3DBA0093DE3D /* JobsSearch.html in Resources */,
+				AC11695D161B3E0F0093DE3D /* HousingSearch.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +565,9 @@
 				AC928C38161495590079D6B0 /* ParsingHelper.m in Sources */,
 				AC928C3C1614A8260079D6B0 /* NSStringAdditions.m in Sources */,
 				AC928C481615B08A0079D6B0 /* PSAXAdListParser.m in Sources */,
+				AC1169401619EEAD0093DE3D /* PSAXAdSearchParser.m in Sources */,
+				AC1169481619F11D0093DE3D /* GlobalFunctions.m in Sources */,
+				AC116962161C86640093DE3D /* ParsedDataFields.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,8 +590,12 @@
 				AC928C39161495590079D6B0 /* ParsingHelper.m in Sources */,
 				AC928C3D1614A8260079D6B0 /* NSStringAdditions.m in Sources */,
 				AC928C491615B08A0079D6B0 /* PSAXAdListParser.m in Sources */,
-				AC928C4C1615BE810079D6B0 /* AdListPSAXParserTest.m in Sources */,
-				AC928C531615FEF20079D6B0 /* AdPSAXParserTest.m in Sources */,
+				AC1169411619EEAD0093DE3D /* PSAXAdSearchParser.m in Sources */,
+				AC1169491619F11D0093DE3D /* GlobalFunctions.m in Sources */,
+				AC116963161C86640093DE3D /* ParsedDataFields.m in Sources */,
+				AC116979161DEB270093DE3D /* AdListPSAXParserTest.m in Sources */,
+				AC11697A161EDDC70093DE3D /* PSAXAdSearchParserTest.m in Sources */,
+				AC11697B161F04400093DE3D /* AdPSAXParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

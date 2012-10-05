@@ -7,7 +7,8 @@
     "html body.posting span.postingdate" :
         {
             "fieldName": "date",
-            "type" : "Scalar"
+            "type" : "Scalar",
+            "regexp": "Date: .*\n"
         },
     "html body.posting div#userbody" :
         {
@@ -36,16 +37,17 @@
         },
     "html body.posting span.postingidtext" :
         {
-            "fieldName": "postingid",
-            "type" : "Scalar"
+            "fieldName": "postingID",
+            "type" : "Scalar",
+            "regexp": "PostingID: .*\n"
         },
     "html body.posting form fieldset input[name=postingID]" :
         {
-            "fieldName": "postingid",
+            "fieldName": "unused",
             "type" : "Scalar",
             "attributes" : {
                 "value": {
-                    "fieldName": "postingid"
+                    "fieldName": "postingID"
                 }
             }
         },

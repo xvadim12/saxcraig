@@ -1,4 +1,24 @@
 {
+    "html body.toc div.bchead a" :
+        {
+            "fieldName": "sublocationNameSel",
+            "type" : "Scalar",
+            "attributes" : {
+                "href": {
+                    "fieldName": "sublocationAbbrSel"
+                }
+            }
+        },
+    "html body.toc div.bchead div#satabs a" :
+    {
+        "fieldName": "sublocationName",
+        "type" : "Scalar",
+        "attributes" : {
+            "href": {
+                "fieldName": "sublocationAbbr"
+            }
+        }
+    },
     "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td input[name=minSqft]" :
         {
             "fieldName": "minSqft",
@@ -6,6 +26,16 @@
             "attributes" : {
                 "name": {
                     "fieldName": "minSqft"
+                }
+            }
+        },
+    "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td#hoodpicker div noscript select[name=nh] option" :
+        {
+            "fieldName": "neighborhoodsKeyName",
+            "type" : "Scalar",
+            "attributes" : {
+                "value": {
+                    "fieldName": "neighborhoodsValue"
                 }
             }
         },
@@ -44,6 +74,7 @@
             "fieldName": "price",
             "type" : "Scalar",
             "trimmedChars": " -",
+            "regexp": "(?s)^.*$"
         },
     "html body.toc blockquote p.row span.itempn" :
         {
@@ -57,7 +88,7 @@
             "trimmedChars": "()",
             "type" : "Scalar"
         },
-        "html body.toc blockquote p.row span.p" :
+    "html body.toc blockquote p.row span.p" :
         {
             "fieldName": "unused",
             "type" : "Scalar"

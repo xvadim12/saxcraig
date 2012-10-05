@@ -43,11 +43,12 @@ extern NSString* const kFieldNameKey;
  */
 - (NSObject*) parseResultArray:(NSArray*)resultArray;
 
-
 /**
  Performs parsing.
  @return NSArray of data
  */
 - (NSArray*) parse:(NSString*)htmlString;
+
+- (NSString*) getDataFromDict:(NSDictionary*)dict withKey:(NSString*) key withUnparsedData:(NSString*)unparsed andRegexpKey:(NSString*)regexpKey;
 
 @end

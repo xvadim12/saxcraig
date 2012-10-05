@@ -24,6 +24,7 @@ NSString* const kDictObject   = @"Dict";
 //Keys in result subdictionaries
 NSString* const kDataKey = @"data";
 NSString* const kFieldNameKey = @"fieldName";
+NSString* const kRegexpKey = @"regexp";
 
 @interface Stack: NSObject {
     NSMutableArray* _data;
@@ -31,6 +32,7 @@ NSString* const kFieldNameKey = @"fieldName";
 
 - (void) push: (id)item;
 - (id) pop;
+- (void) clear;
 @end
 
 
@@ -60,6 +62,10 @@ NSString* const kFieldNameKey = @"fieldName";
         [_data removeLastObject];
     }
     return obj;
+}
+
+- (void) clear {
+    [_data removeAllObjects];
 }
 @end
 
@@ -109,10 +115,12 @@ NSString* const kFieldNameKey = @"fieldName";
 
 @implementation NSString (StringWithTrim)
 - (NSString*)trimChars:(NSString*)trimmedChars {
-    NSString* s = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    NSMutableCharacterSet* trimmCharset = [NSMutableCharacterSet whitespaceAndNewlineCharacterSet];
     if (nil != trimmedChars)
-        s = [s stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:trimmedChars]];
-    return s;
+        [trimmCharset addCharactersInString:trimmedChars];
+    
+    return  [self stringByTrimmingCharactersInSet:trimmCharset];
 }
 @end
 
@@ -121,16 +129,15 @@ NSString* const kFieldNameKey = @"fieldName";
     
     DTHTMLParser* _htmlParser;
     
-    NSDictionary *_dataMap;
+    NSDictionary* _dataMap;
+    
+    //Regexps for extaricring data from unparsed block
+    NSMutableDictionary* _fieldRegexps;
     
     /**
      Stack for saving data for not finished tag
      */
     Stack* _dataStack;
-    /**
-     Flag that we should process chars foundCharacters method, i.e. when we process needed tag
-     */
-    BOOL  _isProcessedData;
     
     PathStack* _pathStack;
     
@@ -151,10 +158,21 @@ NSString* const kFieldNameKey = @"fieldName";
 @synthesize requestInfo;
 
 - (id) initWithDataMap:(NSString*)stringDataMap {
+    
     if (self = [super init]) {
+        
+        _dataStack = [[Stack alloc] init];
+        _pathStack = [[PathStack alloc] init];
+        
+        _dataString = [[NSMutableString alloc] init];
+        _parsedObject = nil;
+        
+        _resultObject = [NSMutableArray array];
+        _fieldRegexps = [[NSMutableDictionary alloc] init];
         
         _dataMap = [self parseDataMap:stringDataMap encoding:NSUTF8StringEncoding];
     }
+    
     return self;
 }
 
@@ -162,8 +180,21 @@ NSString* const kFieldNameKey = @"fieldName";
     
     self.requestInfo = nil;
 	self.URL = nil;
+    
+    [_pathStack release];
+    _pathStack = nil;
+    
+    [_dataStack release];
+    _dataStack = nil;
+    
+    _dataString = nil;
+    [_parsedObject release];
+    _parsedObject = nil;
 
     _dataMap = nil;
+    
+    [_fieldRegexps release];
+    _fieldRegexps = nil;
     
 	[super dealloc];
 }
@@ -260,7 +291,20 @@ NSString* const kFieldNameKey = @"fieldName";
     
     NSError *error;
     //TODO: error processing; check that all needed keys are present
-    return [NSJSONSerialization JSONObjectWithData:[stringMapData dataUsingEncoding:encoding] options:kNilOptions error:&error];
+    NSDictionary* dMap = [NSJSONSerialization JSONObjectWithData:[stringMapData dataUsingEncoding:encoding] options:kNilOptions error:&error];
+    
+    //build dict with field's regexps
+    for (NSString* key in [dMap allKeys]){
+        NSDictionary* item = [dMap objectForKey:key];
+        NSString* regexp = [item objectForKey:kRegexpKey];
+        if (nil != regexp) {
+            [_fieldRegexps setObject:[NSDictionary dictionaryWithObjectsAndKeys:regexp, kRegexpKey,
+                                          [item objectForKey:kTrimmedChars], kTrimmedChars,
+                                          nil] forKey:[item objectForKey:kFieldName]];
+        }
+    }
+    
+    return dMap;
 }
 
 - (NSObject*) parseHTML:(NSString*)htmlString {
@@ -276,27 +320,17 @@ NSString* const kFieldNameKey = @"fieldName";
     _htmlParser = [[DTHTMLParser alloc] initWithData:[htmlString dataUsingEncoding:NSUTF8StringEncoding] encoding:NSUTF8StringEncoding];
     _htmlParser.delegate = self;
     
-    _dataStack = [[Stack alloc] init];
-    _pathStack = [[PathStack alloc] init];
-    
-    _dataString = [[NSMutableString alloc] init];
-    _parsedObject = nil;
-    
-    _resultObject = [NSMutableArray array];
-    
+    [_dataStack clear];
+    [_pathStack clear];
+    [_resultObject removeAllObjects];
     [_dataString setString:@""];
+    _parsedObject = nil;
     
     [_htmlParser parse];
     
     [_htmlParser release];
 	_htmlParser = nil;
     
-    [_pathStack release];
-    _pathStack = nil;
-    
-    _dataString = nil;
-    _parsedObject = nil;
-
     return _resultObject;
 }
 
@@ -317,7 +351,6 @@ NSString* const kFieldNameKey = @"fieldName";
         subPath = [NSString stringWithString:elementName];
     
     [_pathStack push:subPath];
-    //NSLog(@"START %@", [_pathStack stringPath]);
     NSString* strPath = [_pathStack findMatchingPathInArray:[_dataMap allKeys]];
     if (nil != strPath)
     {
@@ -340,8 +373,6 @@ NSString* const kFieldNameKey = @"fieldName";
              */
             if (![_dataString isEqualToString:@""])
                 [_dataStack push: [NSString stringWithString:_dataString]];
-            
-            //[_dataString setString:@""];
         }
         else
             _parsedObject = [[NSMutableDictionary alloc] init];
@@ -385,10 +416,7 @@ NSString* const kFieldNameKey = @"fieldName";
             [self saveScalarObject:_dataString withFieldName:fieldName andDataInfo:dataInfoDict];
             NSString* prevData = [_dataStack pop];
             if (nil == prevData)
-            {
-                _isProcessedData = NO;
                 [_dataString setString: @""];
-            }
             else
                 [_dataString setString:prevData];
         }
@@ -396,7 +424,8 @@ NSString* const kFieldNameKey = @"fieldName";
         {
             if (![_dataString isEqualToString:@""])
                 [self saveScalarObject:_dataString withFieldName:@"unparsed" andDataInfo:dataInfoDict];
-            [_resultObject addObject:[NSDictionary dictionaryWithObjectsAndKeys:fieldName, @"fieldName", _parsedObject, @"data", nil]];
+            
+            [_resultObject addObject:[NSDictionary dictionaryWithObjectsAndKeys:fieldName, kFieldNameKey, _parsedObject, kDataKey, nil]];
             [_parsedObject release];
             _parsedObject = nil;
         }
@@ -411,13 +440,30 @@ NSString* const kFieldNameKey = @"fieldName";
 -(void)saveScalarObject:(NSString*)value withFieldName:(NSString*)fieldName andDataInfo:(NSDictionary*)dataInfoDict {
     if (nil == _parsedObject)
     {
-        if (![value isEqualToString:@""])
-            [_resultObject addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                fieldName, @"fieldName",
-                                [value trimChars:[dataInfoDict objectForKey:kTrimmedChars]], @"data", nil]];
+        [_resultObject addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                fieldName, kFieldNameKey,
+                                [value trimChars:[dataInfoDict objectForKey:kTrimmedChars]], kDataKey, nil]];
     }
     else
         [_parsedObject setValue:[value trimChars:[dataInfoDict objectForKey:kTrimmedChars]] forKey:fieldName];
+}
+
+- (NSString*) getDataFromDict:(NSDictionary*)dict withKey:(NSString*) key withUnparsedData:(NSString*)unparsed andRegexpKey:(NSString*)regexpKey {
+
+    NSString* value = nil!= dict ? [dict objectForKey:key] : nil;
+    if (nil == value && nil != unparsed && nil != regexpKey) {
+        NSDictionary* rexp = [_fieldRegexps objectForKey:regexpKey];
+        if (nil != rexp) {
+            NSError *error = NULL;
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[rexp objectForKey:kRegexpKey]
+                                                                                   options:0         
+                                                                                     error:&error];
+            NSRange range = [regex rangeOfFirstMatchInString:unparsed options:0 range:NSMakeRange(0, [unparsed length])];
+            if (NSNotFound != range.location)
+                value = [[unparsed substringWithRange:range] trimChars:[rexp objectForKey:kTrimmedChars]];
+        }
+    }
+    return value;
 }
 
 @end

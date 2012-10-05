@@ -57,10 +57,9 @@
 
 - (NSString*) descr {
 	if (nil==descr && [body length]>0) {
-        
-        //some cleanup??
-		NSString* _descr = [NSString stringWithString: body];
-		self.descr = _descr;
+		self.descr = [body stringByReplacingOccurrencesOfString:@"\\s+" withString:@" "
+                                                        options:NSRegularExpressionSearch
+                                                          range:NSMakeRange(0, body.length)];
 	}
 	return descr;
 }
