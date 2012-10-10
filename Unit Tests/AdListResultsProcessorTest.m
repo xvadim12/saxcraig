@@ -10,27 +10,34 @@
 #import "UnitTestDefs.h"
 #import "UnitTestHelper.h"
 #import "AdData.h"
-#import "PSAXAdListParser.h"
-#import "AdListPSAXParserTest.h"
+#import "AdListResultsProcessor.h"
+#import "AdListResultsProcessorTest.h"
 
-@implementation AdListPSAXParserTest
+#import "ParametrizedSAXParser.h"
+
+@implementation AdListResultsProcessorTest
 
 - (void) testNeighborhoodsParcing{
     //return;
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adlist" withType:@"json"];
 	NSString* htmlString1 = [self.unitTestHelper contentsOfFile:FILE_PENINSULA_AD_LIST];
 	NSString* htmlString2 = [self.unitTestHelper contentsOfFile:FILE_APPLIANCES_LIST];
-    PSAXAdListParser* parser = [[[PSAXAdListParser alloc] initWithDataMap:dataMap] autorelease];
-	
-	[parser setURL:@"http://sfbay.craigslist.org/pen/hhh/"];
-	NSDictionary* adsDict1 = (NSDictionary*)[parser parseHTML:htmlString1];
+    
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlString1];
+    
+    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
+	[processor setURL:@"http://sfbay.craigslist.org/pen/hhh/"];
+    NSDictionary* adsDict1 = (NSDictionary*)[processor parseResultArray:resultArray];
+    
 	NSDictionary* neighborhoodsDict1 = [adsDict1 objectForKey:KEY_NEIGHBORHOODS];
 	STAssertTrue([neighborhoodsDict1 count]==23,@"neighborhoods count=%d",[neighborhoodsDict1 count]);
 	STAssertTrue([[neighborhoodsDict1 objectForKey:@"foster city"] intValue] == 77,
 				 @"your dictionary is incorrect, your foster city value is %d",[[neighborhoodsDict1 objectForKey:@"foster city"] intValue]);
 
-	[parser setURL:@"http://losangeles.craigslist.org/app/index.html"];
-	NSDictionary* adsDict2 = (NSDictionary*)[parser parseHTML:htmlString2];
+	[processor setURL:@"http://losangeles.craigslist.org/app/index.html"];
+    resultArray = [parser parse:htmlString2];
+    NSDictionary* adsDict2 = (NSDictionary*)[processor parseResultArray:resultArray];
 	NSDictionary* neighborhoodsDict2 = [adsDict2 objectForKey:KEY_NEIGHBORHOODS];
 	STAssertTrue((NSObject*)neighborhoodsDict2==[NSNull null],@"neighborhoods dictionary for this list must be nil");
 }
@@ -39,10 +46,14 @@
     //return;
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adlist" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_APPLIANCES_LIST];
-    PSAXAdListParser* parser = [[[PSAXAdListParser alloc] initWithDataMap:dataMap] autorelease];
-	[parser setURL:@"http://losangeles.craigslist.org/app/index.html"];
+
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlString];
     
-	NSDictionary* adsDict = (NSDictionary*)[parser parseHTML:htmlString];
+    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
+	[processor setURL:@"http://losangeles.craigslist.org/app/index.html"];
+    
+    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
     
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
@@ -70,15 +81,19 @@
 	NSString* htmlString1 = [self.unitTestHelper contentsOfFile:FILE_SFBAYAREA_OFFICE_AD_LIST];
 	NSString* htmlString2 = [self.unitTestHelper contentsOfFile:FILE_APPLIANCES_LIST];
     
-    PSAXAdListParser* parser = [[[PSAXAdListParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlString1];
+    
+    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
 	
-	[parser setURL:@"http://sfbay.craigslist.org/off/"];
-	NSDictionary* adsDict1 = (NSDictionary*)[parser parseHTML:htmlString1];
+	[processor setURL:@"http://sfbay.craigslist.org/off/"];
+    NSDictionary* adsDict1 = (NSDictionary*)[processor parseResultArray:resultArray];
 	NSNumber* sqft1 = [adsDict1 objectForKey:KEY_SQFT];
 	STAssertTrue([sqft1 boolValue],@"for this list sqft must be true");
 	
-	[parser setURL:@"http://losangeles.craigslist.org/app/index.html"];
-	NSDictionary* adsDict2 = (NSDictionary*)[parser parseHTML:htmlString2];
+	[processor setURL:@"http://losangeles.craigslist.org/app/index.html"];
+    resultArray = [parser parse:htmlString2];
+    NSDictionary* adsDict2 = (NSDictionary*)[processor parseResultArray:resultArray];
 	NSNumber* sqft2 = [adsDict2 objectForKey:KEY_SQFT];
 	STAssertFalse([sqft2 boolValue],@"for this list sqft must be false");
 }
@@ -103,10 +118,13 @@
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adlist" withType:@"json"];
 	NSString* htmlStringAllOfPoliticsChicago = [self.unitTestHelper contentsOfFile:FILE_CHICAGO_ALLOFF_POLITICS];
     
-    PSAXAdListParser* parser = [[[PSAXAdListParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlStringAllOfPoliticsChicago];
     
-	[parser setURL:@"http://chicago.craigslist.org/pol/"];
-	NSDictionary* adsDict = (NSDictionary*)[parser parseHTML:htmlStringAllOfPoliticsChicago];
+    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
+    
+	[processor setURL:@"http://chicago.craigslist.org/pol/"];
+    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
     
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
@@ -116,10 +134,13 @@
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adlist" withType:@"json"];
 	NSString* htmlStringAllOfServicesChicago = [self.unitTestHelper contentsOfFile:FILE_CHICAGO_ALLOFF_SERVICES];
     
-    PSAXAdListParser* parser = [[[PSAXAdListParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlStringAllOfServicesChicago];
+    
+    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
 
-	[parser setURL:@"http://chicago.craigslist.org/bbb/"];
-	NSDictionary* adsDict = (NSDictionary*)[parser parseHTML:htmlStringAllOfServicesChicago];
+	[processor setURL:@"http://chicago.craigslist.org/bbb/"];
+    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
     
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
@@ -129,10 +150,13 @@
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adlist" withType:@"json"];
     NSString* htmlStringCityOfChicago = [self.unitTestHelper contentsOfFile:FILE_CHICAGO_CITY_CUSTOMERSURVICE];
     
-    PSAXAdListParser* parser = [[[PSAXAdListParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlStringCityOfChicago];
     
-	[parser setURL:@"http://chicago.craigslist.org/chc/csr/"];
-	NSDictionary* adsDict = (NSDictionary*)[parser parseHTML:htmlStringCityOfChicago];
+    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
+    
+	[processor setURL:@"http://chicago.craigslist.org/chc/csr/"];
+    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
 
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
@@ -141,10 +165,13 @@
     //return;
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adlist" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_BOOKS_AND_MAGS];
-    PSAXAdListParser* parser = [[[PSAXAdListParser alloc] initWithDataMap:dataMap] autorelease];
-	[parser setURL:@"http://losangeles.craigslist.org/app/index.html"];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlString];
     
-	NSDictionary* adsDict = (NSDictionary*)[parser parseHTML:htmlString];
+    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
+	[processor setURL:@"http://losangeles.craigslist.org/app/index.html"];
+    
+    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
     
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
     

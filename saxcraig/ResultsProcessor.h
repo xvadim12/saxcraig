@@ -10,4 +10,15 @@
 
 @interface ResultsProcessor : NSObject
 
+//the request URL of the page that is being parsed
+@property (nonatomic,retain) NSString* URL;
+
+//the requestInfo object for some information dealing with request
+@property (nonatomic,retain) NSDictionary* requestInfo;
+
+/**
+ Sublasses should provide the correct implemenation
+ */
+- (NSObject*) parseResultArray:(NSArray*)resultArray;
+
 @end

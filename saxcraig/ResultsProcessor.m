@@ -10,4 +10,18 @@
 
 @implementation ResultsProcessor
 
+@synthesize URL;
+@synthesize requestInfo;
+
+- (void) dealloc {
+    
+    self.requestInfo = nil;
+	self.URL = nil;
+    [super dealloc];
+}
+
+- (NSObject*) parseResultArray:(NSArray*)resultArray {
+	return [NSNull null];
+}
+
 @end

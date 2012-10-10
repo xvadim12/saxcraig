@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Vadim A. Khohlov. All rights reserved.
 //
 
-#import "PSAXAdListParser.h"
+#import "AdListResultsProcessor.h"
 
-@interface PSAXAdSearchParser : PSAXAdListParser
+@interface AdSearchResultsProcessor : AdListResultsProcessor
 
 @end

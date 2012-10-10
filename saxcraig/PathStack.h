@@ -8,6 +8,10 @@
 
 #import "Stack.h"
 
-@interface PathStack : Stack
+/**
+ Simple stack for saving current path in the file
+ */
+@interface PathStack: Stack
 
+- (NSArray*) findMatchingPathInArray:(NSArray*)allPaths;
 @end

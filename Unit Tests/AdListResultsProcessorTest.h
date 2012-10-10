@@ -8,6 +8,6 @@
 
 #import "SAXParserTest.h"
 
-@interface AdListPSAXParserTest : SAXParserTest
+@interface AdListResultsProcessorTest : SAXParserTest
 
 @end

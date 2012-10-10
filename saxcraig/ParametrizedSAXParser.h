@@ -16,12 +16,6 @@ extern NSString* const kFieldNameKey;
 
 @interface ParametrizedSAXParser : NSObject <DTHTMLParserDelegate>
 
-//the request URL of the page that is being parsed
-@property (nonatomic,retain) NSString* URL;
-
-//the requestInfo object for some information dealing with request
-@property (nonatomic,retain) NSDictionary* requestInfo;
-
 /**
  Inits parser with data map
  
@@ -36,19 +30,10 @@ extern NSString* const kFieldNameKey;
  */
 - (id) initWithDataMap:(NSString*)stringDataMap;
 
-- (NSObject*) parseHTML:(NSString*) htmlString;
-
-/**
- Sublasses should provide the correct implemenation
- */
-- (NSObject*) parseResultArray:(NSArray*)resultArray;
-
 /**
  Performs parsing.
  @return NSArray of data
  */
 - (NSArray*) parse:(NSString*)htmlString;
-
-- (NSString*) getDataFromDict:(NSDictionary*)dict withKey:(NSString*) key withUnparsedData:(NSString*)unparsed andRegexpKey:(NSString*)regexpKey;
 
 @end

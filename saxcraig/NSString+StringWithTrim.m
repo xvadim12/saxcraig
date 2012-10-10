@@ -9,5 +9,12 @@
 #import "NSString+StringWithTrim.h"
 
 @implementation NSString (StringWithTrim)
-
+- (NSString*)trimChars:(NSString*)trimmedChars {
+    
+    NSMutableCharacterSet* trimmCharset = [NSMutableCharacterSet whitespaceAndNewlineCharacterSet];
+    if (nil != trimmedChars)
+        [trimmCharset addCharactersInString:trimmedChars];
+    
+    return  [self stringByTrimmingCharactersInSet:trimmCharset];
+}
 @end

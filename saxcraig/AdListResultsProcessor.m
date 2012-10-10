@@ -13,8 +13,10 @@
 #import "CategoryMatcher.h"
 #import "ParsedDataFields.h"
 #import "NSMutableArrayAdditions.h"
-#import "PSAXAdListParser.h"
-#import "PSAXAdListParser_Protected.h"
+#import "AdListResultsProcessor.h"
+#import "AdListResultsProcessor_Protected.h"
+
+#import "ParametrizedSAXParser.h"
 
 NSString* const FIELD_TITLE = @"title";
 NSString* const FIELD_AD = @"ad";
@@ -29,7 +31,7 @@ NSString* const FIELD_NEIGHBORHOODS_KEYNAME = @"neighborhoodsKeyName";
 
 NSString* const ABBR_DELIMITER = @"/";
 
-@implementation PSAXAdListParser
+@implementation AdListResultsProcessor
 
 - (NSObject*) parseResultArray:(NSArray*)resultArray {
     //NSLog(@"RESULT %@", resultArray);
@@ -122,15 +124,13 @@ int const THUMBNAIL_PREFIX_LEN = 7;
 - (AdData*)parseAdFromDictionary:(NSDictionary*)adDict {
     
     AdData* adData = [[[AdData alloc] init] autorelease];
-    NSString* unparsed = [adDict objectForKey:FIELD_AD_UNPARSED];
     
-    adData.link = [self getDataFromDict:adDict withKey:FIELD_AD_LINK withUnparsedData:unparsed andRegexpKey:FIELD_AD_LINK];
-    adData.title = [self getDataFromDict:adDict withKey:FIELD_AD_TITLE withUnparsedData:unparsed andRegexpKey:FIELD_AD_TITLE];
-    adData.price = [self getDataFromDict:adDict withKey:FIELD_AD_PRICE withUnparsedData:unparsed andRegexpKey:FIELD_AD_PRICE];
-    adData.place = [self getDataFromDict:adDict withKey:FIELD_AD_LOCATION withUnparsedData:unparsed andRegexpKey:FIELD_AD_LOCATION];
-    adData.price = [self getDataFromDict:adDict withKey:FIELD_AD_PRICE withUnparsedData:unparsed andRegexpKey:FIELD_AD_PRICE];
+    adData.link = [adDict objectForKey:FIELD_AD_LINK]; 
+    adData.title =[adDict objectForKey:FIELD_AD_TITLE]; 
+    adData.price =[adDict objectForKey:FIELD_AD_PRICE]; 
+    adData.place =[adDict objectForKey:FIELD_AD_LOCATION];
     
-    NSString* thumb_src = [self getDataFromDict:adDict withKey:FIELD_AD_THUMBNAIL withUnparsedData:unparsed andRegexpKey:FIELD_AD_THUMBNAIL];
+    NSString* thumb_src =[adDict objectForKey:FIELD_AD_THUMBNAIL];
     if ([thumb_src hasPrefix:THUMBNAIL_PREFIX])
         thumb_src = [thumb_src substringFromIndex:THUMBNAIL_PREFIX_LEN];
     if (nil!=thumb_src) {

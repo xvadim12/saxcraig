@@ -8,21 +8,24 @@
 #import "Defs.h"
 #import "UnitTestDefs.h"
 #import "UnitTestHelper.h"
-#import "AdPSAXParserTest.h"
-#import "PSAXAdParser.h"
+#import "AdResultsProcessorTest.h"
+#import "AdResultsProcessor.h"
 #import "AdData.h"
+#import "ParametrizedSAXParser.h"
 
-@implementation AdPSAXParserTest
+@implementation AdResultsProcessorTest
 
 - (void) testTattooAd {
     //return;
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_TATTOO_AD];
     
-    PSAXAdParser* parser = [[[PSAXAdParser alloc] initWithDataMap:dataMap] autorelease];
-    parser.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
-    
-    AdData* adData=(AdData*)[parser parseHTML:htmlString];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlString];
+
+    AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
+    processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
     
     STAssertTrue([adData.title isEqualToString:@"TATTOO KIT"],@"adData.title=%@",adData.title);
 	STAssertTrue([adData.body length]>0,@"your body is empty");
@@ -50,10 +53,13 @@
     //TODO: Fix
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_APARTMENT_AD];
-	PSAXAdParser* parser = [[[PSAXAdParser alloc] initWithDataMap:dataMap] autorelease];
-	parser.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
-    AdData* adData=(AdData*)[parser parseHTML:htmlString];
-	
+    
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlString];
+    
+	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
+	processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
 	
 	STAssertTrue([adData.title isEqualToString:@"^^  Modernised ^^ Sparkling Swimming Pool  ^^ CLOSE 2 COUNTRY Club ^^ Appropriat"],
 				 @"adData.title=%@",adData.title);
@@ -77,10 +83,13 @@
     //File without form with PostingID, only text in body
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_REFRIGERATOR_AD];
-    PSAXAdParser* parser = [[[PSAXAdParser alloc] initWithDataMap:dataMap] autorelease];
-	parser.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
-    AdData* adData=(AdData*)[parser parseHTML:htmlString];
-
+    
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlString];
+    
+	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
+	processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
 	
 	STAssertTrue([adData.title isEqualToString:@"ADMIRAL REFRIGERATOR IN EXCELLENT CONDTION"],
 				 @"adData.title=%@",adData.title);
@@ -104,9 +113,13 @@
     //return;
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_HOUSE_AD];
-    PSAXAdParser* parser = [[[PSAXAdParser alloc] initWithDataMap:dataMap] autorelease];
-	parser.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
-	AdData* adData = (AdData*) [parser parseHTML:htmlString];
+    
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlString];
+    
+	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
+	processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
 	
 	STAssertTrue([adData.title isEqualToString:@"BREATHTAKING Hollywood Home: Private, Gated, Resort Living"],
 				 @"adData.title=%@",adData.title);
@@ -131,10 +144,12 @@
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_RUS_AD_IMAGES3];
     
-    PSAXAdParser* parser = [[[PSAXAdParser alloc] initWithDataMap:dataMap] autorelease];
-    parser.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://ukraine.craigslist.org/phd",KEY_TOP_CATEGORY_HREF,nil];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlString];
     
-    AdData* adData=(AdData*)[parser parseHTML:htmlString];
+	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
+    processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://ukraine.craigslist.org/phd",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
     
     NSString* descr = @"Слід dolly Камера dolly 750 USD Будь ласка відвідувати нас http://trackdolly.com/ Buy camera dolly for $99 Track dolly 750 Dealers well come http://trackdolly.com/ Buy camera dolly for $99 Track dolly 750 Dealers well come http://trackdolly.com/";
     STAssertEqualObjects(adData.descr, descr, @"Wrong descr $@", adData.descr);
@@ -145,6 +160,8 @@
     STAssertEqualObjects(adData.mailto,
                   @"mailto:dbrk7-3258787977@sale.craigslist.org?subject=%20dolly%20%20do&body=%0A%0Ahttp%3A%2F%2Fukraine.craigslist.org%2Fphd%2F3258787977.html%0A",
                   @"adData.mailto=%@",adData.mailto);
+    //non-english dates don't parsed yet
+    //NSLog(@"RES DATE %@", adData.date);
 }
 
 - (void) testEnAdImages1 {
@@ -152,16 +169,19 @@
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_EN_AD_IMAGES1];
     
-    PSAXAdParser* parser = [[[PSAXAdParser alloc] initWithDataMap:dataMap] autorelease];
-    parser.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlString];
     
-    AdData* adData=(AdData*)[parser parseHTML:htmlString];
+	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
+    processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
     
     STAssertEqualObjects(@"2012-09-25 09:13:00 +0000", [adData.date description], @"adData.date %@", [adData.date description]);
     STAssertEqualObjects(adData.title, @"Who Moved My Cheese - $10", @"adData.title %@", adData.title);
     STAssertEqualObjects(adData.descr, @"BRAND NEW. Crispy pages, no damages. Please reply by email. Thank you.", @"adData.descr %@", adData.descr);
     //NSLog(@"PRICE %@", adData.price); - price was not extracted from title
     STAssertEqualObjects(adData.postingID, @"3283339813", @"adData.postingID %@", adData.postingID);
+    STAssertTrue([[adData.date description] isEqualToString:@"2012-09-25 09:13:00 +0000"], @"adData.date=%@",[adData.date description]);
 }
 
 @end

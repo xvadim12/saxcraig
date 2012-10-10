@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Stack : NSObject
+@interface Stack: NSObject {
+    NSMutableArray* _data;
+}
 
+- (void) push: (id)item;
+- (id) pop;
+- (void) clear;
 @end
+

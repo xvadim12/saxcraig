@@ -12,10 +12,12 @@
 #import "AdData.h"
 #import "CategoryMatcher.h"
 #import "ParsingHelper.h"
-#import "PSAXAdListParser_Protected.h"
-#import "PSAXAdSearchParser.h"
+#import "AdListResultsProcessor_Protected.h"
+#import "AdSearchResultsProcessor.h"
 #import "ParsedDataFields.h"
 #import "NSMutableArrayAdditions.h"
+
+#import "ParametrizedSAXParser.h"
 
 NSString* const FIELD_LIST_TITLE = @"listTitle";
 NSString* const FIELD_LIST_TITLE_FULL = @"listTitleFull";
@@ -23,13 +25,13 @@ NSString* const FIELD_LIST_TITLE_FULL = @"listTitleFull";
 NSString* const SUB_TITLE_FOUND = @"Found: ";
 NSString* const SUB_TITLE_DISPLAING = @"Displaying: ";
 
-@interface PSAXAdSearchParser ()
+@interface AdSearchResultsProcessor ()
 
 -(NSString*)parseGroupNameFromString:(NSString*)listTitle;
 
 @end
 
-@implementation PSAXAdSearchParser
+@implementation AdSearchResultsProcessor
 
 - (NSObject*) parseResultArray:(NSArray*)resultArray {
     //NSLog(@"RESULT %@", resultArray);
@@ -196,10 +198,8 @@ NSString* const FIELD_AD_SEPARATOR = @"separator";
     
     AdData* adData = [super parseAdFromDictionary:adDict];
     
-    NSString* unparsed = [adDict objectForKey:FIELD_AD_UNPARSED];
-    
-    NSString* adDate = [self getDataFromDict:adDict withKey:FIELD_AD_DATE withUnparsedData:unparsed andRegexpKey:FIELD_AD_DATE];
-    NSString* separator = [self getDataFromDict:adDict withKey:FIELD_AD_SEPARATOR withUnparsedData:unparsed andRegexpKey:FIELD_AD_SEPARATOR];
+    NSString* adDate = [adDict objectForKey:FIELD_AD_DATE]; 
+    NSString* separator = [adDict objectForKey:FIELD_AD_SEPARATOR];
     separator = nil != separator ? [NSString stringWithFormat:@"%@ ", separator] : @"";
     NSString* title = [NSString stringWithFormat:@"%@ %@%@", adDate, separator, adData.title];
     if (nil == adData.price || 0 == [adData.price length])

@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Vadim A. Khohlov. All rights reserved.
 //
 
-#import "ParametrizedSAXParser.h"
+#import "ResultsProcessor.h"
 
-@interface PSAXAdParser : ParametrizedSAXParser
+@interface AdResultsProcessor : ResultsProcessor
 
 @end

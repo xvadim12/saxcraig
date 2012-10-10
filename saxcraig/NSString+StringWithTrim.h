@@ -9,5 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (StringWithTrim)
-
+/**
+ Trims from string whitespace and new lines. If trimmedChars is not nil also trims this chars
+ */
+- (NSString*)trimChars:(NSString*)trimmedChars;
 @end

@@ -19,7 +19,7 @@
             }
         }
     },
-    "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td input[name=minSqft]" :
+    "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td input[minSqft]" :
         {
             "fieldName": "minSqft",
             "type" : "Scalar",
@@ -29,7 +29,7 @@
                 }
             }
         },
-    "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td#hoodpicker div noscript select[name=nh] option" :
+    "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td#hoodpicker div noscript select[nh] option" :
         {
             "fieldName": "neighborhoodsKeyName",
             "type" : "Scalar",
@@ -47,7 +47,10 @@
     "html body.toc blockquote p.row" :
         {
             "fieldName": "ad",
-            "type" : "Dict"
+            "type" : "Dict",
+            "regexps": {
+                    "price": "(?s)^[ \n\t-]*(.*)[ \n\t]"
+                }
         },
     "html body.toc blockquote p.row span.ih" :
     {
@@ -73,8 +76,7 @@
         {
             "fieldName": "price",
             "type" : "Scalar",
-            "trimmedChars": " -",
-            "regexp": "(?s)^.*$"
+            "trimmedChars": " -"
         },
     "html body.toc blockquote p.row span.itempn" :
         {

@@ -10,8 +10,8 @@
 		AC1169391619D4DB0093DE3D /* ChicagoAllOfServices.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1169381619D4DB0093DE3D /* ChicagoAllOfServices.html */; };
 		AC11693B1619D6710093DE3D /* ChicagoCityCustomerSurvice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11693A1619D6710093DE3D /* ChicagoCityCustomerSurvice.html */; };
 		AC11693D1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11693C1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html */; };
-		AC1169401619EEAD0093DE3D /* PSAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC11693F1619EEAD0093DE3D /* PSAXAdSearchParser.m */; };
-		AC1169411619EEAD0093DE3D /* PSAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC11693F1619EEAD0093DE3D /* PSAXAdSearchParser.m */; };
+		AC1169401619EEAD0093DE3D /* AdSearchResultsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = AC11693F1619EEAD0093DE3D /* AdSearchResultsProcessor.m */; };
+		AC1169411619EEAD0093DE3D /* AdSearchResultsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = AC11693F1619EEAD0093DE3D /* AdSearchResultsProcessor.m */; };
 		AC1169481619F11D0093DE3D /* GlobalFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169471619F11D0093DE3D /* GlobalFunctions.m */; };
 		AC1169491619F11D0093DE3D /* GlobalFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169471619F11D0093DE3D /* GlobalFunctions.m */; };
 		AC11694B1619F2640093DE3D /* AppliancesSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11694A1619F2630093DE3D /* AppliancesSearch.html */; };
@@ -25,15 +25,19 @@
 		AC11695D161B3E0F0093DE3D /* HousingSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11695C161B3E0E0093DE3D /* HousingSearch.html */; };
 		AC116962161C86640093DE3D /* ParsedDataFields.m in Sources */ = {isa = PBXBuildFile; fileRef = AC116961161C86630093DE3D /* ParsedDataFields.m */; };
 		AC116963161C86640093DE3D /* ParsedDataFields.m in Sources */ = {isa = PBXBuildFile; fileRef = AC116961161C86630093DE3D /* ParsedDataFields.m */; };
-		AC116979161DEB270093DE3D /* AdListPSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C4B1615BE810079D6B0 /* AdListPSAXParserTest.m */; };
-		AC11697A161EDDC70093DE3D /* PSAXAdSearchParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169431619EF620093DE3D /* PSAXAdSearchParserTest.m */; };
-		AC11697B161F04400093DE3D /* AdPSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C2D161476030079D6B0 /* AdPSAXParserTest.m */; };
-		AC55168E160897CF0023B48A /* SAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55168D160897CF0023B48A /* SAXAdSearchParser.m */; };
-		AC55168F160897CF0023B48A /* SAXAdSearchParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55168D160897CF0023B48A /* SAXAdSearchParser.m */; };
+		AC11697E161F1F730093DE3D /* PWithoutRow.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11697D161F1F720093DE3D /* PWithoutRow.html */; };
 		AC55169C1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */; };
 		AC55169D1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */; };
 		AC5516B8160A03700023B48A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344BD15FF8F5500C1D426 /* Foundation.framework */; };
 		AC5516C4160CBFA30023B48A /* SimpleAdListBroken.html in Resources */ = {isa = PBXBuildFile; fileRef = AC5516C3160CBFA30023B48A /* SimpleAdListBroken.html */; };
+		AC8D9245162417360000E1ED /* ResultsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9244162417360000E1ED /* ResultsProcessor.m */; };
+		AC8D9246162417360000E1ED /* ResultsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9244162417360000E1ED /* ResultsProcessor.m */; };
+		AC8D9255162571B10000E1ED /* PathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9254162571B10000E1ED /* PathItem.m */; };
+		AC8D9256162571B10000E1ED /* PathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9254162571B10000E1ED /* PathItem.m */; };
+		AC8D925D1625B0350000E1ED /* AdResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C2D161476030079D6B0 /* AdResultsProcessorTest.m */; };
+		AC8D925F1625CE1E0000E1ED /* PathItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9258162587F90000E1ED /* PathItemTest.m */; };
+		AC8D92601625D1380000E1ED /* AdListResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C4B1615BE810079D6B0 /* AdListResultsProcessorTest.m */; };
+		AC8D92611625D1800000E1ED /* AdSearchResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169431619EF620093DE3D /* AdSearchResultsProcessorTest.m */; };
 		AC928C151611DEEC0079D6B0 /* RusAdImages3.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C141611DEEB0079D6B0 /* RusAdImages3.html */; };
 		AC928C181611DEF70079D6B0 /* EnAdImages2.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C171611DEF60079D6B0 /* EnAdImages2.html */; };
 		AC928C1A1611DF030079D6B0 /* EnAdImages1.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C191611DF030079D6B0 /* EnAdImages1.html */; };
@@ -43,8 +47,8 @@
 		AC928C22161357E10079D6B0 /* adsearch.json in Resources */ = {isa = PBXBuildFile; fileRef = AC928C21161357E10079D6B0 /* adsearch.json */; };
 		AC928C25161454490079D6B0 /* AdData.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C24161454490079D6B0 /* AdData.m */; };
 		AC928C26161454490079D6B0 /* AdData.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C24161454490079D6B0 /* AdData.m */; };
-		AC928C29161466AC0079D6B0 /* PSAXAdParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C28161466AC0079D6B0 /* PSAXAdParser.m */; };
-		AC928C2A161466AC0079D6B0 /* PSAXAdParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C28161466AC0079D6B0 /* PSAXAdParser.m */; };
+		AC928C29161466AC0079D6B0 /* AdResultsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C28161466AC0079D6B0 /* AdResultsProcessor.m */; };
+		AC928C2A161466AC0079D6B0 /* AdResultsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C28161466AC0079D6B0 /* AdResultsProcessor.m */; };
 		AC928C30161478600079D6B0 /* TattooAd.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C2F1614785F0079D6B0 /* TattooAd.html */; };
 		AC928C34161492C40079D6B0 /* CategoryMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C33161492C40079D6B0 /* CategoryMatcher.m */; };
 		AC928C35161492C40079D6B0 /* CategoryMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C33161492C40079D6B0 /* CategoryMatcher.m */; };
@@ -55,13 +59,20 @@
 		AC928C411615969E0079D6B0 /* ApartmentAd.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C401615969D0079D6B0 /* ApartmentAd.html */; };
 		AC928C4316159CE60079D6B0 /* RefrigeratorAd.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C4216159CE60079D6B0 /* RefrigeratorAd.html */; };
 		AC928C451615A3350079D6B0 /* HouseAd.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C441615A3350079D6B0 /* HouseAd.html */; };
-		AC928C481615B08A0079D6B0 /* PSAXAdListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C471615B08A0079D6B0 /* PSAXAdListParser.m */; };
-		AC928C491615B08A0079D6B0 /* PSAXAdListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C471615B08A0079D6B0 /* PSAXAdListParser.m */; };
+		AC928C481615B08A0079D6B0 /* AdListResultsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C471615B08A0079D6B0 /* AdListResultsProcessor.m */; };
+		AC928C491615B08A0079D6B0 /* AdListResultsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C471615B08A0079D6B0 /* AdListResultsProcessor.m */; };
 		AC928C4E1615C0380079D6B0 /* AppliancesList.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C4D1615C0370079D6B0 /* AppliancesList.html */; };
 		AC928C521615F26B0079D6B0 /* SFbayareaOffice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C511615F26A0079D6B0 /* SFbayareaOffice.html */; };
 		AC928C58161997640079D6B0 /* ChicagoAllOfPolitics.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C571619975D0079D6B0 /* ChicagoAllOfPolitics.html */; };
 		AC93ED551607780F00FA0603 /* BookSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC93ED541607780F00FA0603 /* BookSearch.html */; };
 		AC93ED581607783900FA0603 /* SimpleBookSearch.html in Resources */ = {isa = PBXBuildFile; fileRef = AC93ED571607783900FA0603 /* SimpleBookSearch.html */; };
+		AC9580411622D18B0002EBE2 /* SAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9580401622D18B0002EBE2 /* SAXParserTest.m */; };
+		AC9580461622E9A20002EBE2 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9580451622E9A20002EBE2 /* Stack.m */; };
+		AC9580471622E9A20002EBE2 /* Stack.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9580451622E9A20002EBE2 /* Stack.m */; };
+		AC95804A1622EC120002EBE2 /* PathStack.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9580491622EC120002EBE2 /* PathStack.m */; };
+		AC95804B1622EC120002EBE2 /* PathStack.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9580491622EC120002EBE2 /* PathStack.m */; };
+		AC95804E1622ECED0002EBE2 /* NSString+StringWithTrim.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95804D1622ECED0002EBE2 /* NSString+StringWithTrim.m */; };
+		AC95804F1622ECED0002EBE2 /* NSString+StringWithTrim.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95804D1622ECED0002EBE2 /* NSString+StringWithTrim.m */; };
 		ACB823E81610AB480030D8BC /* ManyCategories.html in Resources */ = {isa = PBXBuildFile; fileRef = ACB823E71610AB480030D8BC /* ManyCategories.html */; };
 		DDF344BE15FF8F5500C1D426 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344BD15FF8F5500C1D426 /* Foundation.framework */; };
 		DDF344C115FF8F5500C1D426 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344C015FF8F5500C1D426 /* main.m */; };
@@ -71,19 +82,10 @@
 		DDF344EF15FF93A800C1D426 /* BooksAndMagAd.html in Resources */ = {isa = PBXBuildFile; fileRef = DDF344EE15FF93A800C1D426 /* BooksAndMagAd.html */; };
 		DDF344F316007D7700C1D426 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344F216007D7700C1D426 /* libxml2.2.dylib */; };
 		DDF344F61600808000C1D426 /* UnitTestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344F51600808000C1D426 /* UnitTestHelper.m */; };
-		DDF344FC1600835B00C1D426 /* SAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344FB1600835A00C1D426 /* SAXParserTest.m */; };
-		DDF34502160088DE00C1D426 /* SAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF34501160088DE00C1D426 /* SAXParser.m */; };
-		DDF34503160088DE00C1D426 /* SAXParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF34501160088DE00C1D426 /* SAXParser.m */; };
-		DDF3450616008AAB00C1D426 /* SAXAdListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3450516008AAB00C1D426 /* SAXAdListParser.m */; };
-		DDF3450716008AAB00C1D426 /* SAXAdListParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3450516008AAB00C1D426 /* SAXAdListParser.m */; };
 		DDF3450C1600ABCD00C1D426 /* SimpleAdList.html in Resources */ = {isa = PBXBuildFile; fileRef = DDF3450B1600ABCD00C1D426 /* SimpleAdList.html */; };
 		DDF3450D1600D16E00C1D426 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344F216007D7700C1D426 /* libxml2.2.dylib */; };
 		DDF345101601E74800C1D426 /* DTHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3450F1601E74800C1D426 /* DTHTMLParser.m */; };
 		DDF345111601E74800C1D426 /* DTHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3450F1601E74800C1D426 /* DTHTMLParser.m */; };
-		DDF3451616021E0100C1D426 /* ParsedAdData.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3451516021E0100C1D426 /* ParsedAdData.m */; };
-		DDF3451716021E0100C1D426 /* ParsedAdData.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF3451516021E0100C1D426 /* ParsedAdData.m */; };
-		DDF3451A1602362A00C1D426 /* ParsedAdListTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF345191602362A00C1D426 /* ParsedAdListTitle.m */; };
-		DDF3451B1602362A00C1D426 /* ParsedAdListTitle.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF345191602362A00C1D426 /* ParsedAdListTitle.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,14 +115,13 @@
 		AC1169381619D4DB0093DE3D /* ChicagoAllOfServices.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoAllOfServices.html; sourceTree = "<group>"; };
 		AC11693A1619D6710093DE3D /* ChicagoCityCustomerSurvice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoCityCustomerSurvice.html; sourceTree = "<group>"; };
 		AC11693C1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PeninsulaAllHousingClassifieds.html; sourceTree = "<group>"; };
-		AC11693E1619EEAD0093DE3D /* PSAXAdSearchParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAXAdSearchParser.h; sourceTree = "<group>"; };
-		AC11693F1619EEAD0093DE3D /* PSAXAdSearchParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAXAdSearchParser.m; sourceTree = "<group>"; };
-		AC1169421619EF620093DE3D /* PSAXAdSearchParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAXAdSearchParserTest.h; sourceTree = "<group>"; };
-		AC1169431619EF620093DE3D /* PSAXAdSearchParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAXAdSearchParserTest.m; sourceTree = "<group>"; };
+		AC11693E1619EEAD0093DE3D /* AdSearchResultsProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdSearchResultsProcessor.h; sourceTree = "<group>"; };
+		AC11693F1619EEAD0093DE3D /* AdSearchResultsProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdSearchResultsProcessor.m; sourceTree = "<group>"; };
+		AC1169421619EF620093DE3D /* AdSearchResultsProcessorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdSearchResultsProcessorTest.h; sourceTree = "<group>"; };
+		AC1169431619EF620093DE3D /* AdSearchResultsProcessorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdSearchResultsProcessorTest.m; sourceTree = "<group>"; };
 		AC1169461619F11D0093DE3D /* GlobalFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalFunctions.h; sourceTree = "<group>"; };
 		AC1169471619F11D0093DE3D /* GlobalFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalFunctions.m; sourceTree = "<group>"; };
 		AC11694A1619F2630093DE3D /* AppliancesSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AppliancesSearch.html; sourceTree = "<group>"; };
-		AC11694C161AE1780093DE3D /* PSAXAdListParser_Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSAXAdListParser_Protected.h; sourceTree = "<group>"; };
 		AC11694D161AF2C70093DE3D /* ChicagoAllOfPoliticsSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoAllOfPoliticsSearch.html; sourceTree = "<group>"; };
 		AC11694F161AF2FC0093DE3D /* ChicagoAllOfServicesSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoAllOfServicesSearch.html; sourceTree = "<group>"; };
 		AC116951161AF3270093DE3D /* ChicagoCityCustomerSurviceSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoCityCustomerSurviceSearch.html; sourceTree = "<group>"; };
@@ -133,13 +134,19 @@
 		AC116960161C86630093DE3D /* ParsedDataFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsedDataFields.h; sourceTree = "<group>"; };
 		AC116961161C86630093DE3D /* ParsedDataFields.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsedDataFields.m; sourceTree = "<group>"; };
 		AC116977161DB84A0093DE3D /* NSMutableArrayAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSMutableArrayAdditions.h; sourceTree = "<group>"; };
-		AC55168C160897CF0023B48A /* SAXAdSearchParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdSearchParser.h; sourceTree = "<group>"; };
-		AC55168D160897CF0023B48A /* SAXAdSearchParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXAdSearchParser.m; sourceTree = "<group>"; };
+		AC11697D161F1F720093DE3D /* PWithoutRow.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PWithoutRow.html; sourceTree = "<group>"; };
 		AC55169A1609CA9F0023B48A /* ParametrizedSAXParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParametrizedSAXParser.h; sourceTree = "<group>"; };
 		AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParametrizedSAXParser.m; sourceTree = "<group>"; };
 		AC55169E1609DC630023B48A /* ParametrizedSAXParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParametrizedSAXParserTest.h; sourceTree = "<group>"; };
 		AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParametrizedSAXParserTest.m; sourceTree = "<group>"; };
 		AC5516C3160CBFA30023B48A /* SimpleAdListBroken.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleAdListBroken.html; sourceTree = "<group>"; };
+		AC8D9243162417360000E1ED /* ResultsProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsProcessor.h; sourceTree = "<group>"; };
+		AC8D9244162417360000E1ED /* ResultsProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsProcessor.m; sourceTree = "<group>"; };
+		AC8D925216247F920000E1ED /* AdListResultsProcessor_Protected.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdListResultsProcessor_Protected.h; sourceTree = "<group>"; };
+		AC8D9253162571B00000E1ED /* PathItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathItem.h; sourceTree = "<group>"; };
+		AC8D9254162571B10000E1ED /* PathItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathItem.m; sourceTree = "<group>"; };
+		AC8D9257162587F70000E1ED /* PathItemTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathItemTest.h; sourceTree = "<group>"; };
+		AC8D9258162587F90000E1ED /* PathItemTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathItemTest.m; sourceTree = "<group>"; };
 		AC928C141611DEEB0079D6B0 /* RusAdImages3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RusAdImages3.html; sourceTree = "<group>"; };
 		AC928C171611DEF60079D6B0 /* EnAdImages2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EnAdImages2.html; sourceTree = "<group>"; };
 		AC928C191611DF030079D6B0 /* EnAdImages1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EnAdImages1.html; sourceTree = "<group>"; };
@@ -149,11 +156,11 @@
 		AC928C21161357E10079D6B0 /* adsearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = adsearch.json; sourceTree = "<group>"; };
 		AC928C23161454490079D6B0 /* AdData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdData.h; sourceTree = "<group>"; };
 		AC928C24161454490079D6B0 /* AdData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdData.m; sourceTree = "<group>"; };
-		AC928C27161466AC0079D6B0 /* PSAXAdParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAXAdParser.h; sourceTree = "<group>"; };
-		AC928C28161466AC0079D6B0 /* PSAXAdParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAXAdParser.m; sourceTree = "<group>"; };
+		AC928C27161466AC0079D6B0 /* AdResultsProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdResultsProcessor.h; sourceTree = "<group>"; };
+		AC928C28161466AC0079D6B0 /* AdResultsProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdResultsProcessor.m; sourceTree = "<group>"; };
 		AC928C2B161475980079D6B0 /* UnitTestDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnitTestDefs.h; sourceTree = "<group>"; };
-		AC928C2C161476030079D6B0 /* AdPSAXParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdPSAXParserTest.h; sourceTree = "<group>"; };
-		AC928C2D161476030079D6B0 /* AdPSAXParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdPSAXParserTest.m; sourceTree = "<group>"; };
+		AC928C2C161476030079D6B0 /* AdResultsProcessorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdResultsProcessorTest.h; sourceTree = "<group>"; };
+		AC928C2D161476030079D6B0 /* AdResultsProcessorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdResultsProcessorTest.m; sourceTree = "<group>"; };
 		AC928C2F1614785F0079D6B0 /* TattooAd.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TattooAd.html; sourceTree = "<group>"; };
 		AC928C32161492C40079D6B0 /* CategoryMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryMatcher.h; sourceTree = "<group>"; };
 		AC928C33161492C40079D6B0 /* CategoryMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryMatcher.m; sourceTree = "<group>"; };
@@ -164,18 +171,24 @@
 		AC928C401615969D0079D6B0 /* ApartmentAd.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ApartmentAd.html; sourceTree = "<group>"; };
 		AC928C4216159CE60079D6B0 /* RefrigeratorAd.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RefrigeratorAd.html; sourceTree = "<group>"; };
 		AC928C441615A3350079D6B0 /* HouseAd.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HouseAd.html; sourceTree = "<group>"; };
-		AC928C461615B08A0079D6B0 /* PSAXAdListParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAXAdListParser.h; sourceTree = "<group>"; };
-		AC928C471615B08A0079D6B0 /* PSAXAdListParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAXAdListParser.m; sourceTree = "<group>"; };
-		AC928C4A1615BE810079D6B0 /* AdListPSAXParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdListPSAXParserTest.h; sourceTree = "<group>"; };
-		AC928C4B1615BE810079D6B0 /* AdListPSAXParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdListPSAXParserTest.m; sourceTree = "<group>"; };
+		AC928C461615B08A0079D6B0 /* AdListResultsProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdListResultsProcessor.h; sourceTree = "<group>"; };
+		AC928C471615B08A0079D6B0 /* AdListResultsProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdListResultsProcessor.m; sourceTree = "<group>"; };
+		AC928C4A1615BE810079D6B0 /* AdListResultsProcessorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdListResultsProcessorTest.h; sourceTree = "<group>"; };
+		AC928C4B1615BE810079D6B0 /* AdListResultsProcessorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdListResultsProcessorTest.m; sourceTree = "<group>"; };
 		AC928C4D1615C0370079D6B0 /* AppliancesList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AppliancesList.html; sourceTree = "<group>"; };
 		AC928C501615E5520079D6B0 /* URLDefs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLDefs.h; sourceTree = "<group>"; };
 		AC928C511615F26A0079D6B0 /* SFbayareaOffice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SFbayareaOffice.html; sourceTree = "<group>"; };
 		AC928C571619975D0079D6B0 /* ChicagoAllOfPolitics.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoAllOfPolitics.html; sourceTree = "<group>"; };
 		AC93ED541607780F00FA0603 /* BookSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BookSearch.html; sourceTree = "<group>"; };
 		AC93ED571607783900FA0603 /* SimpleBookSearch.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleBookSearch.html; sourceTree = "<group>"; };
-		AC93ED5916077A7700FA0603 /* SAXAdSearchParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdSearchParserTest.h; sourceTree = "<group>"; };
-		AC93ED5A16077A7700FA0603 /* SAXAdSearchParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXAdSearchParserTest.m; sourceTree = "<group>"; };
+		AC95803F1622D1840002EBE2 /* SAXParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXParserTest.h; sourceTree = "<group>"; };
+		AC9580401622D18B0002EBE2 /* SAXParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXParserTest.m; sourceTree = "<group>"; };
+		AC9580441622E9A20002EBE2 /* Stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Stack.h; sourceTree = "<group>"; };
+		AC9580451622E9A20002EBE2 /* Stack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stack.m; sourceTree = "<group>"; };
+		AC9580481622EC120002EBE2 /* PathStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathStack.h; sourceTree = "<group>"; };
+		AC9580491622EC120002EBE2 /* PathStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathStack.m; sourceTree = "<group>"; };
+		AC95804C1622ECED0002EBE2 /* NSString+StringWithTrim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StringWithTrim.h"; sourceTree = "<group>"; };
+		AC95804D1622ECED0002EBE2 /* NSString+StringWithTrim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringWithTrim.m"; sourceTree = "<group>"; };
 		ACB823E71610AB480030D8BC /* ManyCategories.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ManyCategories.html; sourceTree = "<group>"; };
 		DDF344B915FF8F5500C1D426 /* saxcraig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = saxcraig; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF344BD15FF8F5500C1D426 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -194,22 +207,10 @@
 		DDF344F216007D7700C1D426 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
 		DDF344F41600808000C1D426 /* UnitTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitTestHelper.h; sourceTree = "<group>"; };
 		DDF344F51600808000C1D426 /* UnitTestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitTestHelper.m; sourceTree = "<group>"; };
-		DDF344FA1600835A00C1D426 /* SAXParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXParserTest.h; sourceTree = "<group>"; };
-		DDF344FB1600835A00C1D426 /* SAXParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXParserTest.m; sourceTree = "<group>"; };
-		DDF344FD1600843000C1D426 /* SAXAdListParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdListParserTest.h; sourceTree = "<group>"; };
-		DDF344FE1600843000C1D426 /* SAXAdListParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXAdListParserTest.m; sourceTree = "<group>"; };
-		DDF34500160088DE00C1D426 /* SAXParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXParser.h; sourceTree = "<group>"; };
-		DDF34501160088DE00C1D426 /* SAXParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXParser.m; sourceTree = "<group>"; };
-		DDF3450416008AAB00C1D426 /* SAXAdListParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAXAdListParser.h; sourceTree = "<group>"; };
-		DDF3450516008AAB00C1D426 /* SAXAdListParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAXAdListParser.m; sourceTree = "<group>"; };
 		DDF3450816008BE900C1D426 /* Defs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Defs.h; path = saxcraig/Defs.h; sourceTree = "<group>"; };
 		DDF3450B1600ABCD00C1D426 /* SimpleAdList.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SimpleAdList.html; sourceTree = "<group>"; };
 		DDF3450E1601E73C00C1D426 /* DTHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTHTMLParser.h; sourceTree = "<group>"; };
 		DDF3450F1601E74800C1D426 /* DTHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTHTMLParser.m; sourceTree = "<group>"; };
-		DDF3451416021E0100C1D426 /* ParsedAdData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsedAdData.h; sourceTree = "<group>"; };
-		DDF3451516021E0100C1D426 /* ParsedAdData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsedAdData.m; sourceTree = "<group>"; };
-		DDF345181602362A00C1D426 /* ParsedAdListTitle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsedAdListTitle.h; sourceTree = "<group>"; };
-		DDF345191602362A00C1D426 /* ParsedAdListTitle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsedAdListTitle.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,25 +273,30 @@
 			children = (
 				DDF344C015FF8F5500C1D426 /* main.m */,
 				DDF344C415FF8F5500C1D426 /* saxcraig.1 */,
-				DDF34500160088DE00C1D426 /* SAXParser.h */,
-				DDF34501160088DE00C1D426 /* SAXParser.m */,
-				DDF3450416008AAB00C1D426 /* SAXAdListParser.h */,
-				DDF3450516008AAB00C1D426 /* SAXAdListParser.m */,
-				DDF3451416021E0100C1D426 /* ParsedAdData.h */,
-				DDF3451516021E0100C1D426 /* ParsedAdData.m */,
-				DDF345181602362A00C1D426 /* ParsedAdListTitle.h */,
-				DDF345191602362A00C1D426 /* ParsedAdListTitle.m */,
-				AC55168C160897CF0023B48A /* SAXAdSearchParser.h */,
-				AC55168D160897CF0023B48A /* SAXAdSearchParser.m */,
+				AC1169461619F11D0093DE3D /* GlobalFunctions.h */,
+				AC1169471619F11D0093DE3D /* GlobalFunctions.m */,
+				AC116977161DB84A0093DE3D /* NSMutableArrayAdditions.h */,
+				AC928C3A1614A8260079D6B0 /* NSStringAdditions.h */,
+				AC928C3B1614A8260079D6B0 /* NSStringAdditions.m */,
+				AC95804C1622ECED0002EBE2 /* NSString+StringWithTrim.h */,
+				AC95804D1622ECED0002EBE2 /* NSString+StringWithTrim.m */,
+				AC9580441622E9A20002EBE2 /* Stack.h */,
+				AC9580451622E9A20002EBE2 /* Stack.m */,
+				AC9580481622EC120002EBE2 /* PathStack.h */,
+				AC9580491622EC120002EBE2 /* PathStack.m */,
+				AC8D9253162571B00000E1ED /* PathItem.h */,
+				AC8D9254162571B10000E1ED /* PathItem.m */,
 				AC55169A1609CA9F0023B48A /* ParametrizedSAXParser.h */,
 				AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */,
-				AC928C27161466AC0079D6B0 /* PSAXAdParser.h */,
-				AC928C28161466AC0079D6B0 /* PSAXAdParser.m */,
-				AC928C461615B08A0079D6B0 /* PSAXAdListParser.h */,
-				AC928C471615B08A0079D6B0 /* PSAXAdListParser.m */,
-				AC11694C161AE1780093DE3D /* PSAXAdListParser_Protected.h */,
-				AC11693E1619EEAD0093DE3D /* PSAXAdSearchParser.h */,
-				AC11693F1619EEAD0093DE3D /* PSAXAdSearchParser.m */,
+				AC8D9243162417360000E1ED /* ResultsProcessor.h */,
+				AC8D9244162417360000E1ED /* ResultsProcessor.m */,
+				AC928C27161466AC0079D6B0 /* AdResultsProcessor.h */,
+				AC928C28161466AC0079D6B0 /* AdResultsProcessor.m */,
+				AC928C461615B08A0079D6B0 /* AdListResultsProcessor.h */,
+				AC8D925216247F920000E1ED /* AdListResultsProcessor_Protected.h */,
+				AC928C471615B08A0079D6B0 /* AdListResultsProcessor.m */,
+				AC11693E1619EEAD0093DE3D /* AdSearchResultsProcessor.h */,
+				AC11693F1619EEAD0093DE3D /* AdSearchResultsProcessor.m */,
 				AC116960161C86630093DE3D /* ParsedDataFields.h */,
 				AC116961161C86630093DE3D /* ParsedDataFields.m */,
 				AC928C23161454490079D6B0 /* AdData.h */,
@@ -299,13 +305,8 @@
 				AC928C33161492C40079D6B0 /* CategoryMatcher.m */,
 				AC928C36161495590079D6B0 /* ParsingHelper.h */,
 				AC928C37161495590079D6B0 /* ParsingHelper.m */,
-				AC928C3A1614A8260079D6B0 /* NSStringAdditions.h */,
-				AC928C3B1614A8260079D6B0 /* NSStringAdditions.m */,
 				AC928C501615E5520079D6B0 /* URLDefs.h */,
-				AC1169461619F11D0093DE3D /* GlobalFunctions.h */,
-				AC1169471619F11D0093DE3D /* GlobalFunctions.m */,
 				DDF344C215FF8F5500C1D426 /* Supporting Files */,
-				AC116977161DB84A0093DE3D /* NSMutableArrayAdditions.h */,
 			);
 			path = saxcraig;
 			sourceTree = "<group>";
@@ -333,22 +334,20 @@
 			children = (
 				DDF344F41600808000C1D426 /* UnitTestHelper.h */,
 				DDF344F51600808000C1D426 /* UnitTestHelper.m */,
-				DDF344FA1600835A00C1D426 /* SAXParserTest.h */,
-				DDF344FB1600835A00C1D426 /* SAXParserTest.m */,
-				DDF344FD1600843000C1D426 /* SAXAdListParserTest.h */,
-				DDF344FE1600843000C1D426 /* SAXAdListParserTest.m */,
-				AC93ED5916077A7700FA0603 /* SAXAdSearchParserTest.h */,
-				AC93ED5A16077A7700FA0603 /* SAXAdSearchParserTest.m */,
+				AC95803F1622D1840002EBE2 /* SAXParserTest.h */,
+				AC9580401622D18B0002EBE2 /* SAXParserTest.m */,
 				AC55169E1609DC630023B48A /* ParametrizedSAXParserTest.h */,
 				AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */,
-				AC928C2C161476030079D6B0 /* AdPSAXParserTest.h */,
-				AC928C2D161476030079D6B0 /* AdPSAXParserTest.m */,
-				AC928C4A1615BE810079D6B0 /* AdListPSAXParserTest.h */,
-				AC928C4B1615BE810079D6B0 /* AdListPSAXParserTest.m */,
-				AC1169421619EF620093DE3D /* PSAXAdSearchParserTest.h */,
-				AC1169431619EF620093DE3D /* PSAXAdSearchParserTest.m */,
+				AC928C2C161476030079D6B0 /* AdResultsProcessorTest.h */,
+				AC928C2D161476030079D6B0 /* AdResultsProcessorTest.m */,
+				AC928C4A1615BE810079D6B0 /* AdListResultsProcessorTest.h */,
+				AC928C4B1615BE810079D6B0 /* AdListResultsProcessorTest.m */,
+				AC1169421619EF620093DE3D /* AdSearchResultsProcessorTest.h */,
+				AC1169431619EF620093DE3D /* AdSearchResultsProcessorTest.m */,
 				DDF344DA15FF901100C1D426 /* Supporting Files */,
 				AC928C2B161475980079D6B0 /* UnitTestDefs.h */,
+				AC8D9257162587F70000E1ED /* PathItemTest.h */,
+				AC8D9258162587F90000E1ED /* PathItemTest.m */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -398,6 +397,7 @@
 				AC116958161B2FBD0093DE3D /* jewelrySearch.html */,
 				AC11695A161B3DBA0093DE3D /* JobsSearch.html */,
 				AC11695C161B3E0E0093DE3D /* HousingSearch.html */,
+				AC11697D161F1F720093DE3D /* PWithoutRow.html */,
 			);
 			name = UnitTestResources;
 			sourceTree = "<group>";
@@ -525,6 +525,7 @@
 				AC116959161B2FBE0093DE3D /* jewelrySearch.html in Resources */,
 				AC11695B161B3DBA0093DE3D /* JobsSearch.html in Resources */,
 				AC11695D161B3E0F0093DE3D /* HousingSearch.html in Resources */,
+				AC11697E161F1F730093DE3D /* PWithoutRow.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,22 +553,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDF344C115FF8F5500C1D426 /* main.m in Sources */,
-				DDF34502160088DE00C1D426 /* SAXParser.m in Sources */,
-				DDF3450616008AAB00C1D426 /* SAXAdListParser.m in Sources */,
 				DDF345101601E74800C1D426 /* DTHTMLParser.m in Sources */,
-				DDF3451616021E0100C1D426 /* ParsedAdData.m in Sources */,
-				DDF3451A1602362A00C1D426 /* ParsedAdListTitle.m in Sources */,
-				AC55168E160897CF0023B48A /* SAXAdSearchParser.m in Sources */,
 				AC55169C1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */,
 				AC928C25161454490079D6B0 /* AdData.m in Sources */,
-				AC928C29161466AC0079D6B0 /* PSAXAdParser.m in Sources */,
+				AC928C29161466AC0079D6B0 /* AdResultsProcessor.m in Sources */,
 				AC928C34161492C40079D6B0 /* CategoryMatcher.m in Sources */,
 				AC928C38161495590079D6B0 /* ParsingHelper.m in Sources */,
 				AC928C3C1614A8260079D6B0 /* NSStringAdditions.m in Sources */,
-				AC928C481615B08A0079D6B0 /* PSAXAdListParser.m in Sources */,
-				AC1169401619EEAD0093DE3D /* PSAXAdSearchParser.m in Sources */,
+				AC928C481615B08A0079D6B0 /* AdListResultsProcessor.m in Sources */,
+				AC1169401619EEAD0093DE3D /* AdSearchResultsProcessor.m in Sources */,
 				AC1169481619F11D0093DE3D /* GlobalFunctions.m in Sources */,
 				AC116962161C86640093DE3D /* ParsedDataFields.m in Sources */,
+				AC9580461622E9A20002EBE2 /* Stack.m in Sources */,
+				AC95804A1622EC120002EBE2 /* PathStack.m in Sources */,
+				AC95804E1622ECED0002EBE2 /* NSString+StringWithTrim.m in Sources */,
+				AC8D9245162417360000E1ED /* ResultsProcessor.m in Sources */,
+				AC8D9255162571B10000E1ED /* PathItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,26 +577,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDF344F61600808000C1D426 /* UnitTestHelper.m in Sources */,
-				DDF344FC1600835B00C1D426 /* SAXParserTest.m in Sources */,
-				DDF34503160088DE00C1D426 /* SAXParser.m in Sources */,
-				DDF3450716008AAB00C1D426 /* SAXAdListParser.m in Sources */,
 				DDF345111601E74800C1D426 /* DTHTMLParser.m in Sources */,
-				DDF3451716021E0100C1D426 /* ParsedAdData.m in Sources */,
-				DDF3451B1602362A00C1D426 /* ParsedAdListTitle.m in Sources */,
-				AC55168F160897CF0023B48A /* SAXAdSearchParser.m in Sources */,
 				AC55169D1609CA9F0023B48A /* ParametrizedSAXParser.m in Sources */,
 				AC928C26161454490079D6B0 /* AdData.m in Sources */,
-				AC928C2A161466AC0079D6B0 /* PSAXAdParser.m in Sources */,
+				AC928C2A161466AC0079D6B0 /* AdResultsProcessor.m in Sources */,
 				AC928C35161492C40079D6B0 /* CategoryMatcher.m in Sources */,
 				AC928C39161495590079D6B0 /* ParsingHelper.m in Sources */,
 				AC928C3D1614A8260079D6B0 /* NSStringAdditions.m in Sources */,
-				AC928C491615B08A0079D6B0 /* PSAXAdListParser.m in Sources */,
-				AC1169411619EEAD0093DE3D /* PSAXAdSearchParser.m in Sources */,
+				AC928C491615B08A0079D6B0 /* AdListResultsProcessor.m in Sources */,
+				AC1169411619EEAD0093DE3D /* AdSearchResultsProcessor.m in Sources */,
 				AC1169491619F11D0093DE3D /* GlobalFunctions.m in Sources */,
 				AC116963161C86640093DE3D /* ParsedDataFields.m in Sources */,
-				AC116979161DEB270093DE3D /* AdListPSAXParserTest.m in Sources */,
-				AC11697A161EDDC70093DE3D /* PSAXAdSearchParserTest.m in Sources */,
-				AC11697B161F04400093DE3D /* AdPSAXParserTest.m in Sources */,
+				AC9580411622D18B0002EBE2 /* SAXParserTest.m in Sources */,
+				AC9580471622E9A20002EBE2 /* Stack.m in Sources */,
+				AC95804B1622EC120002EBE2 /* PathStack.m in Sources */,
+				AC95804F1622ECED0002EBE2 /* NSString+StringWithTrim.m in Sources */,
+				AC8D9246162417360000E1ED /* ResultsProcessor.m in Sources */,
+				AC8D9256162571B10000E1ED /* PathItem.m in Sources */,
+				AC8D925D1625B0350000E1ED /* AdResultsProcessorTest.m in Sources */,
+				AC8D925F1625CE1E0000E1ED /* PathItemTest.m in Sources */,
+				AC8D92601625D1380000E1ED /* AdListResultsProcessorTest.m in Sources */,
+				AC8D92611625D1800000E1ED /* AdSearchResultsProcessorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
