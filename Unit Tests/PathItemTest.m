@@ -59,6 +59,7 @@
     STAssertTrue([dataMapItemP isEqualToItem:itemPClass], @"Items should be equal");
 }
 
+
 - (void) testEqualItemsFull {
     PathItem* dataMapItemP = [[[PathItem alloc] initItem:@"p" withName:@"name" andID:@"id" andClass:@"row"] autorelease];
     PathItem* itemPName = [[[PathItem alloc] initItem:@"p" withName:@"name" andID:@"id" andClass:@"row"] autorelease];
