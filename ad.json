@@ -79,33 +79,15 @@
         },
     "html body.posting div#userbody div.iw div#iwt div.tn a img" :
         {
-            "fieldName": "images",
-            "type" : "Scalar",
-            "attributes" : {
-            "src": {
-                    "fieldName": "images"
-                }
-            }
+            "ref": "html body.posting div#userbody img"
         },
     "html body.posting div#userbody a img" :
         {
-            "fieldName": "images",
-            "type" : "Scalar",
-            "attributes" : {
-                "src": {
-                    "fieldName": "images"
-                }
-            }
+            "ref": "html body.posting div#userbody img"
         },
     "html body.posting div#userbody table tr td img" :
         {
-            "fieldName": "images",
-            "type" : "Scalar",
-            "attributes" : {
-                "src": {
-                    "fieldName": "images"
-                }
-            }
+            "ref": "html body.posting div#userbody img"
         },
     "html body.posting" :
         {

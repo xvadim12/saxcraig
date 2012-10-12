@@ -9,11 +9,8 @@
 /* Begin PBXBuildFile section */
 		AC0B47C61626E0ED0006D399 /* PathItemEx.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0B47C51626E0ED0006D399 /* PathItemEx.m */; };
 		AC0B47C71626E0ED0006D399 /* PathItemEx.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0B47C51626E0ED0006D399 /* PathItemEx.m */; };
-		AC0B47CC16280A200006D399 /* AdResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C2D161476030079D6B0 /* AdResultsProcessorTest.m */; };
 		AC0B47D016280AE40006D399 /* ParametrizedSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */; };
-		AC0B47D11628450F0006D399 /* AdListResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C4B1615BE810079D6B0 /* AdListResultsProcessorTest.m */; };
-		AC0B47D2162845130006D399 /* AdSearchResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169431619EF620093DE3D /* AdSearchResultsProcessorTest.m */; };
-		AC0B47D3162845180006D399 /* PathItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9258162587F90000E1ED /* PathItemTest.m */; };
+		AC0B47D416284D360006D399 /* AdResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C2D161476030079D6B0 /* AdResultsProcessorTest.m */; };
 		AC1169391619D4DB0093DE3D /* ChicagoAllOfServices.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1169381619D4DB0093DE3D /* ChicagoAllOfServices.html */; };
 		AC11693B1619D6710093DE3D /* ChicagoCityCustomerSurvice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11693A1619D6710093DE3D /* ChicagoCityCustomerSurvice.html */; };
 		AC11693D1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11693C1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html */; };
@@ -603,11 +600,8 @@
 				AC8D9246162417360000E1ED /* ResultsProcessor.m in Sources */,
 				AC8D9256162571B10000E1ED /* PathItem.m in Sources */,
 				AC0B47C71626E0ED0006D399 /* PathItemEx.m in Sources */,
-				AC0B47CC16280A200006D399 /* AdResultsProcessorTest.m in Sources */,
 				AC0B47D016280AE40006D399 /* ParametrizedSAXParserTest.m in Sources */,
-				AC0B47D11628450F0006D399 /* AdListResultsProcessorTest.m in Sources */,
-				AC0B47D2162845130006D399 /* AdSearchResultsProcessorTest.m in Sources */,
-				AC0B47D3162845180006D399 /* PathItemTest.m in Sources */,
+				AC0B47D416284D360006D399 /* AdResultsProcessorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
