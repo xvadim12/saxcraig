@@ -25,10 +25,14 @@ NSString* const SEPARATOR_CLASS = @".";
 
 - (void) dealloc {
     
-    elementTagName = nil;
-    elementName = nil;
-    elementID = nil;
-    elementClass = nil;
+    [self.elementTagName release];
+    self.elementTagName = nil;
+    [self.elementName release];
+    self.elementName = nil;
+    [self.elementID release];
+    self.elementID = nil;
+    [self.elementClass release];
+    self.elementClass = nil;
     
 	[super dealloc];
 }

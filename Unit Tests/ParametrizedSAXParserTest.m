@@ -16,7 +16,7 @@
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adlist" withType:@"json"];
     NSString* htmlString = [self.unitTestHelper contentsOfFile:@"SimpleAdList"];
 
-    ParametrizedSAXParser* parser = [[ParametrizedSAXParser alloc] initWithDataMap:dataMap];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
     NSArray* ads =[parser parse:htmlString];
     
     //NSLog(@"ADS %@", ads);
@@ -62,8 +62,6 @@
     obj = [ads objectAtIndex: 3];
     STAssertEqualObjects(@"linkNext", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"http://losangeles.craigslist.org/bka/index100.html", [obj objectForKey: kDataKey], @"Wrong link %@", [obj objectForKey: kDataKey]);
-
-    [parser release];
 }
 
 - (void) testManyCategoriesAdList {
@@ -71,12 +69,11 @@
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adlist" withType:@"json"];
     NSString* htmlString = [self.unitTestHelper contentsOfFile:@"ManyCategories"];
     
-    ParametrizedSAXParser* parser = [[ParametrizedSAXParser alloc] initWithDataMap:dataMap];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
     NSArray* ads =[parser parse:htmlString];
+
+    STAssertTrue(108 == [ads count], @"Expected five items but found %lu", [ads count]);
     
-    STAssertTrue(102 == [ads count], @"Expected five items but found %lu", [ads count]);
-    
-    [parser release];
 }
 
 - (void) testSimpleAdSearch {
@@ -84,13 +81,10 @@
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
     NSString* htmlString = [self.unitTestHelper contentsOfFile:@"SimpleBookSearch"];
 
-    ParametrizedSAXParser* parser = [[ParametrizedSAXParser alloc] initWithDataMap:dataMap];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
     NSArray* ads =[parser parse:htmlString];
 
-    //NSLog(@"TEST DONE %@", ads);
-    
-    //4 items: two ads, next link, next text of link
-    STAssertTrue(4 == [ads count], @"Expected count of items %lu", [ads count]);
+    STAssertTrue(6 == [ads count], @"Expected count of items %lu", [ads count]);
 
     NSString *value;
     NSDictionary *data;
@@ -128,9 +122,14 @@
     //Link to the next page
     obj = [ads objectAtIndex: 2];
     STAssertEqualObjects(@"linkNext", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"http://losangeles.craigslist.org/search/bka?query=book&srchType=A&s=100", [obj objectForKey: kDataKey], @"Wrong link %@", [obj objectForKey: kDataKey]);
+    STAssertEqualObjects(@"http://losangeles.craigslist.org/search/bka?query=book&srchType=A&s=100", [obj objectForKey: kDataKey],
+                         @"Wrong link %@", [obj objectForKey: kDataKey]);
     
-    [parser release];
+    //List title
+    obj = [ads objectAtIndex: 3];
+    STAssertEqualObjects(@"listTitle", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
+    STAssertEqualObjects(@"Found: 1000 Displaying: 1 - 100", [obj objectForKey: kDataKey],
+                         @"Wrong list title %@", [obj objectForKey: kDataKey]);
 }
 
 - (void) testAdWithoutImages {
@@ -138,25 +137,30 @@
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
     NSString* htmlString = [self.unitTestHelper contentsOfFile:@"RusAdNoImages"];
     
-    ParametrizedSAXParser* parser = [[ParametrizedSAXParser alloc] initWithDataMap:dataMap];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
     NSArray* ad =[parser parse:htmlString];
-    //NSLog(@"AD %@", ad);
-    
-    //7 items: title, date, mailto, 2 locations, body, posting id
+
+    //7 items: title, date, mailto,  location, body, posting id, unparsed
     STAssertTrue(7 == [ad count], @"Expected five items but found %lu", [ad count]);
     
     NSDictionary *obj;
     
     obj = [ad objectAtIndex: 0];
     STAssertEqualObjects(@"title", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"i-phone 5 совершенно - UAH100 (киев)", [obj objectForKey: kDataKey], @"Wrong date %@", [obj objectForKey: kDataKey]);
+    STAssertEqualObjects(@"i-phone 5 совершенно - UAH100 (киев)", [obj objectForKey: kDataKey], @"Wrong title %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 5];
+    obj = [ad objectAtIndex: 3];
+    STAssertEqualObjects(@"location", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
+    STAssertEqualObjects(@"киев", [obj objectForKey: kDataKey], @"Wrong location %@", [obj objectForKey: kDataKey]);
+    
+    obj = [ad objectAtIndex: 4];
     STAssertEqualObjects(@"body", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"i-phone 5 совершенно новый , количество практически неограничено .обращатесь!",
                          [obj objectForKey: kDataKey], @"Wrong body %@", [obj objectForKey: kDataKey]);
-
-    [parser release];
+    
+    obj = [ad objectAtIndex: 5];
+    STAssertEqualObjects(@"postingID", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
+    STAssertEqualObjects(@"3292136338", [obj objectForKey: kDataKey], @"Wrong postinfID %@", [obj objectForKey: kDataKey]);
 }
 
 - (void) testAdImages1 {
@@ -164,16 +168,14 @@
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
     NSString* htmlString = [self.unitTestHelper contentsOfFile:@"EnAdImages1"];
     
-    ParametrizedSAXParser* parser = [[ParametrizedSAXParser alloc] initWithDataMap:dataMap];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
     NSArray* ad =[parser parse:htmlString];
-    //NSLog(@"AD %@", ad);
-    
-    //10 items: title, date, mailto, 3 images, 2 locations, body, posting id
-    STAssertTrue(10 == [ad count], @"Expected five items but found %lu", [ad count]);
+
+    STAssertTrue(13 == [ad count], @"Expected five items but found %lu", [ad count]);
     
     NSDictionary *obj;
     
-    obj = [ad objectAtIndex: 8];
+    obj = [ad objectAtIndex: 10];
     STAssertEqualObjects(@"body", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"BRAND NEW. \n\nCrispy pages, no damages.\n\n\n\n\n\n\n\nPlease reply by email.\n\nThank you.", [obj objectForKey: kDataKey],
                          @"Wrong body %@", [obj objectForKey: kDataKey]);
@@ -185,10 +187,8 @@
     
     obj = [ad objectAtIndex: 5];
     STAssertEqualObjects(@"images", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"http://i49.tinypic.com/2gvugxz.jpg", [obj objectForKey: kDataKey],
+    STAssertEqualObjects(@"http://i47.tinypic.com/eg3ek1.jpg", [obj objectForKey: kDataKey],
                          @"Wrong image URL %@", [obj objectForKey: kDataKey]);
-    
-    [parser release];
 }
 
 - (void) testAdImages2 {
@@ -196,12 +196,9 @@
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
     NSString* htmlString = [self.unitTestHelper contentsOfFile:@"EnAdImages2"];
     
-    ParametrizedSAXParser* parser = [[ParametrizedSAXParser alloc] initWithDataMap:dataMap];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
     NSArray* ad =[parser parse:htmlString];
-    //NSLog(@"AD %@", ad);
-    
-    //11 items: title, date, mailto, 4 images, 2 locations, body, posting id
-    STAssertTrue(11 == [ad count], @"Expected five items but found %lu", [ad count]);
+    STAssertTrue(15 == [ad count], @"Expected five items but found %lu", [ad count]);
     
     NSDictionary *obj;
     
@@ -211,32 +208,31 @@
     
     obj = [ad objectAtIndex: 1];
     STAssertEqualObjects(@"date", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"Date: 2012-09-25,  4:46AM PDT", [obj objectForKey: kDataKey], @"Wrong date %@", [obj objectForKey: kDataKey]);
+    STAssertEqualObjects(@"2012-09-25,  4:46AM PDT", [obj objectForKey: kDataKey], @"Wrong date %@", [obj objectForKey: kDataKey]);
     
     obj = [ad objectAtIndex: 3];
     STAssertEqualObjects(@"images", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"http://images.craigslist.org/thumb/5I45K25P33Ef3Gc3J8c9hb1345756f604187a.jpg", [obj objectForKey: kDataKey],
                          @"Wrong image URL %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 6];
+    obj = [ad objectAtIndex: 9];
     STAssertEqualObjects(@"images", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"http://images.craigslist.org/thumb/5Ie5G95Fd3G53Me3pec9h1c988bc294781bb5.jpg", [obj objectForKey: kDataKey],
                          @"Wrong image URL %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 7];
+    obj = [ad objectAtIndex: 11];
     STAssertEqualObjects(@"location", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"Location:  SO. BAY $ 699", [obj objectForKey: kDataKey], @"Wrong posting ID %@", [obj objectForKey: kDataKey]);
+    STAssertEqualObjects(@"SO. BAY $ 699", [obj objectForKey: kDataKey], @"Wrong posting ID %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 9];
+    obj = [ad objectAtIndex: 12];
     STAssertEqualObjects(@"body", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     //STAssertEqualObjects(@"GAINT MOUNTAIN BIKE (AC) SRAM, XTR, SHAMANO, COMPONENTS  ROC SHOCK PHYCO, BLUE, GREAT CONDO PAYED $ 1499oo ASKING $ 699 .",
       //                   [obj objectForKey: kDataKey], @"Wrong body %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 10];
-    STAssertEqualObjects(@"postingid", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"PostingID: 3276932378", [obj objectForKey: kDataKey], @"Wrong posting ID %@", [obj objectForKey: kDataKey]);
-    
-    [parser release];
+    obj = [ad objectAtIndex: 13];
+    STAssertEqualObjects(@"postingID", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
+    STAssertEqualObjects(@"3276932378", [obj objectForKey: kDataKey], @"Wrong posting ID %@", [obj objectForKey: kDataKey]);
+
 }
 
 - (void) testAdImages3 {
@@ -246,23 +242,22 @@
     
     ParametrizedSAXParser* parser = [[ParametrizedSAXParser alloc] initWithDataMap:dataMap];
     NSArray* ad =[parser parse:htmlString];
-    //NSLog(@"AD %@", ad);
-    
-    //11 items: title, date, mailto, 5 images, location, body, posting id
-    STAssertTrue(11 == [ad count], @"Expected five items but found %lu", [ad count]);
+
+    STAssertTrue(16 == [ad count], @"Expected five items but found %lu", [ad count]);
     
     NSDictionary *obj;
     
     obj = [ad objectAtIndex: 0];
     STAssertEqualObjects(@"title", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
+    STAssertEqualObjects(@"Слід dolly Камера do", [obj objectForKey: kDataKey], @"Wrong date %@", [obj objectForKey: kDataKey]);
     
     obj = [ad objectAtIndex: 1];
     STAssertEqualObjects(@"date", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"Date: 2012-09-22, 11:20PM EEST", [obj objectForKey: kDataKey], @"Wrong date %@", [obj objectForKey: kDataKey]);
+    STAssertEqualObjects(@"2012-09-22, 11:20PM EEST", [obj objectForKey: kDataKey], @"Wrong date %@", [obj objectForKey: kDataKey]);
     
     obj = [ad objectAtIndex: 2];
     STAssertEqualObjects(@"mailto", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"dbrk7-3258787977@sale.craigslist.org", [obj objectForKey: kDataKey], @"Wrong mailto %@", [obj objectForKey: kDataKey]);
+    STAssertEqualObjects(@"mailto:dbrk7-3258787977@sale.craigslist.org?subject=%20dolly%20%20do&body=%0A%0Ahttp%3A%2F%2Fukraine.craigslist.org%2Fphd%2F3258787977.html%0A", [obj objectForKey: kDataKey], @"Wrong mailto %@", [obj objectForKey: kDataKey]);
     
     obj = [ad objectAtIndex: 3];
     STAssertEqualObjects(@"images", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
@@ -271,15 +266,15 @@
     
     obj = [ad objectAtIndex: 7];
     STAssertEqualObjects(@"images", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"http://i1093.photobucket.com/albums/i423/paktazh1/ujjj.jpg", [obj objectForKey: kDataKey],
+    STAssertEqualObjects(@"http://i1093.photobucket.com/albums/i423/paktazh1/hhfgh.jpg", [obj objectForKey: kDataKey],
                          @"Wrong image URL %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 9];
+    obj = [ad objectAtIndex: 13];
     STAssertEqualObjects(@"body", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     
-    obj = [ad objectAtIndex: 10];
-    STAssertEqualObjects(@"postingid", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"PostingID: 3258787977", [obj objectForKey: kDataKey], @"Wrong posting ID %@", [obj objectForKey: kDataKey]);
+    obj = [ad objectAtIndex: 14];
+    STAssertEqualObjects(@"postingID", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
+    STAssertEqualObjects(@"3258787977", [obj objectForKey: kDataKey], @"Wrong posting ID %@", [obj objectForKey: kDataKey]);
     
     [parser release];
 }

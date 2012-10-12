@@ -15,11 +15,15 @@
     "html body.posting div#userbody" :
         {
             "fieldName": "body",
-            "type" : "Scalar"
+            "type" : "Scalar",
+            "regexps": {
+                "location": "Location: (.*)[\n\t]",
+                "postingID": "PostingID: (.*?)[\n\t]",
+            }
         },
     "html body.posting small a" :
         {
-            "fieldName": "mailto_title",
+            "fieldName": "unused",
             "type" : "Scalar",
             "attributes" : {
                 "href": {
@@ -29,7 +33,7 @@
         },
     "html body.posting a" :
         {
-            "fieldName": "mailto_title",
+            "fieldName": "unused",
             "type" : "Scalar",
             "attributes" : {
                 "href": {
@@ -60,7 +64,7 @@
             "fieldName": "unused",
             "type" : "Scalar",
             "regexps": {
-                "location": "Location: (.*)[ \n\t]"
+                "location": "Location: (.*)([\n\t]|$)"
             }
         },
     "html body.posting div#userbody img" :
@@ -109,7 +113,8 @@
             "type" : "Scalar",
             "regexps": {
                 "postingID": "PostingID: (.*)\n",
-                "date": "Date: (.*)\n"
+                "date": "Date: (.*)\n",
+                "replyURL": "\"/reply/(.*?)\""
             }
 
         }

@@ -31,7 +31,11 @@ NSString* const SUB_TITLE_DISPLAING = @"Displaying: ";
 
 @end
 
-@implementation AdSearchResultsProcessor
+@implementation AdSearchResultsProcessor {
+    
+    CategoryMatcher* _matcher;
+    ParsingHelper* _parsingHelper;
+}
 
 - (NSObject*) parseResultArray:(NSArray*)resultArray {
     //NSLog(@"RESULT %@", resultArray);
@@ -53,6 +57,9 @@ NSString* const SUB_TITLE_DISPLAING = @"Displaying: ";
 	NSMutableArray* neighborhoodsKeyNames = [NSMutableArray array];
     NSString* neighborhoodsVal;
     NSString* neighborhoodsName;
+    
+    _matcher = [[CategoryMatcher alloc] initWithHref:[self.requestInfo objectForKey:KEY_TOP_CATEGORY_HREF]];
+    _parsingHelper = [[ParsingHelper alloc] init];
     
     for (id item in resultArray)
     {
@@ -135,6 +142,9 @@ NSString* const SUB_TITLE_DISPLAING = @"Displaying: ";
     [groupNames removeLastObject];
     [groups removeLastObject];
     
+    [_matcher release];
+    [_parsingHelper release];
+    
     return [NSDictionary dictionaryWithObjectsAndKeys:groupNames,KEY_GROUP_NAMES,
 			groups,KEY_GROUPS,
 			(nil!=next100 ? (id)next100:(id)[NSNull null]), KEY_NEXT_URL,
@@ -204,9 +214,7 @@ NSString* const FIELD_AD_SEPARATOR = @"separator";
     NSString* title = [NSString stringWithFormat:@"%@ %@%@", adDate, separator, adData.title];
     if (nil == adData.price || 0 == [adData.price length])
     {
-        CategoryMatcher* matcher = [[[CategoryMatcher alloc] initWithHref:[self.requestInfo objectForKey:KEY_TOP_CATEGORY_HREF]]autorelease];
-        ParsingHelper* parsingHelper = [[[ParsingHelper alloc] init] autorelease];
-        adData.price = [parsingHelper parseOutPriceForTitle:&title withMatcher:matcher];
+        adData.price = [_parsingHelper parseOutPriceForTitle:&title withMatcher:_matcher];
     }
     adData.title = title;
     

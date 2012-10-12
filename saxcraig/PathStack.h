@@ -13,5 +13,14 @@
  */
 @interface PathStack: Stack
 
-- (NSArray*) findMatchingPathInArray:(NSArray*)allPaths;
+- (NSString*) findMatchingPathInArray:(NSDictionary*)allPaths;
+
+/**
+ Sets data map path to path item on the top of stack
+ */
+- (void) setMatchedPath:(NSString*)path;
+/**
+ Returns data map path associated with path item from the top of stack
+ */
+- (NSString*) currentMatchedPath;
 @end

@@ -11,6 +11,7 @@
 #import "Stack.h"
 #import "PathStack.h"
 #import "PathItem.h"
+#import "PathItemEx.h"
 
 //Keys for data map
 NSString* const kFieldName = @"fieldName";
@@ -18,6 +19,8 @@ NSString* const kTrimmedChars = @"trimmedChars";
 NSString* const kObjectType = @"type";
 NSString* const kAttributesKey = @"attributes";
 NSString* const kUnparsedRegExpsKey = @"regexps";
+NSString* const kRefPath = @"ref";
+NSString* const kUnusedFieldName = @"unused";
 
 NSString* const kScalarObject = @"Scalar";
 NSString* const kDictObject   = @"Dict";
@@ -25,13 +28,13 @@ NSString* const kDictObject   = @"Dict";
 //Keys in result subdictionaries
 NSString* const kDataKey = @"data";
 NSString* const kFieldNameKey = @"fieldName";
-NSString* const kRegexpKey = @"regexp";
 
 @implementation ParametrizedSAXParser {
     
     DTHTMLParser* _htmlParser;
     
     NSDictionary* _dataMap;
+    NSDictionary* _tokenizedPaths;
     
     /**
      Stack for saving data for not finished tag
@@ -66,6 +69,7 @@ NSString* const kRegexpKey = @"regexp";
         _resultObject = [NSMutableArray array];
         
         _dataMap = [self parseDataMap:stringDataMap encoding:NSUTF8StringEncoding];
+        _tokenizedPaths = [self buildTokenizedPaths:_dataMap];
     }
     
     return self;
@@ -74,8 +78,7 @@ NSString* const kRegexpKey = @"regexp";
 - (void) dealloc {
     
     [_pathStack release];
-    _pathStack = nil;
-    
+    _pathStack = nil;    
     [_dataStack release];
     _dataStack = nil;
     
@@ -84,6 +87,8 @@ NSString* const kRegexpKey = @"regexp";
     _parsedObject = nil;
 
     _dataMap = nil;
+    [_tokenizedPaths release];
+    _tokenizedPaths = nil;
     
 	[super dealloc];
 }
@@ -181,6 +186,15 @@ NSString* const kRegexpKey = @"regexp";
     NSError *error;
     //TODO: error processing; check that all needed keys are present
     NSDictionary* dMap = [NSJSONSerialization JSONObjectWithData:[stringMapData dataUsingEncoding:encoding] options:kNilOptions error:&error];
+    return dMap;
+}
+
+/**
+ Builds tokenized version of pathes in the data map
+ Returns dict:
+   stringPath: NSArray of path's tokens
+ */
+- (NSDictionary*)buildTokenizedPaths:(NSDictionary*)dMap {
     
     NSMutableDictionary* piDMap = [[NSMutableDictionary alloc] init];
     for(NSString* strPath in [dMap allKeys]) {
@@ -188,9 +202,21 @@ NSString* const kRegexpKey = @"regexp";
         NSMutableArray* pathArray = [NSMutableArray array];
         for(NSString* item in pathItems)
             [pathArray addObject:[[PathItem alloc] initItemFromString:item]];
-        [piDMap setObject:[dMap objectForKey:strPath] forKey:pathArray];
+        [piDMap setObject:pathArray forKey:strPath];
     }
     return piDMap;
+}
+
+/**
+ Returns data map info for given path. If data is crossref to an another path, returns information for this original path 
+ */
+- (NSDictionary*)dataMapInfoForPath:(NSString *)path {
+    NSDictionary* dataMapInfo = [_dataMap objectForKey:path];
+    if ([[dataMapInfo allKeys] containsObject:kRefPath]) {
+        NSString* origPath = [dataMapInfo objectForKey:kRefPath];
+        dataMapInfo = [_dataMap objectForKey:origPath];
+    }
+    return dataMapInfo;
 }
 
 - (NSArray*) parse:(NSString*)htmlString {
@@ -214,13 +240,14 @@ NSString* const kRegexpKey = @"regexp";
 
 - (void) parser:(DTHTMLParser *)parser didStartElement:(NSString *)elementName attributes:(NSDictionary *)attributeDict {
 
-    PathItem* pathItem = [[PathItem alloc] initItem:elementName withAttributes:attributeDict];
+    PathItemEx* pathItem = [[PathItemEx alloc] initItem:elementName withAttributes:attributeDict];
     [_pathStack push:pathItem];
     
-    NSArray* strPath = [_pathStack findMatchingPathInArray:[_dataMap allKeys]];
+    NSString* strPath = [_pathStack findMatchingPathInArray:_tokenizedPaths];
     if (nil != strPath)
     {
-        NSDictionary *dataInfoDict = [_dataMap objectForKey:strPath];
+        [_pathStack setMatchedPath:strPath];
+        NSDictionary *dataInfoDict = [self dataMapInfoForPath:strPath];
         if ([[dataInfoDict objectForKey:kObjectType] isEqualToString: kScalarObject])
         {
             /*
@@ -268,10 +295,10 @@ NSString* const kRegexpKey = @"regexp";
 
 - (void) parser:(DTHTMLParser *)parser didEndElement:(NSString *)elementName {
     
-    NSArray* strPath = [_pathStack findMatchingPathInArray:[_dataMap allKeys]];
+    NSString* strPath = [_pathStack currentMatchedPath];
     if (nil != strPath)
     {
-        NSDictionary *dataInfoDict = [_dataMap objectForKey:strPath];
+        NSDictionary *dataInfoDict = [self dataMapInfoForPath:strPath];
         NSString *fieldName = [dataInfoDict objectForKey:kFieldName];
         NSString *objType = [dataInfoDict objectForKey:kObjectType];
 
@@ -290,10 +317,6 @@ NSString* const kRegexpKey = @"regexp";
         }
         else
         {
-            if (![_dataString isEqualToString:@""]){
-                [self saveScalarObject:_dataString withFieldName:@"unparsed" andDataInfo:dataInfoDict];
-            }
-            
             [_resultObject addObject:[NSDictionary dictionaryWithObjectsAndKeys:fieldName, kFieldNameKey, _parsedObject, kDataKey, nil]];
             [_parsedObject release];
             _parsedObject = nil;
@@ -307,14 +330,16 @@ NSString* const kRegexpKey = @"regexp";
  Saves scalar object to _resultObject or to _parsedObject dictionary
  */
 -(void)saveScalarObject:(NSString*)value withFieldName:(NSString*)fieldName andDataInfo:(NSDictionary*)dataInfoDict {
-    NSString* trimmedValue = [value trimChars:[dataInfoDict objectForKey:kTrimmedChars]];
-    if (nil == _parsedObject)
-    {
-        [_resultObject addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-                                        fieldName, kFieldNameKey, trimmedValue, kDataKey, nil]];
+    if (![fieldName isEqualToString:kUnusedFieldName]) {
+        NSString* trimmedValue = [value trimChars:[dataInfoDict objectForKey:kTrimmedChars]];
+        if (nil == _parsedObject)
+        {
+            [_resultObject addObject:[NSDictionary dictionaryWithObjectsAndKeys:
+                                            fieldName, kFieldNameKey, trimmedValue, kDataKey, nil]];
+        }
+        else
+            [_parsedObject setValue:trimmedValue forKey:fieldName];
     }
-    else
-        [_parsedObject setValue:trimmedValue forKey:fieldName];
 }
 
 - (void) parseUnparsed:(NSString*)unparsed withDataInfo:(NSDictionary*)dataInfoDict {

@@ -7,7 +7,7 @@
 //
 
 #import "NSString+StringWithTrim.h"
-#import "PathItem.h"
+#import "PathItemEx.h"
 #import "PathStack.h"
 
 @implementation PathStack
@@ -18,11 +18,12 @@
     return nil;
 }
 
-- (NSArray*) findMatchingPathInArray:(NSArray*)allPaths {
+- (NSString*) findMatchingPathInArray:(NSDictionary*)allPaths {
     NSUInteger pathLen = [_data count];
     NSUInteger equalItemsCount, i;
     
-    for(NSArray* path in allPaths) {
+    for(NSString* strPath in [allPaths allKeys]) {
+        NSArray* path = [allPaths objectForKey:strPath];
         if([path count] == pathLen) {
             equalItemsCount = 0;
             for(i = 0; i < pathLen; i++)
@@ -31,11 +32,21 @@
                 else
                     break;
             if(equalItemsCount == pathLen)
-                return path;
+                return strPath;
         }
     }
     
     return nil;
+}
+
+- (void) setMatchedPath:(NSString*)path {
+    PathItemEx* lastItem = [_data lastObject];
+    lastItem.strDataMapPath = path;
+}
+
+- (NSString*) currentMatchedPath {
+    PathItemEx* lastItem = [_data lastObject];
+    return lastItem.strDataMapPath;
 }
 
 @end

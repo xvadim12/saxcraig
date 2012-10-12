@@ -32,9 +32,12 @@
 
 - (NSString*) parsePostingIDFromDictionary:(NSDictionary*)dict;
 
+- (NSString*) parseReplyURLFromDictionary:(NSDictionary*)dict;
+
 - (NSArray*) parseImagesFromDictionary:(NSDictionary*)dict;
 
 - (NSDate*) parseDateFromDictionary:(NSDictionary*)dict;
+
 @end
 
 @implementation AdResultsProcessor
@@ -130,9 +133,6 @@
     return body;
 }
 
-//NSString* const LOCATION_PREFIX = @"Location: ";
-//unsigned long const LOCATION_PREFIX_LEN = 10;
-
 - (NSString*)parseLocationFromDictionary:(NSDictionary*)dict defaultLocation:(NSString*)defLocation {
     NSString* location;
     location = @"";
@@ -160,6 +160,16 @@
         postingId = [[ids objectAtIndex:0] objectForKey:kDataKey];
     } 
     return postingId;
+}
+
+- (NSString*) parseReplyURLFromDictionary:(NSDictionary*)dict {
+    NSString* replyURL = nil;
+    NSArray* replyURLs = [dict objectForKey:FIELD_AD_POSTINGID];
+    
+    if (nil != replyURLs){
+        replyURL = [[replyURLs objectAtIndex:0] objectForKey:kDataKey];
+    }
+    return replyURL;
 }
 
 - (NSArray*)parseImagesFromDictionary:(NSDictionary*)dict {

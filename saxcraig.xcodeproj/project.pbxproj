@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC0B47C61626E0ED0006D399 /* PathItemEx.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0B47C51626E0ED0006D399 /* PathItemEx.m */; };
+		AC0B47C71626E0ED0006D399 /* PathItemEx.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0B47C51626E0ED0006D399 /* PathItemEx.m */; };
+		AC0B47CC16280A200006D399 /* AdResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C2D161476030079D6B0 /* AdResultsProcessorTest.m */; };
+		AC0B47D016280AE40006D399 /* ParametrizedSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */; };
+		AC0B47D11628450F0006D399 /* AdListResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C4B1615BE810079D6B0 /* AdListResultsProcessorTest.m */; };
+		AC0B47D2162845130006D399 /* AdSearchResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169431619EF620093DE3D /* AdSearchResultsProcessorTest.m */; };
+		AC0B47D3162845180006D399 /* PathItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9258162587F90000E1ED /* PathItemTest.m */; };
 		AC1169391619D4DB0093DE3D /* ChicagoAllOfServices.html in Resources */ = {isa = PBXBuildFile; fileRef = AC1169381619D4DB0093DE3D /* ChicagoAllOfServices.html */; };
 		AC11693B1619D6710093DE3D /* ChicagoCityCustomerSurvice.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11693A1619D6710093DE3D /* ChicagoCityCustomerSurvice.html */; };
 		AC11693D1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html in Resources */ = {isa = PBXBuildFile; fileRef = AC11693C1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html */; };
@@ -34,10 +41,6 @@
 		AC8D9246162417360000E1ED /* ResultsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9244162417360000E1ED /* ResultsProcessor.m */; };
 		AC8D9255162571B10000E1ED /* PathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9254162571B10000E1ED /* PathItem.m */; };
 		AC8D9256162571B10000E1ED /* PathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9254162571B10000E1ED /* PathItem.m */; };
-		AC8D925D1625B0350000E1ED /* AdResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C2D161476030079D6B0 /* AdResultsProcessorTest.m */; };
-		AC8D925F1625CE1E0000E1ED /* PathItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9258162587F90000E1ED /* PathItemTest.m */; };
-		AC8D92601625D1380000E1ED /* AdListResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C4B1615BE810079D6B0 /* AdListResultsProcessorTest.m */; };
-		AC8D92611625D1800000E1ED /* AdSearchResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169431619EF620093DE3D /* AdSearchResultsProcessorTest.m */; };
 		AC928C151611DEEC0079D6B0 /* RusAdImages3.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C141611DEEB0079D6B0 /* RusAdImages3.html */; };
 		AC928C181611DEF70079D6B0 /* EnAdImages2.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C171611DEF60079D6B0 /* EnAdImages2.html */; };
 		AC928C1A1611DF030079D6B0 /* EnAdImages1.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C191611DF030079D6B0 /* EnAdImages1.html */; };
@@ -112,6 +115,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AC0B47C41626E0ED0006D399 /* PathItemEx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathItemEx.h; sourceTree = "<group>"; };
+		AC0B47C51626E0ED0006D399 /* PathItemEx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathItemEx.m; sourceTree = "<group>"; };
 		AC1169381619D4DB0093DE3D /* ChicagoAllOfServices.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoAllOfServices.html; sourceTree = "<group>"; };
 		AC11693A1619D6710093DE3D /* ChicagoCityCustomerSurvice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ChicagoCityCustomerSurvice.html; sourceTree = "<group>"; };
 		AC11693C1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PeninsulaAllHousingClassifieds.html; sourceTree = "<group>"; };
@@ -286,6 +291,8 @@
 				AC9580491622EC120002EBE2 /* PathStack.m */,
 				AC8D9253162571B00000E1ED /* PathItem.h */,
 				AC8D9254162571B10000E1ED /* PathItem.m */,
+				AC0B47C41626E0ED0006D399 /* PathItemEx.h */,
+				AC0B47C51626E0ED0006D399 /* PathItemEx.m */,
 				AC55169A1609CA9F0023B48A /* ParametrizedSAXParser.h */,
 				AC55169B1609CA9F0023B48A /* ParametrizedSAXParser.m */,
 				AC8D9243162417360000E1ED /* ResultsProcessor.h */,
@@ -569,6 +576,7 @@
 				AC95804E1622ECED0002EBE2 /* NSString+StringWithTrim.m in Sources */,
 				AC8D9245162417360000E1ED /* ResultsProcessor.m in Sources */,
 				AC8D9255162571B10000E1ED /* PathItem.m in Sources */,
+				AC0B47C61626E0ED0006D399 /* PathItemEx.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,10 +602,12 @@
 				AC95804F1622ECED0002EBE2 /* NSString+StringWithTrim.m in Sources */,
 				AC8D9246162417360000E1ED /* ResultsProcessor.m in Sources */,
 				AC8D9256162571B10000E1ED /* PathItem.m in Sources */,
-				AC8D925D1625B0350000E1ED /* AdResultsProcessorTest.m in Sources */,
-				AC8D925F1625CE1E0000E1ED /* PathItemTest.m in Sources */,
-				AC8D92601625D1380000E1ED /* AdListResultsProcessorTest.m in Sources */,
-				AC8D92611625D1800000E1ED /* AdSearchResultsProcessorTest.m in Sources */,
+				AC0B47C71626E0ED0006D399 /* PathItemEx.m in Sources */,
+				AC0B47CC16280A200006D399 /* AdResultsProcessorTest.m in Sources */,
+				AC0B47D016280AE40006D399 /* ParametrizedSAXParserTest.m in Sources */,
+				AC0B47D11628450F0006D399 /* AdListResultsProcessorTest.m in Sources */,
+				AC0B47D2162845130006D399 /* AdSearchResultsProcessorTest.m in Sources */,
+				AC0B47D3162845180006D399 /* PathItemTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

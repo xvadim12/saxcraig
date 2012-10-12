@@ -16,4 +16,5 @@ extern NSString* const FIELD_AD_MAILTO;
 extern NSString* const FIELD_AD_IMAGES;
 extern NSString* const FIELD_AD_BODY;
 extern NSString* const FIELD_AD_POSTINGID;
-extern NSString* const FIELD_AD_UNPARSED;
+extern NSString* const FIELD_AD_REPLYURL;
+//extern NSString* const FIELD_AD_UNPARSED;

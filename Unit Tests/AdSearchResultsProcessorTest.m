@@ -54,7 +54,7 @@
 
 - (void) testW4WSearchParsing {
     //<p without class 'row'
-    return;
+    //return;
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_W4W_SEARCH];
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
@@ -106,7 +106,6 @@
 	STAssertTrue([groups count]==1,@"gropus count=%d",[groups count]);
 	NSString* groupName = [groupNames objectAtIndex:0];
 	STAssertTrue([groupName isEqualToString:@"Listings 1 - 69 out of 69"],@"groupName=%@",groupName);
-    return;
 	NSArray* group = [groups objectAtIndex:0];
 	STAssertTrue(69==[group count],@"group.count=%d",[group count]);
 	AdData* adData = [group objectAtIndex:0];
@@ -142,7 +141,7 @@
 	STAssertTrue([groups count]==1,@"gropus count=%d",[groups count]);
 	NSString* groupName = [groupNames objectAtIndex:0];
 	STAssertTrue([groupName isEqualToString:@"Listings 1 - 100 out of 879"],@"groupName=%@",groupName);
-    return;
+
 	NSArray* group = [groups objectAtIndex:0];
 	STAssertTrue(100==[group count],@"group.count=%d",[group count]);
 	AdData* adData = [group objectAtIndex:0];
@@ -201,11 +200,14 @@
 - (void) sublocationNamesDictionatyTesting:(NSDictionary*)sublocationNamesDictionary{
     
     STAssertNotNil(sublocationNamesDictionary, @"Your sublocation names dictionaty is nil");
-    STAssertTrue([[sublocationNamesDictionary allKeys] count]==6,@"Abbreviation count for Chicago sublocations must be 6, but you have=%d",[[sublocationNamesDictionary allKeys] count]);
+    STAssertTrue([[sublocationNamesDictionary allKeys] count]==6,@"Abbreviation count for Chicago sublocations must be 6, but you have=%d",
+                 [[sublocationNamesDictionary allKeys] count]);
     
-    NSArray *subLocNames = [NSArray arrayWithObjects:@"city of chicago",@"north chicagoland",@"west chicagoland",@"south chicagoland",@"northwest indiana",@"northwest suburbs", nil];
+    NSArray *subLocNames = [NSArray arrayWithObjects:@"city of chicago",@"north chicagoland",@"west chicagoland",
+                            @"south chicagoland",@"northwest indiana",@"northwest suburbs", nil];
     for(NSString* key in [sublocationNamesDictionary allKeys]){
-        STAssertTrue([subLocNames containsObject:[sublocationNamesDictionary objectForKey:key]],@"Your dictionary is incorrect (incorrect element = %@)",[sublocationNamesDictionary objectForKey:key]);
+        STAssertTrue([subLocNames containsObject:[sublocationNamesDictionary objectForKey:key]],@"Your dictionary is incorrect (incorrect element = %@)",
+                     [sublocationNamesDictionary objectForKey:key]);
     }
 }
 
@@ -287,16 +289,30 @@
 
 - (void) testPWithoutRow {
     //<p without class 'row'
-    //return;
-    /*
+    return;
+    
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:@"PWithoutRow"];
-    PSAXAdSearchParser* parser = [[[PSAXAdSearchParser alloc] initWithDataMap:dataMap] autorelease];
-    parser.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/ppp/",KEY_TOP_CATEGORY_HREF,nil];
-	NSDictionary* adsDict = (NSDictionary*)[parser parseHTML:htmlString];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSArray* resultArray = [parser parse:htmlString];
     
-    //NSLog(@"RES %@", adsDict);
-    */
+    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
+    processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/ppp/",KEY_TOP_CATEGORY_HREF,nil];
+    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
+    
+    NSLog(@"RES %@", adsDict);
+    NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
+    NSArray* group = [groups objectAtIndex:0];
+    AdData* adData = [group objectAtIndex:0];
+    NSLog(@"TITLE %@", adData.title);
+    NSLog(@"LINK %@", adData.link);
+    NSLog(@"PLACE %@", adData.place);
+    NSLog(@"-----");
+    adData = [group objectAtIndex:1];
+    NSLog(@"TITLE %@", adData.title);
+    NSLog(@"LINK %@", adData.link);
+    NSLog(@"PLACE %@", adData.place);
+    
 }
 
 @end

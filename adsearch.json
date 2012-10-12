@@ -58,6 +58,10 @@
                 "date": "^(?s)[ \n\t]*(.*? - )"
             }
         },
+    "html body.toc blockquote p" :
+        {
+            "ref": "html body.toc blockquote p.row"
+        },
     "html body.toc blockquote p.row span.ih" :
         {
             "fieldName": "unused",
@@ -79,17 +83,19 @@
                 }
             }
         },
+    "html body.toc blockquote p a" :
+        {
+            "ref": "html body.toc blockquote p.row a"
+        },
     "html body.toc blockquote p.row span.itempp" :
         {
             "fieldName": "price",
-            "type" : "Scalar",
-            "regexp": "\n.*$"
+            "type" : "Scalar"
         },
     "html body.toc blockquote p.row span.itemdate" :
         {
             "fieldName": "date",
-            "type" : "Scalar",
-            "regexp": ".*? -"
+            "type" : "Scalar"
         },
     "html body.toc blockquote p.row span.itemsep" :
         {
@@ -108,6 +114,10 @@
             "trimmedChars": "()",
             "type" : "Scalar"
         },
+    "html body.toc blockquote p font" :
+        {
+            "ref": "html body.toc blockquote p.row font"
+        },
     "html body.toc blockquote p.row span.p" :
         {
             "fieldName": "unused",
@@ -115,7 +125,7 @@
         },
     "html body.toc blockquote h4.ban span a" :
         {
-            "fieldName": "titleNext",
+            "fieldName": "unused",
             "type" : "Scalar",
             "attributes" : {
                 "href": {

@@ -47,10 +47,8 @@
 }
 
 - (void) testApartmentAd {
-    return;
+    //return;
     //broken file </div> for <div id=userbody> is absent
-    //and ad body with tags
-    //TODO: Fix
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_APARTMENT_AD];
     
@@ -60,7 +58,6 @@
 	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
 	processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-	
 	STAssertTrue([adData.title isEqualToString:@"^^  Modernised ^^ Sparkling Swimming Pool  ^^ CLOSE 2 COUNTRY Club ^^ Appropriat"],
 				 @"adData.title=%@",adData.title);
 	STAssertTrue([adData.body length]>0,@"your body is empty");
@@ -141,6 +138,23 @@
 
 - (void) testRusAdImages3 {
     //return;
+    /*
+    NSString* dateString = @"2012-09-22, 11:20PM EEST";
+    //NSString* dateString = @"2012-09-25,  2:13AM PDT";
+    //@"yyyy-MM-dd','  h:mma zzz"
+    NSString* dateFormat = @"yyyy-MM-dd,  h:mma zzz";
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:dateFormat];
+    NSLocale* enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
+    assert(enUSPOSIXLocale != nil);
+    [dateFormatter setLocale:enUSPOSIXLocale];
+    NSDate* adDate = [dateFormatter dateFromString:dateString];
+    [dateFormatter release];
+    NSLog(@"DATE %@", adDate);
+    
+    return;
+     */
     NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_RUS_AD_IMAGES3];
     
