@@ -1,0 +1,42 @@
+{
+    "meta" :
+        {
+            "version": "1"
+        },
+    "pathsmap":
+        {
+            "path1" :
+                {
+                    "fieldName": "path1Field"
+                },
+            "path2" :
+                {
+                    "ref": "path1"
+                },
+            "path3.class" :
+                {
+                    "fieldName": "classField"
+                },
+            "path4#id" :
+                {
+                    "fieldName": "idField"
+                },
+            "path5[name]" :
+                {
+                    "fieldName": "nameField"
+                },
+            "item1.class item2#id item3[name]" :
+                {
+                    "fieldName": "bigPathField"
+                },
+            "html body.posting div#userbody" :
+                {
+                    "fieldName": "body",
+                    "type" : "Scalar",
+                    "regexps": {
+                        "location": "Location: (.*)[\n\t]",
+                        "postingID": "PostingID: (.*?)[\n\t]"
+                    }
+                }
+        }
+}

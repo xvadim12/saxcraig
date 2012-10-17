@@ -12,21 +12,26 @@
 #import "AdResultsProcessor.h"
 #import "AdData.h"
 #import "ParametrizedSAXParser.h"
+#import "DataMapManager.h"
+#import "DataMap.h"
 
 @implementation AdResultsProcessorTest
 
 - (void) testTattooAd {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
+    
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_TATTOO_AD];
     
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
+    parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
+    /**
     NSArray* resultArray = [parser parse:htmlString];
 
     AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
     processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-    
+    */
     STAssertTrue([adData.title isEqualToString:@"TATTOO KIT"],@"adData.title=%@",adData.title);
 	STAssertTrue([adData.body length]>0,@"your body is empty");
 	STAssertTrue([adData.imageURLs count]==4,@"adData.imageURLs.count=%d",[adData.imageURLs count]);
@@ -49,15 +54,19 @@
 - (void) testApartmentAd {
     //return;
     //broken file </div> for <div id=userbody> is absent
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
+    
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_APARTMENT_AD];
     
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
+    parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
 	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
 	processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[processor parseResultArray:resultArray];
+     */
 	STAssertTrue([adData.title isEqualToString:@"^^  Modernised ^^ Sparkling Swimming Pool  ^^ CLOSE 2 COUNTRY Club ^^ Appropriat"],
 				 @"adData.title=%@",adData.title);
 	STAssertTrue([adData.body length]>0,@"your body is empty");
@@ -78,16 +87,19 @@
 - (void) testRefrigeratorAd {
     //return;
     //File without form with PostingID, only text in body
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
+    
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_REFRIGERATOR_AD];
     
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
+    parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
 	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
 	processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-	
+	*/
 	STAssertTrue([adData.title isEqualToString:@"ADMIRAL REFRIGERATOR IN EXCELLENT CONDTION"],
 				 @"adData.title=%@",adData.title);
 	STAssertTrue([adData.body length]>0,@"your body is empty");
@@ -108,16 +120,19 @@
 
 - (void) testHouseAd {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
+    
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_HOUSE_AD];
     
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
+    parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
 	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
 	processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-	
+	*/
 	STAssertTrue([adData.title isEqualToString:@"BREATHTAKING Hollywood Home: Private, Gated, Resort Living"],
 				 @"adData.title=%@",adData.title);
 	STAssertTrue([adData.price isEqualToString:@"$1650 / 2br"],@"adData.price=%@",adData.price);
@@ -155,16 +170,19 @@
     
     return;
      */
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
+    
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_RUS_AD_IMAGES3];
     
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
+    parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://ukraine.craigslist.org/phd",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
 	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
     processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://ukraine.craigslist.org/phd",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-    
+    */
     NSString* descr = @"Слід dolly Камера dolly 750 USD Будь ласка відвідувати нас http://trackdolly.com/ Buy camera dolly for $99 Track dolly 750 Dealers well come http://trackdolly.com/ Buy camera dolly for $99 Track dolly 750 Dealers well come http://trackdolly.com/";
     STAssertEqualObjects(adData.descr, descr, @"Wrong descr $@", adData.descr);
     STAssertTrue(5 == [adData.imageURLs count],@"adData.imageURLs.count=%d",[adData.imageURLs count]);
@@ -180,16 +198,19 @@
 
 - (void) testEnAdImages1 {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
+    
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_EN_AD_IMAGES1];
     
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
+    parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
 	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
     processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-    
+    */
     STAssertEqualObjects(@"2012-09-25 09:13:00 +0000", [adData.date description], @"adData.date %@", [adData.date description]);
     STAssertEqualObjects(adData.title, @"Who Moved My Cheese - $10", @"adData.title %@", adData.title);
     STAssertEqualObjects(adData.descr, @"BRAND NEW. Crispy pages, no damages. Please reply by email. Thank you.", @"adData.descr %@", adData.descr);

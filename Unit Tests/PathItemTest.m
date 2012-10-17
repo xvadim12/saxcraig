@@ -123,5 +123,16 @@
     item = [[[PathItem alloc] initItemFromString:itemString] autorelease];
     [self pathItemTesting:item tagName:tagName elName:nil elID:nil elClass:elClass];
 }
-
+/*
+- (void) testPaths {
+    
+    NSBundle* bundle = [NSBundle bundleForClass:[self class]];
+	NSString* path = [bundle pathForResource:@"ad" ofType:@"json"];
+    NSLog(@"PATH %@", path);
+    
+    NSString *rootPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSLog(@"ROOT PATH %@", rootPath);
+    
+}
+*/
 @end

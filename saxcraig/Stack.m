@@ -39,4 +39,8 @@
 - (void) clear {
     [_data removeAllObjects];
 }
+
+- (NSUInteger) count {
+    return [_data count];
+}
 @end

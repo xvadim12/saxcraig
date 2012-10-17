@@ -16,7 +16,7 @@
 #import "AdListResultsProcessor.h"
 #import "AdListResultsProcessor_Protected.h"
 
-#import "ParametrizedSAXParser.h"
+#import "DataMap.h"
 
 NSString* const FIELD_TITLE = @"title";
 NSString* const FIELD_AD = @"ad";

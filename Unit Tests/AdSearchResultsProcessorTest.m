@@ -11,6 +11,7 @@
 #import "Defs.h"
 #import "AdData.h"
 #import "AdSearchResultsProcessor.h"
+#import "DataMap.h"
 
 #import "AdSearchResultsProcessorTest.h"
 #import "ParametrizedSAXParser.h"
@@ -19,16 +20,16 @@
 
 - (void) testAppliancesSearchParsing {
     //return;
-    
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_APPLIANCES_SEARCH];
     
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
     AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
     NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    
+    */
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);
@@ -55,15 +56,18 @@
 - (void) testW4WSearchParsing {
     //<p without class 'row'
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_W4W_SEARCH];
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
+    parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/ppp/",KEY_TOP_CATEGORY_HREF,nil];
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
     AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
     processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/ppp/",KEY_TOP_CATEGORY_HREF,nil];
     NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-
+     */
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);
@@ -92,14 +96,16 @@
 - (void) testJobsSearchParsing {
     //<p without class 'row'
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_JOBS_SEARCH];
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
     AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
     NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-
+     */
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);
@@ -127,14 +133,16 @@
 - (void) testHousingSearchParsing {
     //<p without class 'row'
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_HOUSING_SEARCH];
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
     AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
     NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-
+     */
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);
@@ -163,15 +171,17 @@
 
 - (void) testNoResultsSearchParsing {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_NORESULTS_SEARCH];
 	STAssertTrue([htmlString length]>0,@"");
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
     AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
     NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-
+     */
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==0,@"groupNames.count=%d",[groupNames count]);
@@ -180,15 +190,17 @@
 
 - (void) testJewelrySearch {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_JEWELRY_SEARCH];
 	STAssertTrue([htmlString length]>0,@"");
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
     AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
     NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-
+     */
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);
@@ -213,57 +225,70 @@
 
 - (void) testAllOfSubCategorySublocationParsing {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
 	NSString* htmlStringAllOfPoliticsChicagoSearch = [self.unitTestHelper contentsOfFile:FILE_CHICAGO_ALLOFF_POLITICS_SEARCH];
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
+    [parser.dataMap.resultsProcessor setURL:@"http://chicago.craigslist.org/search/pol?query=1&srchType=A"];
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlStringAllOfPoliticsChicagoSearch];
+    /*
     NSArray* resultArray = [parser parse:htmlStringAllOfPoliticsChicagoSearch];
     
     AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
 	[processor setURL:@"http://chicago.craigslist.org/search/pol?query=1&srchType=A"];
     NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    
+    */
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
 
 - (void) testAllOfTopCategorySublocationParsing {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
 	NSString* htmlStringAllOfServicesChicagoSearch = [self.unitTestHelper contentsOfFile:FILE_CHICAGO_ALLOFF_SERVICES_SEARCH];
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
+    [parser.dataMap.resultsProcessor setURL:@"http://chicago.craigslist.org/search/bbb?query=1&srchType=A"];
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlStringAllOfServicesChicagoSearch];
+    /*
+    
     NSArray* resultArray = [parser parse:htmlStringAllOfServicesChicagoSearch];
     
     AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
 	[processor setURL:@"http://chicago.craigslist.org/search/bbb?query=1&srchType=A"];
     NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    
+    */
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
 
 - (void) testChosenSublocationParsing {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
     NSString* htmlStringCityOfChicagoSearch = [self.unitTestHelper contentsOfFile:FILE_CHICAGO_CITY_CUSTOMERSURVICE_SEARCH];
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
+    [parser.dataMap.resultsProcessor setURL:@"http://chicago.craigslist.org/search/csr/chc?query=1&srchType=A"];
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlStringCityOfChicagoSearch];
+    /*
     NSArray* resultArray = [parser parse:htmlStringCityOfChicagoSearch];
     
     AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
 	[processor setURL:@"http://chicago.craigslist.org/search/csr/chc?query=1&srchType=A"];
     NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    
+    */
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
 
 - (void) testBooksSearch {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_BOOKS_SEARCH];
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
+    [parser.dataMap.resultsProcessor setURL:@"http://losangeles.craigslist.org/app/index.html"];
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
+    /*
     NSArray* resultArray = [parser parse:htmlString];
     
     AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
 	[processor setURL:@"http://losangeles.craigslist.org/app/index.html"];
     NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    
+    */
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
     NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);
@@ -285,34 +310,6 @@
 	if ([nextURL isKindOfClass:[NSString class]]) {
 		STAssertTrue([nextURL isEqualToString:@"http://losangeles.craigslist.org/search/bka?query=book&srchType=A&s=100"],@"nextURL=%@",nextURL);
 	}
-}
-
-- (void) testPWithoutRow {
-    //<p without class 'row'
-    return;
-    
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
-	NSString* htmlString = [self.unitTestHelper contentsOfFile:@"PWithoutRow"];
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
-    NSArray* resultArray = [parser parse:htmlString];
-    
-    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
-    processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/ppp/",KEY_TOP_CATEGORY_HREF,nil];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    
-    NSLog(@"RES %@", adsDict);
-    NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
-    NSArray* group = [groups objectAtIndex:0];
-    AdData* adData = [group objectAtIndex:0];
-    NSLog(@"TITLE %@", adData.title);
-    NSLog(@"LINK %@", adData.link);
-    NSLog(@"PLACE %@", adData.place);
-    NSLog(@"-----");
-    adData = [group objectAtIndex:1];
-    NSLog(@"TITLE %@", adData.title);
-    NSLog(@"LINK %@", adData.link);
-    NSLog(@"PLACE %@", adData.place);
-    
 }
 
 @end

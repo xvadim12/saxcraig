@@ -15,7 +15,7 @@
 #import "ParsedDataFields.h"
 
 //for kDataKey, kFieldKey - move to another file
-#import "ParametrizedSAXParser.h"
+#import "DataMap.h"
 
 @interface AdResultsProcessor ()
 /**

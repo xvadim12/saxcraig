@@ -1,136 +1,140 @@
 {
-    "html body.toc div.bchead a" :
-        {
-            "fieldName": "sublocationNameSel",
-            "type" : "Scalar",
-            "attributes" : {
-                "href": {
-                    "fieldName": "sublocationAbbrSel"
+    "meta" :
+    {
+        "version": "1"
+    },
+    "pathsmap":
+    {
+        "html body.toc div.bchead a" :
+            {
+                "fieldName": "sublocationNameSel",
+                "type" : "Scalar",
+                "attributes" : {
+                    "href": {
+                        "fieldName": "sublocationAbbrSel"
+                    }
+                }
+            },
+        "html body.toc div.bchead div#satabs a" :
+            {
+                "fieldName": "sublocationName",
+                "type" : "Scalar",
+                "attributes" : {
+                    "href": {
+                        "fieldName": "sublocationAbbr"
+                    }
+                }
+            },
+        "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td input[minSqft]" :
+            {
+                "fieldName": "minSqft",
+                "type" : "Scalar",
+                "attributes" : {
+                    "name": {
+                        "fieldName": "minSqft"
+                    }
+                }
+            },
+        "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td#hoodpicker div noscript select[nh] option" :
+            {
+                "fieldName": "neighborhoodsKeyName",
+                "type" : "Scalar",
+                "attributes" : {
+                    "value": {
+                        "fieldName": "neighborhoodsValue"
+                    }
+                }
+            },
+        "html body.toc blockquote h4.ban b" :
+            {
+                "fieldName": "listTitle",
+                "type" : "Scalar"
+            },
+        "html body.toc blockquote h4.ban" :
+            {
+                "fieldName": "listTitleFull",
+                "type" : "Scalar"
+            },
+        "html body.toc blockquote p.row" :
+            {
+                "fieldName": "ad",
+                "type" : "Dict",
+                "regexps": {
+                    "price": "(?s)-[ \n\t]*(.*?)([ -]|$)",
+                    "date": "^(?s)[ \n\t]*(.*? - )"
+                }
+            },
+        "html body.toc blockquote p" :
+            {
+                "ref": "html body.toc blockquote p.row"
+            },
+        "html body.toc blockquote p.row span.ih" :
+            {
+                "type" : "Scalar",
+                "attributes" : {
+                    "id": {
+                        "fieldName": "thumbnail"
+                    }
+                }
+            },
+        "html body.toc blockquote p.row a" :
+            {
+                "fieldName": "title",
+                "trimmedChars": " -",
+                "type" : "Scalar",
+                "attributes" : {
+                    "href": {
+                        "fieldName": "link"
+                    }
+                }
+            },
+        "html body.toc blockquote p a" :
+            {
+                "ref": "html body.toc blockquote p.row a"
+            },
+        "html body.toc blockquote p.row span.itempp" :
+            {
+                "fieldName": "price",
+                "type" : "Scalar"
+            },
+        "html body.toc blockquote p.row span.itemdate" :
+            {
+                "fieldName": "date",
+                "type" : "Scalar"
+            },
+        "html body.toc blockquote p.row span.itemsep" :
+            {
+                "fieldName": "separator",
+                "type" : "Scalar"
+            },
+        "html body.toc blockquote p.row span.itempn" :
+            {
+                "fieldName": "location",
+                "trimmedChars": "()",
+                "type" : "Scalar"
+            },
+        "html body.toc blockquote p.row font" :
+            {
+                "fieldName": "location",
+                "trimmedChars": "()",
+                "type" : "Scalar"
+            },
+        "html body.toc blockquote p font" :
+            {
+                "ref": "html body.toc blockquote p.row font"
+            },
+        "html body.toc blockquote p.row span.p" :
+            {
+                "type" : "Scalar"
+            },
+        "html body.toc blockquote h4.ban span a" :
+            {
+                "type" : "Scalar",
+                "attributes" : {
+                    "href": {
+                        "fieldName": "linkNext"
+                    }
                 }
             }
-        },
-    "html body.toc div.bchead div#satabs a" :
-        {
-            "fieldName": "sublocationName",
-            "type" : "Scalar",
-            "attributes" : {
-                "href": {
-                    "fieldName": "sublocationAbbr"
-                }
-            }
-        },
-    "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td input[minSqft]" :
-        {
-            "fieldName": "minSqft",
-            "type" : "Scalar",
-            "attributes" : {
-                "name": {
-                    "fieldName": "minSqft"
-                }
-            }
-        },
-    "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td#hoodpicker div noscript select[nh] option" :
-        {
-            "fieldName": "neighborhoodsKeyName",
-            "type" : "Scalar",
-            "attributes" : {
-                "value": {
-                    "fieldName": "neighborhoodsValue"
-                }
-            }
-        },
-    "html body.toc blockquote h4.ban b" :
-        {
-            "fieldName": "listTitle",
-            "type" : "Scalar"
-        },
-    "html body.toc blockquote h4.ban" :
-        {
-            "fieldName": "listTitleFull",
-            "type" : "Scalar"
-        },
-    "html body.toc blockquote p.row" :
-        {
-            "fieldName": "ad",
-            "type" : "Dict",
-            "regexps": {
-                "price": "(?s)-[ \n\t]*(.*?)([ -]|$)",
-                "date": "^(?s)[ \n\t]*(.*? - )"
-            }
-        },
-    "html body.toc blockquote p" :
-        {
-            "ref": "html body.toc blockquote p.row"
-        },
-    "html body.toc blockquote p.row span.ih" :
-        {
-            "fieldName": "unused",
-            "type" : "Scalar",
-            "attributes" : {
-                "id": {
-                    "fieldName": "thumbnail"
-                }
-            }
-        },
-    "html body.toc blockquote p.row a" :
-        {
-            "fieldName": "title",
-            "trimmedChars": " -",
-            "type" : "Scalar",
-            "attributes" : {
-                "href": {
-                    "fieldName": "link",
-                }
-            }
-        },
-    "html body.toc blockquote p a" :
-        {
-            "ref": "html body.toc blockquote p.row a"
-        },
-    "html body.toc blockquote p.row span.itempp" :
-        {
-            "fieldName": "price",
-            "type" : "Scalar"
-        },
-    "html body.toc blockquote p.row span.itemdate" :
-        {
-            "fieldName": "date",
-            "type" : "Scalar"
-        },
-    "html body.toc blockquote p.row span.itemsep" :
-        {
-            "fieldName": "separator",
-            "type" : "Scalar",
-        },
-    "html body.toc blockquote p.row span.itempn" :
-        {
-            "fieldName": "location",
-            "trimmedChars": "()",
-            "type" : "Scalar"
-        },
-    "html body.toc blockquote p.row font" :
-        {
-            "fieldName": "location",
-            "trimmedChars": "()",
-            "type" : "Scalar"
-        },
-    "html body.toc blockquote p font" :
-        {
-            "ref": "html body.toc blockquote p.row font"
-        },
-    "html body.toc blockquote p.row span.p" :
-        {
-            "fieldName": "unused",
-            "type" : "Scalar"
-        },
-    "html body.toc blockquote h4.ban span a" :
-        {
-            "fieldName": "unused",
-            "type" : "Scalar",
-            "attributes" : {
-                "href": {
-                    "fieldName": "linkNext"
-                }
-            }
-        },
+    }
 }

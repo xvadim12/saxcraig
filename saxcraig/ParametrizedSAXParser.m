@@ -12,29 +12,12 @@
 #import "PathStack.h"
 #import "PathItem.h"
 #import "PathItemEx.h"
-
-//Keys for data map
-NSString* const kFieldName = @"fieldName";
-NSString* const kTrimmedChars = @"trimmedChars";
-NSString* const kObjectType = @"type";
-NSString* const kAttributesKey = @"attributes";
-NSString* const kUnparsedRegExpsKey = @"regexps";
-NSString* const kRefPath = @"ref";
-NSString* const kUnusedFieldName = @"unused";
-
-NSString* const kScalarObject = @"Scalar";
-NSString* const kDictObject   = @"Dict";
-
-//Keys in result subdictionaries
-NSString* const kDataKey = @"data";
-NSString* const kFieldNameKey = @"fieldName";
+#import "DataMap.h"
+#import "ResultsProcessor.h"
 
 @implementation ParametrizedSAXParser {
     
     DTHTMLParser* _htmlParser;
-    
-    NSDictionary* _dataMap;
-    NSDictionary* _tokenizedPaths;
     
     /**
      Stack for saving data for not finished tag
@@ -56,7 +39,9 @@ NSString* const kFieldNameKey = @"fieldName";
     NSMutableArray* _resultObject;
 }
 
-- (id) initWithDataMap:(NSString*)stringDataMap {
+@synthesize dataMap;
+
+- (id) initWithType:(DataMapType)dataMapType {
     
     if (self = [super init]) {
         
@@ -68,8 +53,7 @@ NSString* const kFieldNameKey = @"fieldName";
         
         _resultObject = [NSMutableArray array];
         
-        _dataMap = [self parseDataMap:stringDataMap encoding:NSUTF8StringEncoding];
-        _tokenizedPaths = [self buildTokenizedPaths:_dataMap];
+        self.dataMap = [[DataMapManager sharedMapManager] dataMapWithType:dataMapType];
     }
     
     return self;
@@ -85,141 +69,19 @@ NSString* const kFieldNameKey = @"fieldName";
     _dataString = nil;
     [_parsedObject release];
     _parsedObject = nil;
-
-    _dataMap = nil;
-    [_tokenizedPaths release];
-    _tokenizedPaths = nil;
+    
+    self.dataMap = nil;
     
 	[super dealloc];
 }
 
-/**
- Parses string representation of map data.
- 
- Next structure is expected:
- 
- {
-    path_to_object1 : { - dict with information about object
-                        'fieldName': name of field in result dict,
-                        'trimmedChars': string with chars which will be trimmed from start and end of value
-                        'type': type of object - 'Scalar' for scalar, 'Dict' for dict, i.e. nested object
- 
-                        'attributes': { - subdictionary with information about html atg's attributes which whould be added to result
- 
-                                        'attributeName1': dict with keys 'fieldName, trimmedChars (only scalar object in attributes are supported,
-                                        'attribiteName2': ...
-                                      }
-                     },
- 
-   path_to_object2 : {
-                        ...
-                     }
- }
- 
- For example, for page:
- 
- http://losangeles.craigslist.org/bka/
- 
- 
- with content (fragment):
- 
- <body class="toc">
- 
-     <h4 class="ban">    Tue Sep 11</h4>
- 
-     <p class="row" data-latitude="" data-longitude="">
-         <span class="ih" id="images:5I15Hd5Jb3Ld3I63Jec96234d7c389377190b.jpg">&nbsp;</span>
-         <span class="itemdate"></span>
-         <a href="http://losangeles.craigslist.org/sfv/bks/3253676408.html">THE PLAYMATE BOOK</a>
-         <span class="itemsep"> - </span>
-         <span class="itemph"></span>
-         <span class="itempp"> $30</span>
-         <span class="itempn"><font size="-1"> (Studio City)</font></span>
-         <span class="itempx"> <span class="p"> pic</span></span>
-         <span class="itemcg" title="bks"> <small class="gc"><a href="http://losangeles.craigslist.org/bks/">books &amp; magazines - by owner</a></small></span><br class="c">
-     </p>
- 
- A data map will be:
- 
- {
-    "html body.toc h4.ban" :
-             {
-                 "fieldName": "listTitle",
-                 "trimmedChars": " ",
-                 "type" : "Scalar"
-             },
-    "html body.toc p.row" :
-             {
-                "fieldName": "ads",
-                "type" : "Dict"
-             },
-    "html body.toc p.row a" :
-             {
-                 "fieldName": "title",
-                 "trimmedChars": " ",
-                 "type" : "Scalar",
-                 "attributes" : {
-                     "href": {
-                            "fieldName": "link",
-                            "trimmedChars": " "
-                         }
-                     }
-             },
-    "html body.toc p.row span.itempp" :
-             {
-                 "fieldName": "price",
-                 "trimmedChars": " ",
-                 "type" : "Scalar"
-             },
-    "html body.toc p.row span.itempn" :
-             {
-                 "fieldName": "location",
-                 "trimmedChars": " ()",
-                 "type" : "Scalar"
-             }
- }
- 
- @return dictionary with map data
- */
-- (NSDictionary*)parseDataMap:(NSString*)stringMapData encoding:(NSStringEncoding)encoding{
-    
-    NSError *error;
-    //TODO: error processing; check that all needed keys are present
-    NSDictionary* dMap = [NSJSONSerialization JSONObjectWithData:[stringMapData dataUsingEncoding:encoding] options:kNilOptions error:&error];
-    return dMap;
+- (NSObject*) parseHtmlString:(NSString*)htmlString{
+    [self parse:htmlString];
+    ResultsProcessor* rp = self.dataMap.resultsProcessor;
+    return [rp parseResultArray:_resultObject];
 }
 
-/**
- Builds tokenized version of pathes in the data map
- Returns dict:
-   stringPath: NSArray of path's tokens
- */
-- (NSDictionary*)buildTokenizedPaths:(NSDictionary*)dMap {
-    
-    NSMutableDictionary* piDMap = [[NSMutableDictionary alloc] init];
-    for(NSString* strPath in [dMap allKeys]) {
-        NSArray* pathItems = [strPath componentsSeparatedByString:@" "];
-        NSMutableArray* pathArray = [NSMutableArray array];
-        for(NSString* item in pathItems)
-            [pathArray addObject:[[PathItem alloc] initItemFromString:item]];
-        [piDMap setObject:pathArray forKey:strPath];
-    }
-    return piDMap;
-}
-
-/**
- Returns data map info for given path. If data is crossref to an another path, returns information for this original path 
- */
-- (NSDictionary*)dataMapInfoForPath:(NSString *)path {
-    NSDictionary* dataMapInfo = [_dataMap objectForKey:path];
-    if ([[dataMapInfo allKeys] containsObject:kRefPath]) {
-        NSString* origPath = [dataMapInfo objectForKey:kRefPath];
-        dataMapInfo = [_dataMap objectForKey:origPath];
-    }
-    return dataMapInfo;
-}
-
-- (NSArray*) parse:(NSString*)htmlString {
+- (NSArray*) parse:(NSString*)htmlString{
     
     _htmlParser = [[DTHTMLParser alloc] initWithData:[htmlString dataUsingEncoding:NSUTF8StringEncoding] encoding:NSUTF8StringEncoding];
     _htmlParser.delegate = self;
@@ -228,6 +90,7 @@ NSString* const kFieldNameKey = @"fieldName";
     [_pathStack clear];
     [_resultObject removeAllObjects];
     [_dataString setString:@""];
+    
     _parsedObject = nil;
     
     [_htmlParser parse];
@@ -242,12 +105,12 @@ NSString* const kFieldNameKey = @"fieldName";
 
     PathItemEx* pathItem = [[PathItemEx alloc] initItem:elementName withAttributes:attributeDict];
     [_pathStack push:pathItem];
-    
-    NSString* strPath = [_pathStack findMatchingPathInArray:_tokenizedPaths];
+
+    NSString* strPath = [_pathStack findMatchingPathInArray: self.dataMap.tokenizedPaths];
     if (nil != strPath)
     {
         [_pathStack setMatchedPath:strPath];
-        NSDictionary *dataInfoDict = [self dataMapInfoForPath:strPath];
+        NSDictionary *dataInfoDict = [self.dataMap dataMapInfoForPath:strPath];
         if ([[dataInfoDict objectForKey:kObjectType] isEqualToString: kScalarObject])
         {
             /*
@@ -285,6 +148,8 @@ NSString* const kFieldNameKey = @"fieldName";
         {
             //assume that tag's attributes contain only scalar objects
             [self saveScalarObject:attrValue withFieldName:[dataInfoDict objectForKey:kFieldName] andDataInfo:dataInfoDict];
+            //may be we can extract some info from data by regexp
+            [self parseUnparsed:attrValue withDataInfo:dataInfoDict];
         }
     }];
 }
@@ -298,12 +163,12 @@ NSString* const kFieldNameKey = @"fieldName";
     NSString* strPath = [_pathStack currentMatchedPath];
     if (nil != strPath)
     {
-        NSDictionary *dataInfoDict = [self dataMapInfoForPath:strPath];
+        NSDictionary *dataInfoDict = [self.dataMap dataMapInfoForPath:strPath];
         NSString *fieldName = [dataInfoDict objectForKey:kFieldName];
         NSString *objType = [dataInfoDict objectForKey:kObjectType];
 
         //may be we can extract some info from data by regexp
-        [self parseUnparsed: _dataString withDataInfo:dataInfoDict];
+        [self parseUnparsed:_dataString withDataInfo:dataInfoDict];
         
         //... and add a new value
         if ([objType isEqualToString: kScalarObject])
@@ -317,7 +182,8 @@ NSString* const kFieldNameKey = @"fieldName";
         }
         else
         {
-            [_resultObject addObject:[NSDictionary dictionaryWithObjectsAndKeys:fieldName, kFieldNameKey, _parsedObject, kDataKey, nil]];
+            if (nil != fieldName)
+                [_resultObject addObject:[NSDictionary dictionaryWithObjectsAndKeys:fieldName, kFieldNameKey, _parsedObject, kDataKey, nil]];
             [_parsedObject release];
             _parsedObject = nil;
         }
@@ -330,7 +196,7 @@ NSString* const kFieldNameKey = @"fieldName";
  Saves scalar object to _resultObject or to _parsedObject dictionary
  */
 -(void)saveScalarObject:(NSString*)value withFieldName:(NSString*)fieldName andDataInfo:(NSDictionary*)dataInfoDict {
-    if (![fieldName isEqualToString:kUnusedFieldName]) {
+    if (nil != fieldName) {
         NSString* trimmedValue = [value trimChars:[dataInfoDict objectForKey:kTrimmedChars]];
         if (nil == _parsedObject)
         {

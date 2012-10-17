@@ -40,10 +40,17 @@
 #define FILE_JEWELRY_SEARCH @"jewelrySearch"
 #define FILE_PARIS_CATEGORIES @"ParisCategories_UTF8"
 
+#define FILE_SIMPLE_AD_LIST @"SimpleAdList"
+#define FILE_SIMPLE_BOOK_SEARCH @"SimpleBookSearch"
+#define FILE_MANY_CATEGORIES @"ManyCategories"
+#define FILE_RUS_AD_NO_IMAGES @"RusAdNoImages"
 #define FILE_RUS_AD_IMAGES3 @"RusAdImages3"
 #define FILE_EN_AD_IMAGES1 @"EnAdImages1"
+#define FILE_EN_AD_IMAGES2 @"EnAdImages2"
 #define FILE_BOOKS_AND_MAGS @"BooksAndMagAd"
 #define FILE_BOOKS_SEARCH @"BookSearch"
+#define FILE_BROKEN_AD @"BrokenAd"
+#define FILE_BROKEN_AD_LIST @"BrokenAdList"
 
 #define FILE_CHICAGO_ALLOFF_POLITICS @"ChicagoAllOfPolitics"
 #define FILE_CHICAGO_CITY_CUSTOMERSURVICE @"ChicagoCityCustomerSurvice"

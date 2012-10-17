@@ -6,17 +6,20 @@
 //  Copyright (c) 2012 Vadim A. Khohlov. All rights reserved.
 //
 #import "UnitTestHelper.h"
+#import "UnitTestDefs.h"
 #import "ParametrizedSAXParser.h"
 #import "ParametrizedSAXParserTest.h"
+#import "DataMapManager.h"
+#import "DataMap.h"
 
 @implementation ParametrizedSAXParserTest
 
 - (void) testSimpleAdList {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adlist" withType:@"json"];
-    NSString* htmlString = [self.unitTestHelper contentsOfFile:@"SimpleAdList"];
+    NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_SIMPLE_AD_LIST];
 
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_LIST] autorelease];
+    
     NSArray* ads =[parser parse:htmlString];
     
     //NSLog(@"ADS %@", ads);
@@ -66,22 +69,20 @@
 
 - (void) testManyCategoriesAdList {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adlist" withType:@"json"];
-    NSString* htmlString = [self.unitTestHelper contentsOfFile:@"ManyCategories"];
+    NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_MANY_CATEGORIES];
     
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
-    NSArray* ads =[parser parse:htmlString];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_LIST] autorelease];
 
+    NSArray* ads =[parser parse:htmlString];
     STAssertTrue(108 == [ads count], @"Expected five items but found %lu", [ads count]);
-    
 }
 
 - (void) testSimpleAdSearch {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"adsearch" withType:@"json"];
+    
     NSString* htmlString = [self.unitTestHelper contentsOfFile:@"SimpleBookSearch"];
 
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
     NSArray* ads =[parser parse:htmlString];
 
     STAssertTrue(6 == [ads count], @"Expected count of items %lu", [ads count]);
@@ -134,10 +135,10 @@
 
 - (void) testAdWithoutImages {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
-    NSString* htmlString = [self.unitTestHelper contentsOfFile:@"RusAdNoImages"];
     
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_RUS_AD_NO_IMAGES];
+    
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     NSArray* ad =[parser parse:htmlString];
 
     //7 items: title, date, mailto,  location, body, posting id, unparsed
@@ -165,10 +166,10 @@
 
 - (void) testAdImages1 {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
-    NSString* htmlString = [self.unitTestHelper contentsOfFile:@"EnAdImages1"];
     
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_EN_AD_IMAGES1];
+    
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     NSArray* ad =[parser parse:htmlString];
 
     STAssertTrue(13 == [ad count], @"Expected five items but found %lu", [ad count]);
@@ -193,10 +194,10 @@
 
 - (void) testAdImages2 {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
-    NSString* htmlString = [self.unitTestHelper contentsOfFile:@"EnAdImages2"];
     
-    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
+    NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_EN_AD_IMAGES2];
+    
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     NSArray* ad =[parser parse:htmlString];
     STAssertTrue(15 == [ad count], @"Expected five items but found %lu", [ad count]);
     
@@ -237,10 +238,10 @@
 
 - (void) testAdImages3 {
     //return;
-    NSString* dataMap = [self.unitTestHelper contentsOfFile:@"ad" withType:@"json"];
-    NSString* htmlString = [self.unitTestHelper contentsOfFile:@"RusAdImages3"];
     
-    ParametrizedSAXParser* parser = [[ParametrizedSAXParser alloc] initWithDataMap:dataMap];
+    NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_RUS_AD_IMAGES3];
+    
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     NSArray* ad =[parser parse:htmlString];
 
     STAssertTrue(16 == [ad count], @"Expected five items but found %lu", [ad count]);
@@ -257,7 +258,8 @@
     
     obj = [ad objectAtIndex: 2];
     STAssertEqualObjects(@"mailto", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"mailto:dbrk7-3258787977@sale.craigslist.org?subject=%20dolly%20%20do&body=%0A%0Ahttp%3A%2F%2Fukraine.craigslist.org%2Fphd%2F3258787977.html%0A", [obj objectForKey: kDataKey], @"Wrong mailto %@", [obj objectForKey: kDataKey]);
+    STAssertEqualObjects(@"mailto:dbrk7-3258787977@sale.craigslist.org?subject=%20dolly%20%20do&body=%0A%0Ahttp%3A%2F%2Fukraine.craigslist.org%2Fphd%2F3258787977.html%0A",
+                         [obj objectForKey: kDataKey], @"Wrong mailto %@", [obj objectForKey: kDataKey]);
     
     obj = [ad objectAtIndex: 3];
     STAssertEqualObjects(@"images", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
@@ -275,8 +277,6 @@
     obj = [ad objectAtIndex: 14];
     STAssertEqualObjects(@"postingID", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"3258787977", [obj objectForKey: kDataKey], @"Wrong posting ID %@", [obj objectForKey: kDataKey]);
-    
-    [parser release];
 }
 
 @end

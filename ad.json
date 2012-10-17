@@ -1,103 +1,99 @@
 {
-    "html body.posting h2" :
-        {
-            "fieldName": "title",
-            "type" : "Scalar"
-        },
-    "html body.posting span.postingdate" :
-        {
-            "fieldName": "unused",
-            "type" : "Scalar",
-            "regexps": {
-                "date": "Date: (.*)$"
-            }
-        },
-    "html body.posting div#userbody" :
-        {
-            "fieldName": "body",
-            "type" : "Scalar",
-            "regexps": {
-                "location": "Location: (.*)[\n\t]",
-                "postingID": "PostingID: (.*?)[\n\t]",
-            }
-        },
-    "html body.posting small a" :
-        {
-            "fieldName": "unused",
-            "type" : "Scalar",
-            "attributes" : {
-                "href": {
-                    "fieldName": "mailto"
+    "meta" :
+    {
+        "version": "1"
+    },
+    "pathsmap":
+    {
+        "html body.posting h2" :
+            {
+                "fieldName": "title",
+                "type" : "Scalar"
+            },
+        "html body.posting span.postingdate" :
+            {
+                "type" : "Scalar",
+                "regexps": {
+                    "date": "Date: (.*)([\n\t]|$)"
                 }
-            }
-        },
-    "html body.posting a" :
-        {
-            "fieldName": "unused",
-            "type" : "Scalar",
-            "attributes" : {
-                "href": {
-                    "fieldName": "mailto"
+            },
+        "html body.posting div#userbody" :
+            {
+                "fieldName": "body",
+                "type" : "Scalar",
+                "regexps": {
+                    "location": "Location: (.*)[\n\t]",
+                    "postingID": "PostingID: (.*?)[\n\t]"
                 }
-            }
-        },
-    "html body.posting span.postingidtext" :
-        {
-            "fieldName": "unused",
-            "type" : "Scalar",
-            "regexps": {
-                "postingID": "PostingID: (.*)$"
-            }
-        },
-    "html body.posting form fieldset input[postingID]" :
-        {
-            "fieldName": "unused",
-            "type" : "Scalar",
-            "attributes" : {
-                "value": {
-                    "fieldName": "postingID"
+            },
+        "html body.posting small a" :
+            {
+                "type" : "Scalar",
+                "attributes" : {
+                    "href": {
+                        "fieldName": "mailto"
+                    }
                 }
-            }
-        },
-    "html body.posting div#userbody ul.blurbs li" :
-        {
-            "fieldName": "unused",
-            "type" : "Scalar",
-            "regexps": {
-                "location": "Location: (.*)([\n\t]|$)"
-            }
-        },
-    "html body.posting div#userbody img" :
-        {
-            "fieldName": "images",
-            "type" : "Scalar",
-            "attributes" : {
-                "src": {
-                    "fieldName": "images"
+            },
+        "html body.posting a" :
+            {
+                "ref": "html body.posting small a"
+            },
+        "html body.posting span.postingidtext" :
+            {
+                "type" : "Scalar",
+                "regexps": {
+                    "postingID": "PostingID: (.*?)([ \n\t]|$)"
                 }
-            }
-        },
-    "html body.posting div#userbody div.iw div#iwt div.tn a img" :
-        {
-            "ref": "html body.posting div#userbody img"
-        },
-    "html body.posting div#userbody a img" :
-        {
-            "ref": "html body.posting div#userbody img"
-        },
-    "html body.posting div#userbody table tr td img" :
-        {
-            "ref": "html body.posting div#userbody img"
-        },
-    "html body.posting" :
-        {
-            "fieldName": "unparsed",
-            "type" : "Scalar",
-            "regexps": {
-                "postingID": "PostingID: (.*)\n",
-                "date": "Date: (.*)\n",
-                "replyURL": "\"/reply/(.*?)\""
-            }
+            },
+        "html body.posting form fieldset input[postingID]" :
+            {
+                "type" : "Scalar",
+                "attributes" : {
+                    "value": {
+                        "fieldName": "postingID"
+                    }
+                }
+            },
+        "html body.posting div#userbody ul.blurbs li" :
+            {
+                "type" : "Scalar",
+                "regexps": {
+                    "location": "Location: (.*)([\n\t]|$)"
+                }
+            },
+        "html body.posting div#userbody img" :
+            {
+                "fieldName": "images",
+                "type" : "Scalar",
+                "attributes" : {
+                    "src": {
+                        "fieldName": "images"
+                    }
+                }
+            },
+        "html body.posting div#userbody div.iw div#iwt div.tn a img" :
+            {
+                "ref": "html body.posting div#userbody img"
+            },
+        "html body.posting div#userbody a img" :
+            {
+                "ref": "html body.posting div#userbody img"
+            },
+        "html body.posting div#userbody table tr td img" :
+            {
+                "ref": "html body.posting div#userbody img"
+            },
+        "html body.posting" :
+            {
+                "fieldName": "unparsed",
+                "type" : "Scalar",
+                "regexps": {
+                    "postingID": "PostingID: (.*)\n",
+                    "date": "Date: (.*)\n",
+                    "replyURL": "\"/reply/(.*?)\""
+                }
 
-        }
+            }
+    }
 }

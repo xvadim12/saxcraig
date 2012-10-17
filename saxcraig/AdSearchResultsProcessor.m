@@ -17,7 +17,7 @@
 #import "ParsedDataFields.h"
 #import "NSMutableArrayAdditions.h"
 
-#import "ParametrizedSAXParser.h"
+#import "DataMap.h"
 
 NSString* const FIELD_LIST_TITLE = @"listTitle";
 NSString* const FIELD_LIST_TITLE_FULL = @"listTitleFull";

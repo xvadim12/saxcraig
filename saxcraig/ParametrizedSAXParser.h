@@ -8,32 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DataMapManager.h"
 #import "DTHTMLParser.h"
 
-//Keys in result subdictionaries
-extern NSString* const kDataKey;
-extern NSString* const kFieldNameKey;
-
+@class DataMap;
 @interface ParametrizedSAXParser : NSObject <DTHTMLParserDelegate>
 
-/**
- Inits parser with data map
- 
- The data map structure:
- {
-    path_to_item: {
-                    fieldName: @"...",
-                    source: @"...", - data or attribute value
-                    trimmedChars: @"..." - prefix and suffix chars which should be trimmed
-                  }
- }
- */
-- (id) initWithDataMap:(NSString*)stringDataMap;
+@property (nonatomic, retain) DataMap* dataMap;
+
+- (id) initWithType:(DataMapType)dataMapType;
 
 /**
  Performs parsing.
  @return NSArray of data
  */
 - (NSArray*) parse:(NSString*)htmlString;
+
+/**
+ Performs parsing of html string with using of data map with given type
+ @return corresponding CraigList object
+ */
+- (NSObject*) parseHtmlString:(NSString*)htmlString;
 
 @end

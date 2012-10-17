@@ -19,7 +19,6 @@ NSString* const FIELD_AD_IMAGES = @"images";
 NSString* const FIELD_AD_BODY = @"body";
 NSString* const FIELD_AD_POSTINGID = @"postingID";
 NSString* const FIELD_AD_REPLYURL = @"replyURL";
-//NSString* const FIELD_AD_UNPARSED = @"unparsed";
 
 
 

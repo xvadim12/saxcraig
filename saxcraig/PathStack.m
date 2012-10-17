@@ -31,11 +31,11 @@
                     equalItemsCount++;
                 else
                     break;
-            if(equalItemsCount == pathLen)
+            if(equalItemsCount == pathLen) {
                 return strPath;
+            }
         }
     }
-    
     return nil;
 }
 

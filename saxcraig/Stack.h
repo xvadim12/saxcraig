@@ -15,5 +15,6 @@
 - (void) push: (id)item;
 - (id) pop;
 - (void) clear;
+- (NSUInteger) count;
 @end
 
