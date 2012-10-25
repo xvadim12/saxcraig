@@ -10,15 +10,21 @@
 #import "AdSearchResultsProcessor.h"
 #import "DataMap.h"
 #import "DataMapManager.h"
+#import "DataMapLoader.h"
 
 NSString* const DM_FILE_SINGLE = @"ad";
 NSString* const DM_FILE_LIST = @"adlist";
 NSString* const DM_FILE_SEARCH = @"adsearch";
 
+NSString* const DM_FILE_EXT = @"json";
+
 @interface DataMapManager ()
 
 @property (nonatomic, retain) NSMutableArray* dataMaps;
 @property (nonatomic, retain) NSArray* dataMapFiles;
+@property (nonatomic, retain) DataMapLoader* dataMapLoader;
+
+- (NSString*)versionOfDataMap:(NSString*)dataMapFile;
 
 @end
 
@@ -26,6 +32,7 @@ NSString* const DM_FILE_SEARCH = @"adsearch";
 
 @synthesize dataMaps;
 @synthesize dataMapFiles;
+@synthesize dataMapLoader;
 
 static DataMapManager* _sharedDMSingelton = nil;
 
@@ -48,6 +55,7 @@ static DataMapManager* _sharedDMSingelton = nil;
         for (NSUInteger i = [self.dataMapFiles count]; i > 0; i--) {
             [self.dataMaps addObject:[NSNull null]];
         }
+        self.dataMapLoader = [[DataMapLoader alloc] init];
     }
     return self;
 }
@@ -56,6 +64,7 @@ static DataMapManager* _sharedDMSingelton = nil;
     
     self.dataMapFiles = nil;
     self.dataMaps = nil;
+    self.dataMapLoader = nil;
     
     [super dealloc];
 }
@@ -72,7 +81,7 @@ static DataMapManager* _sharedDMSingelton = nil;
     //TODO: rewrite to correct paths to files
     NSError* err = nil;
 	NSBundle* bundle = [NSBundle bundleForClass:[self class]];
-	NSString* path = [bundle pathForResource:[self.dataMapFiles objectAtIndex:dataMapType] ofType:@"json"];
+	NSString* path = [bundle pathForResource:[self.dataMapFiles objectAtIndex:dataMapType] ofType:DM_FILE_EXT];
     
     NSString* stringDataMap = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
     DataMap* dm = [[DataMap alloc] initWithString:stringDataMap encoding:NSUTF8StringEncoding];
@@ -90,6 +99,25 @@ static DataMapManager* _sharedDMSingelton = nil;
             break;
     }
     return dm;
+}
+
+- (NSString*)versionOfDataMap:(NSString*)dataMapFile {
+    //TODO: correct version
+    return @"0";
+}
+
+- (BOOL) isUpdatingFinished {
+    return [self.dataMapLoader isFinished];
+}
+
+- (void) startUpdateDataMapIfNeeded:(DataMapType)dataMapType {
+    
+    NSString* dmFile = [self.dataMapFiles objectAtIndex:dataMapType];
+    
+    NSString* dmFileName = [NSString stringWithFormat:@"%@.%@", dmFile, DM_FILE_EXT];
+    if (! [self.dataMapLoader isActualVersion:[self versionOfDataMap:dmFile] ofDataMapFile:dmFileName]) {
+        [self.dataMapLoader startLoadDataMapFile:dmFileName];
+    }
 }
 
 @end

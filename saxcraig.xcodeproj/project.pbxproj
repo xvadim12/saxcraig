@@ -73,6 +73,9 @@
 		AC95804B1622EC120002EBE2 /* PathStack.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9580491622EC120002EBE2 /* PathStack.m */; };
 		AC95804E1622ECED0002EBE2 /* NSString+StringWithTrim.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95804D1622ECED0002EBE2 /* NSString+StringWithTrim.m */; };
 		AC95804F1622ECED0002EBE2 /* NSString+StringWithTrim.m in Sources */ = {isa = PBXBuildFile; fileRef = AC95804D1622ECED0002EBE2 /* NSString+StringWithTrim.m */; };
+		ACA944D8163831BD007AE000 /* DataMapLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA944D7163831BD007AE000 /* DataMapLoader.m */; };
+		ACA944D9163831BD007AE000 /* DataMapLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA944D7163831BD007AE000 /* DataMapLoader.m */; };
+		ACA944EC16398ECC007AE000 /* DataMapManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF98BCB162D987B00F0533A /* DataMapManagerTest.m */; };
 		ACB823E81610AB480030D8BC /* ManyCategories.html in Resources */ = {isa = PBXBuildFile; fileRef = ACB823E71610AB480030D8BC /* ManyCategories.html */; };
 		ACF98B91162C2A2800F0533A /* DataMap.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF98B90162C2A2800F0533A /* DataMap.m */; };
 		ACF98B92162C2A2800F0533A /* DataMap.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF98B90162C2A2800F0533A /* DataMap.m */; };
@@ -102,14 +105,6 @@
 		ACF98C2F162F0CC900F0533A /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF98C1C162F0CC900F0533A /* UIImageView+AFNetworking.m */; };
 		ACF98C30162F0CC900F0533A /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF98C1C162F0CC900F0533A /* UIImageView+AFNetworking.m */; };
 		ACF98C31162F0D8A00F0533A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344E615FF904900C1D426 /* Cocoa.framework */; };
-		ACF98C34162F0E6400F0533A /* DataMapLoaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF98C33162F0E6400F0533A /* DataMapLoaderTest.m */; };
-		ACF98C35162F131300F0533A /* PathItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9258162587F90000E1ED /* PathItemTest.m */; };
-		ACF98C36162F131600F0533A /* DataMapTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF98B94162C306100F0533A /* DataMapTest.m */; };
-		ACF98C37162F131A00F0533A /* DataMapManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF98BCB162D987B00F0533A /* DataMapManagerTest.m */; };
-		ACF98C38162F131D00F0533A /* ParametrizedSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */; };
-		ACF98C39162F132000F0533A /* AdResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C2D161476030079D6B0 /* AdResultsProcessorTest.m */; };
-		ACF98C3A162F132300F0533A /* AdListResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C4B1615BE810079D6B0 /* AdListResultsProcessorTest.m */; };
-		ACF98C3B162F132700F0533A /* AdSearchResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169431619EF620093DE3D /* AdSearchResultsProcessorTest.m */; };
 		DDF344BE15FF8F5500C1D426 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDF344BD15FF8F5500C1D426 /* Foundation.framework */; };
 		DDF344C115FF8F5500C1D426 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDF344C015FF8F5500C1D426 /* main.m */; };
 		DDF344C515FF8F5500C1D426 /* saxcraig.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = DDF344C415FF8F5500C1D426 /* saxcraig.1 */; };
@@ -229,6 +224,8 @@
 		AC9580491622EC120002EBE2 /* PathStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathStack.m; sourceTree = "<group>"; };
 		AC95804C1622ECED0002EBE2 /* NSString+StringWithTrim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+StringWithTrim.h"; sourceTree = "<group>"; };
 		AC95804D1622ECED0002EBE2 /* NSString+StringWithTrim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+StringWithTrim.m"; sourceTree = "<group>"; };
+		ACA944D6163831BD007AE000 /* DataMapLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataMapLoader.h; sourceTree = "<group>"; };
+		ACA944D7163831BD007AE000 /* DataMapLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataMapLoader.m; sourceTree = "<group>"; };
 		ACB823E71610AB480030D8BC /* ManyCategories.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ManyCategories.html; sourceTree = "<group>"; };
 		ACF98B8F162C2A2800F0533A /* DataMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataMap.h; sourceTree = "<group>"; };
 		ACF98B90162C2A2800F0533A /* DataMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataMap.m; sourceTree = "<group>"; };
@@ -394,6 +391,8 @@
 				AC0B47C51626E0ED0006D399 /* PathItemEx.m */,
 				ACF98B8F162C2A2800F0533A /* DataMap.h */,
 				ACF98B90162C2A2800F0533A /* DataMap.m */,
+				ACA944D6163831BD007AE000 /* DataMapLoader.h */,
+				ACA944D7163831BD007AE000 /* DataMapLoader.m */,
 				ACF98BC6162D897200F0533A /* DataMapManager.h */,
 				ACF98BC7162D897200F0533A /* DataMapManager.m */,
 				AC55169A1609CA9F0023B48A /* ParametrizedSAXParser.h */,
@@ -451,6 +450,8 @@
 				AC8D9258162587F90000E1ED /* PathItemTest.m */,
 				ACF98B93162C306100F0533A /* DataMapTest.h */,
 				ACF98B94162C306100F0533A /* DataMapTest.m */,
+				ACF98C32162F0E6400F0533A /* DataMapLoaderTest.h */,
+				ACF98C33162F0E6400F0533A /* DataMapLoaderTest.m */,
 				ACF98BCA162D987B00F0533A /* DataMapManagerTest.h */,
 				ACF98BCB162D987B00F0533A /* DataMapManagerTest.m */,
 				AC55169E1609DC630023B48A /* ParametrizedSAXParserTest.h */,
@@ -462,8 +463,6 @@
 				AC1169421619EF620093DE3D /* AdSearchResultsProcessorTest.h */,
 				AC1169431619EF620093DE3D /* AdSearchResultsProcessorTest.m */,
 				DDF344DA15FF901100C1D426 /* Supporting Files */,
-				ACF98C32162F0E6400F0533A /* DataMapLoaderTest.h */,
-				ACF98C33162F0E6400F0533A /* DataMapLoaderTest.m */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -707,6 +706,7 @@
 				ACF98C2B162F0CC900F0533A /* AFURLConnectionOperation.m in Sources */,
 				ACF98C2D162F0CC900F0533A /* AFXMLRequestOperation.m in Sources */,
 				ACF98C2F162F0CC900F0533A /* UIImageView+AFNetworking.m in Sources */,
+				ACA944D8163831BD007AE000 /* DataMapLoader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,14 +746,8 @@
 				ACF98C2C162F0CC900F0533A /* AFURLConnectionOperation.m in Sources */,
 				ACF98C2E162F0CC900F0533A /* AFXMLRequestOperation.m in Sources */,
 				ACF98C30162F0CC900F0533A /* UIImageView+AFNetworking.m in Sources */,
-				ACF98C34162F0E6400F0533A /* DataMapLoaderTest.m in Sources */,
-				ACF98C35162F131300F0533A /* PathItemTest.m in Sources */,
-				ACF98C36162F131600F0533A /* DataMapTest.m in Sources */,
-				ACF98C37162F131A00F0533A /* DataMapManagerTest.m in Sources */,
-				ACF98C38162F131D00F0533A /* ParametrizedSAXParserTest.m in Sources */,
-				ACF98C39162F132000F0533A /* AdResultsProcessorTest.m in Sources */,
-				ACF98C3A162F132300F0533A /* AdListResultsProcessorTest.m in Sources */,
-				ACF98C3B162F132700F0533A /* AdSearchResultsProcessorTest.m in Sources */,
+				ACA944D9163831BD007AE000 /* DataMapLoader.m in Sources */,
+				ACA944EC16398ECC007AE000 /* DataMapManagerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

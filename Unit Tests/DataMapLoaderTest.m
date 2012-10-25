@@ -7,32 +7,64 @@
 //
 
 #import "DataMapLoaderTest.h"
-#import "AFJSONRequestOperation.h"
+#import "AFHTTPRequestOperation.h"
+#import "DataMapLoader.h"
 
 @implementation DataMapLoaderTest
 
 - (void) testLoad {
-    NSLog(@"TEST LOAD");
+    //return;
+    DataMapLoader* loader = [[[DataMapLoader alloc] init] autorelease];
     
-    NSURL *url = [NSURL URLWithString:@"https://gowalla.com/users/mattt.json"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    STAssertTrue([loader isFinished], @"Loader should be finished by default");
     
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request
-                                                                success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                                                    NSLog(@"SUCCESS");
-            NSLog(@"IP Address: %@", [JSON valueForKeyPath:@"first_name"]);
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error ,id JSON) {
-            NSLog(@"ERRRR");
-            NSLog(@"ERROR %@", error);
-        }];
+    NSArray* files = [NSArray arrayWithObjects:@"ad.json", @"adlist.json", @"adsearch.json", nil];
+    for(NSString* file in files) {
+
+        NSString* targetFile = [loader.dataMapsDir stringByAppendingPathComponent:file];
+        [[NSFileManager defaultManager] removeItemAtPath: targetFile error: nil];
+        
+        [loader startLoadDataMapFile:file];
+        
+        while (![loader isFinished]) {
+            sleep(1);
+        }
+        
+        STAssertNil(loader.lastError, @"Unexpected error %@", loader.lastError);
+        STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:targetFile], @"File %@ does not exits", targetFile);
+        [[NSFileManager defaultManager] removeItemAtPath: targetFile error: nil];
+    }
+}
+
+- (void) testLoadNotFound {
+    //return;
+    DataMapLoader* loader = [[[DataMapLoader alloc] init] autorelease];
     
-    [operation start];
-    while([operation isExecuting]) {
-        NSLog(@"EXEC");
+    STAssertTrue([loader isFinished], @"Loader should be finished by default");
+    
+    NSString* dataMapFile = @"absent.json";
+    NSString* targetFile = [loader.dataMapsDir stringByAppendingPathComponent:dataMapFile];
+    [[NSFileManager defaultManager] removeItemAtPath: targetFile error: nil];
+    
+    [loader startLoadDataMapFile:dataMapFile];
+    
+    while (![loader isFinished]) {
         sleep(1);
     }
-    sleep(3);
-    NSLog(@"Finished");
+    
+    STAssertNotNil(loader.lastError, @"Unexpected error %@", loader.lastError);
+    STAssertTrue(-1011 == loader.lastError.code, @"Wrong error %@", loader.lastError.code);
+}
+
+- (void)testVersionChecking {
+    //return;
+    DataMapLoader* loader = [[[DataMapLoader alloc] init] autorelease];
+    NSString* dataMapFile = @"ad.json";
+    BOOL b = [loader isActualVersion:@"0" ofDataMapFile:dataMapFile];
+    STAssertFalse(b, @"Version should be expired");
+    
+    b = [loader isActualVersion:@"10000" ofDataMapFile:dataMapFile];
+    STAssertTrue(b, @"Version should be actual");
 }
 
 @end

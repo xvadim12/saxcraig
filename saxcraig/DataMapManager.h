@@ -21,4 +21,7 @@ typedef enum {
 + (DataMapManager*)sharedMapManager;
 
 - (DataMap*)dataMapWithType:(DataMapType)dataMapType;
+
+- (void) startUpdateDataMapIfNeeded:(DataMapType)dataMapType;
+- (BOOL) isUpdatingFinished;
 @end
