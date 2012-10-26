@@ -8,6 +8,8 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface DataMapManagerTest : SenTestCase
+#import "SAXParserTest.h"
+
+@interface DataMapManagerTest : SAXParserTest
 
 @end

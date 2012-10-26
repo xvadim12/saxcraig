@@ -15,6 +15,8 @@
 #import "DataMap.h"
 #import "ResultsProcessor.h"
 
+NSString* const TAG_HTML = @"html";
+
 @implementation ParametrizedSAXParser {
     
     DTHTMLParser* _htmlParser;
@@ -102,6 +104,9 @@
 }
 
 - (void) parser:(DTHTMLParser *)parser didStartElement:(NSString *)elementName attributes:(NSDictionary *)attributeDict {
+    
+    if ([elementName isEqualToString:TAG_HTML])
+        return;
 
     PathItemEx* pathItem = [[PathItemEx alloc] initItem:elementName withAttributes:attributeDict];
     [_pathStack push:pathItem];
@@ -159,6 +164,9 @@
 }
 
 - (void) parser:(DTHTMLParser *)parser didEndElement:(NSString *)elementName {
+    
+    if ([elementName isEqualToString:TAG_HTML])
+        return;
     
     NSString* strPath = [_pathStack currentMatchedPath];
     if (nil != strPath)

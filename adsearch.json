@@ -5,7 +5,7 @@
     },
     "pathsmap":
     {
-        "html body.toc div.bchead a" :
+        "body.toc div.bchead a" :
             {
                 "fieldName": "sublocationNameSel",
                 "type" : "Scalar",
@@ -15,7 +15,7 @@
                     }
                 }
             },
-        "html body.toc div.bchead div#satabs a" :
+        "body.toc div.bchead div#satabs a" :
             {
                 "fieldName": "sublocationName",
                 "type" : "Scalar",
@@ -25,7 +25,7 @@
                     }
                 }
             },
-        "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td input[minSqft]" :
+        "body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td input[minSqft]" :
             {
                 "fieldName": "minSqft",
                 "type" : "Scalar",
@@ -35,7 +35,7 @@
                     }
                 }
             },
-        "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td#hoodpicker div noscript select[nh] option" :
+        "body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td#hoodpicker div noscript select[nh] option" :
             {
                 "fieldName": "neighborhoodsKeyName",
                 "type" : "Scalar",
@@ -45,17 +45,17 @@
                     }
                 }
             },
-        "html body.toc blockquote h4.ban b" :
+        "body.toc blockquote h4.ban b" :
             {
                 "fieldName": "listTitle",
                 "type" : "Scalar"
             },
-        "html body.toc blockquote h4.ban" :
+        "body.toc blockquote h4.ban" :
             {
                 "fieldName": "listTitleFull",
                 "type" : "Scalar"
             },
-        "html body.toc blockquote p.row" :
+        "body.toc blockquote p.row" :
             {
                 "fieldName": "ad",
                 "type" : "Dict",
@@ -64,11 +64,11 @@
                     "date": "^(?s)[ \n\t]*(.*? - )"
                 }
             },
-        "html body.toc blockquote p" :
+        "body.toc blockquote p" :
             {
-                "ref": "html body.toc blockquote p.row"
+                "ref": "body.toc blockquote p.row"
             },
-        "html body.toc blockquote p.row span.ih" :
+        "body.toc blockquote p.row span.ih" :
             {
                 "type" : "Scalar",
                 "attributes" : {
@@ -77,7 +77,7 @@
                     }
                 }
             },
-        "html body.toc blockquote p.row a" :
+        "body.toc blockquote p.row a" :
             {
                 "fieldName": "title",
                 "trimmedChars": " -",
@@ -88,46 +88,46 @@
                     }
                 }
             },
-        "html body.toc blockquote p a" :
+        "body.toc blockquote p a" :
             {
-                "ref": "html body.toc blockquote p.row a"
+                "ref": "body.toc blockquote p.row a"
             },
-        "html body.toc blockquote p.row span.itempp" :
+        "body.toc blockquote p.row span.itempp" :
             {
                 "fieldName": "price",
                 "type" : "Scalar"
             },
-        "html body.toc blockquote p.row span.itemdate" :
+        "body.toc blockquote p.row span.itemdate" :
             {
                 "fieldName": "date",
                 "type" : "Scalar"
             },
-        "html body.toc blockquote p.row span.itemsep" :
+        "body.toc blockquote p.row span.itemsep" :
             {
                 "fieldName": "separator",
                 "type" : "Scalar"
             },
-        "html body.toc blockquote p.row span.itempn" :
+        "body.toc blockquote p.row span.itempn" :
             {
                 "fieldName": "location",
                 "trimmedChars": "()",
                 "type" : "Scalar"
             },
-        "html body.toc blockquote p.row font" :
+        "body.toc blockquote p.row font" :
             {
                 "fieldName": "location",
                 "trimmedChars": "()",
                 "type" : "Scalar"
             },
-        "html body.toc blockquote p font" :
+        "body.toc blockquote p font" :
             {
-                "ref": "html body.toc blockquote p.row font"
+                "ref": "body.toc blockquote p.row font"
             },
-        "html body.toc blockquote p.row span.p" :
+        "body.toc blockquote p.row span.p" :
             {
                 "type" : "Scalar"
             },
-        "html body.toc blockquote h4.ban span a" :
+        "body.toc blockquote h4.ban span a" :
             {
                 "type" : "Scalar",
                 "attributes" : {

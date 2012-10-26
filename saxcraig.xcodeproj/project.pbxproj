@@ -38,6 +38,15 @@
 		AC8D9246162417360000E1ED /* ResultsProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9244162417360000E1ED /* ResultsProcessor.m */; };
 		AC8D9255162571B10000E1ED /* PathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9254162571B10000E1ED /* PathItem.m */; };
 		AC8D9256162571B10000E1ED /* PathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9254162571B10000E1ED /* PathItem.m */; };
+		AC901C72163AB50D004146CE /* adnewer.json in Resources */ = {isa = PBXBuildFile; fileRef = AC901C71163AB50D004146CE /* adnewer.json */; };
+		AC901C75163ABC41004146CE /* adolder.json in Resources */ = {isa = PBXBuildFile; fileRef = AC901C74163ABC41004146CE /* adolder.json */; };
+		AC901C76163AC696004146CE /* PathItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9258162587F90000E1ED /* PathItemTest.m */; };
+		AC901C77163AC69A004146CE /* DataMapTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF98B94162C306100F0533A /* DataMapTest.m */; };
+		AC901C78163AC911004146CE /* DataMapLoaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ACF98C33162F0E6400F0533A /* DataMapLoaderTest.m */; };
+		AC901C79163AC927004146CE /* ParametrizedSAXParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC55169F1609DC630023B48A /* ParametrizedSAXParserTest.m */; };
+		AC901C7A163AC94B004146CE /* AdResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C2D161476030079D6B0 /* AdResultsProcessorTest.m */; };
+		AC901C7B163AC95A004146CE /* AdListResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC928C4B1615BE810079D6B0 /* AdListResultsProcessorTest.m */; };
+		AC901C7C163AC95E004146CE /* AdSearchResultsProcessorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1169431619EF620093DE3D /* AdSearchResultsProcessorTest.m */; };
 		AC928C151611DEEC0079D6B0 /* RusAdImages3.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C141611DEEB0079D6B0 /* RusAdImages3.html */; };
 		AC928C181611DEF70079D6B0 /* EnAdImages2.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C171611DEF60079D6B0 /* EnAdImages2.html */; };
 		AC928C1A1611DF030079D6B0 /* EnAdImages1.html in Resources */ = {isa = PBXBuildFile; fileRef = AC928C191611DF030079D6B0 /* EnAdImages1.html */; };
@@ -182,6 +191,8 @@
 		AC8D9254162571B10000E1ED /* PathItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathItem.m; sourceTree = "<group>"; };
 		AC8D9257162587F70000E1ED /* PathItemTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PathItemTest.h; sourceTree = "<group>"; };
 		AC8D9258162587F90000E1ED /* PathItemTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathItemTest.m; sourceTree = "<group>"; };
+		AC901C71163AB50D004146CE /* adnewer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = adnewer.json; sourceTree = "<group>"; };
+		AC901C74163ABC41004146CE /* adolder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = adolder.json; sourceTree = "<group>"; };
 		AC928C141611DEEB0079D6B0 /* RusAdImages3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RusAdImages3.html; sourceTree = "<group>"; };
 		AC928C171611DEF60079D6B0 /* EnAdImages2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EnAdImages2.html; sourceTree = "<group>"; };
 		AC928C191611DF030079D6B0 /* EnAdImages1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EnAdImages1.html; sourceTree = "<group>"; };
@@ -501,6 +512,8 @@
 				AC928C1D1613513C0079D6B0 /* ad.json */,
 				AC928C1F161356940079D6B0 /* adlist.json */,
 				AC928C21161357E10079D6B0 /* adsearch.json */,
+				AC901C71163AB50D004146CE /* adnewer.json */,
+				AC901C74163ABC41004146CE /* adolder.json */,
 				AC1169381619D4DB0093DE3D /* ChicagoAllOfServices.html */,
 				AC11693A1619D6710093DE3D /* ChicagoCityCustomerSurvice.html */,
 				AC11693C1619DBC50093DE3D /* PeninsulaAllHousingClassifieds.html */,
@@ -649,6 +662,8 @@
 				AC0B47D616284F350006D399 /* BrokenAd.html in Resources */,
 				AC0B47D916285EBD0006D399 /* BrokenAdList.html in Resources */,
 				ACF98B9E162C361C00F0533A /* simpledatamap.json in Resources */,
+				AC901C72163AB50D004146CE /* adnewer.json in Resources */,
+				AC901C75163ABC41004146CE /* adolder.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -748,6 +763,13 @@
 				ACF98C30162F0CC900F0533A /* UIImageView+AFNetworking.m in Sources */,
 				ACA944D9163831BD007AE000 /* DataMapLoader.m in Sources */,
 				ACA944EC16398ECC007AE000 /* DataMapManagerTest.m in Sources */,
+				AC901C76163AC696004146CE /* PathItemTest.m in Sources */,
+				AC901C77163AC69A004146CE /* DataMapTest.m in Sources */,
+				AC901C78163AC911004146CE /* DataMapLoaderTest.m in Sources */,
+				AC901C79163AC927004146CE /* ParametrizedSAXParserTest.m in Sources */,
+				AC901C7A163AC94B004146CE /* AdResultsProcessorTest.m in Sources */,
+				AC901C7B163AC95A004146CE /* AdListResultsProcessorTest.m in Sources */,
+				AC901C7C163AC95E004146CE /* AdSearchResultsProcessorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,10 @@
 NSString* const dataMapsURL = @"http://craigs-dms.s3.amazonaws.com/";
 NSString* const versionHeader = @"x-amz-meta-dm-version";
 
+NSString* dataMapsDirectory() {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+}
+
 @interface DataMapLoader ()
 
 @property (nonatomic, retain) AFHTTPRequestOperation* loadOperation;
@@ -38,7 +42,8 @@ NSString* const versionHeader = @"x-amz-meta-dm-version";
 
 - (id) init {
 	if ((self = [super init])) {
-        self.dataMapsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        //self.dataMapsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        self.dataMapsDir = dataMapsDirectory();
         
         self.loadOperation = nil;
         self.loadOpsQueue = [[NSOperationQueue alloc] init];

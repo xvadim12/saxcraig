@@ -5,19 +5,19 @@
     },
     "pathsmap":
     {
-        "html body.posting h2" :
+        "body.posting h2" :
             {
                 "fieldName": "title",
                 "type" : "Scalar"
             },
-        "html body.posting span.postingdate" :
+        "body.posting span.postingdate" :
             {
                 "type" : "Scalar",
                 "regexps": {
                     "date": "Date: (.*)([\n\t]|$)"
                 }
             },
-        "html body.posting div#userbody" :
+        "body.posting div#userbody" :
             {
                 "fieldName": "body",
                 "type" : "Scalar",
@@ -26,7 +26,7 @@
                     "postingID": "PostingID: (.*?)[\n\t]"
                 }
             },
-        "html body.posting small a" :
+        "body.posting small a" :
             {
                 "type" : "Scalar",
                 "attributes" : {
@@ -35,18 +35,18 @@
                     }
                 }
             },
-        "html body.posting a" :
+        "body.posting a" :
             {
-                "ref": "html body.posting small a"
+                "ref": "body.posting small a"
             },
-        "html body.posting span.postingidtext" :
+        "body.posting span.postingidtext" :
             {
                 "type" : "Scalar",
                 "regexps": {
                     "postingID": "PostingID: (.*?)([ \n\t]|$)"
                 }
             },
-        "html body.posting form fieldset input[postingID]" :
+        "body.posting form fieldset input[postingID]" :
             {
                 "type" : "Scalar",
                 "attributes" : {
@@ -55,14 +55,14 @@
                     }
                 }
             },
-        "html body.posting div#userbody ul.blurbs li" :
+        "body.posting div#userbody ul.blurbs li" :
             {
                 "type" : "Scalar",
                 "regexps": {
                     "location": "Location: (.*)([\n\t]|$)"
                 }
             },
-        "html body.posting div#userbody img" :
+        "body.posting div#userbody img" :
             {
                 "fieldName": "images",
                 "type" : "Scalar",
@@ -72,19 +72,19 @@
                     }
                 }
             },
-        "html body.posting div#userbody div.iw div#iwt div.tn a img" :
+        "body.posting div#userbody div.iw div#iwt div.tn a img" :
             {
-                "ref": "html body.posting div#userbody img"
+                "ref": "body.posting div#userbody img"
             },
-        "html body.posting div#userbody a img" :
+        "body.posting div#userbody a img" :
             {
-                "ref": "html body.posting div#userbody img"
+                "ref": "body.posting div#userbody img"
             },
-        "html body.posting div#userbody table tr td img" :
+        "body.posting div#userbody table tr td img" :
             {
-                "ref": "html body.posting div#userbody img"
+                "ref": "body.posting div#userbody img"
             },
-        "html body.posting" :
+        "body.posting" :
             {
                 "fieldName": "unparsed",
                 "type" : "Scalar",

@@ -17,3 +17,5 @@
 - (void) startLoadDataMapFile:(NSString*)dataMapFile;
 - (BOOL) isFinished;
 @end
+
+NSString* dataMapsDirectory();

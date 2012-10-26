@@ -5,7 +5,7 @@
     },
     "pathsmap":
     {
-        "html body.toc div.bchead a" :
+        "body.toc div.bchead a" :
             {
                 "fieldName": "sublocationNameSel",
                 "type" : "Scalar",
@@ -15,7 +15,7 @@
                     }
                 }
             },
-        "html body.toc div.bchead div#satabs a" :
+        "body.toc div.bchead div#satabs a" :
         {
             "fieldName": "sublocationName",
             "type" : "Scalar",
@@ -25,7 +25,7 @@
                 }
             }
         },
-        "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td input[minSqft]" :
+        "body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td input[minSqft]" :
             {
                 "fieldName": "minSqft",
                 "type" : "Scalar",
@@ -35,7 +35,7 @@
                     }
                 }
             },
-        "html body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td#hoodpicker div noscript select[nh] option" :
+        "body.toc blockquote form#searchform fieldset#searchfieldset table#searchtable tr td#hoodpicker div noscript select[nh] option" :
             {
                 "fieldName": "neighborhoodsKeyName",
                 "type" : "Scalar",
@@ -45,12 +45,12 @@
                     }
                 }
             },
-        "html body.toc blockquote h4.ban" :
+        "body.toc blockquote h4.ban" :
             {
                 "fieldName": "title",
                 "type" : "Scalar"
             },
-        "html body.toc blockquote p.row" :
+        "body.toc blockquote p.row" :
             {
                 "fieldName": "ad",
                 "type" : "Dict",
@@ -58,7 +58,7 @@
                         "price": "(?s)^[ \n\t-]*(.*?)[\n\t]"
                     }
             },
-        "html body.toc blockquote p.row span.ih" :
+        "body.toc blockquote p.row span.ih" :
         {
             "type" : "Scalar",
             "attributes" : {
@@ -67,7 +67,7 @@
                 }
             }
         },
-        "html body.toc blockquote p.row a" :
+        "body.toc blockquote p.row a" :
             {
                 "fieldName": "title",
                 "type" : "Scalar",
@@ -77,29 +77,29 @@
                     }
                 }
             },
-        "html body.toc blockquote p.row span.itempp" :
+        "body.toc blockquote p.row span.itempp" :
             {
                 "fieldName": "price",
                 "type" : "Scalar",
                 "trimmedChars": " -"
             },
-        "html body.toc blockquote p.row span.itempn" :
+        "body.toc blockquote p.row span.itempn" :
             {
                 "fieldName": "location",
                 "trimmedChars": "()",
                 "type" : "Scalar"
             },
-        "html body.toc blockquote p.row font" :
+        "body.toc blockquote p.row font" :
             {
                 "fieldName": "location",
                 "trimmedChars": "()",
                 "type" : "Scalar"
             },
-        "html body.toc blockquote p.row span.p" :
+        "body.toc blockquote p.row span.p" :
             {
                 "type" : "Scalar"
             },
-        "html body.toc blockquote p#nextpage font a" :
+        "body.toc blockquote p#nextpage font a" :
             {
                 "fieldName": "titleNext",
                 "type" : "Scalar",
@@ -109,7 +109,7 @@
                     }
                 }
             },
-        "html body.toc blockquote p font a" :
+        "body.toc blockquote p font a" :
             {
                 "fieldName": "titleNext",
                 "type" : "Scalar",

@@ -24,7 +24,7 @@ NSString* const DM_FILE_EXT = @"json";
 @property (nonatomic, retain) NSArray* dataMapFiles;
 @property (nonatomic, retain) DataMapLoader* dataMapLoader;
 
-- (NSString*)versionOfDataMap:(NSString*)dataMapFile;
+- (NSString*)versionOfDataMap:(DataMapType)dataMapType;
 
 @end
 
@@ -77,33 +77,36 @@ static DataMapManager* _sharedDMSingelton = nil;
 }
 
 - (DataMap*)loadDataMapWithType:(DataMapType)dataMapType {
-    //temporary
-    //TODO: rewrite to correct paths to files
     NSError* err = nil;
-	NSBundle* bundle = [NSBundle bundleForClass:[self class]];
-	NSString* path = [bundle pathForResource:[self.dataMapFiles objectAtIndex:dataMapType] ofType:DM_FILE_EXT];
-    
+    NSString* path = [[dataMapsDirectory() stringByAppendingPathComponent:[self.dataMapFiles objectAtIndex:dataMapType]]
+                                           stringByAppendingPathExtension:DM_FILE_EXT];
+
     NSString* stringDataMap = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&err];
-    DataMap* dm = [[DataMap alloc] initWithString:stringDataMap encoding:NSUTF8StringEncoding];
-    switch (dataMapType) {
-        case DM_TYPE_SINGLE:
-            dm.resultsProcessor = [[AdResultsProcessor alloc] init];
-            break;
-        case DM_TYPE_LIST:
-            dm.resultsProcessor = [[AdListResultsProcessor alloc] init];
-            break;
-        case DM_TYPE_SEARCH:
-            dm.resultsProcessor = [[AdSearchResultsProcessor alloc] init];
-            break;
-        default:
-            break;
+    DataMap* dm = nil;
+    if (nil != stringDataMap) {
+        dm = [[DataMap alloc] initWithString:stringDataMap encoding:NSUTF8StringEncoding];
+        switch (dataMapType) {
+            case DM_TYPE_SINGLE:
+                dm.resultsProcessor = [[AdResultsProcessor alloc] init];
+                break;
+            case DM_TYPE_LIST:
+                dm.resultsProcessor = [[AdListResultsProcessor alloc] init];
+                break;
+            case DM_TYPE_SEARCH:
+                dm.resultsProcessor = [[AdSearchResultsProcessor alloc] init];
+                break;
+            default:
+                break;
+        }
     }
     return dm;
 }
 
-- (NSString*)versionOfDataMap:(NSString*)dataMapFile {
-    //TODO: correct version
-    return @"0";
+- (NSString*)versionOfDataMap:(DataMapType)dataMapType {
+    DataMap* dm = [self loadDataMapWithType:dataMapType];
+    NSString* v = dm ? dm.version : @"0";
+    [dm release];
+    return v;
 }
 
 - (BOOL) isUpdatingFinished {
@@ -115,7 +118,7 @@ static DataMapManager* _sharedDMSingelton = nil;
     NSString* dmFile = [self.dataMapFiles objectAtIndex:dataMapType];
     
     NSString* dmFileName = [NSString stringWithFormat:@"%@.%@", dmFile, DM_FILE_EXT];
-    if (! [self.dataMapLoader isActualVersion:[self versionOfDataMap:dmFile] ofDataMapFile:dmFileName]) {
+    if (! [self.dataMapLoader isActualVersion:[self versionOfDataMap:dataMapType] ofDataMapFile:dmFileName]) {
         [self.dataMapLoader startLoadDataMapFile:dmFileName];
     }
 }

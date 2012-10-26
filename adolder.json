@@ -1,0 +1,14 @@
+{
+    "meta" :
+    {
+        "version": "0"
+    },
+    "pathsmap":
+    {
+        "body.posting h2" :
+        {
+            "fieldName": "title",
+            "type" : "Scalar"
+        }
+    }
+}

@@ -12,6 +12,10 @@
 
 @interface SAXParserTest : SenTestCase
 
-@property (nonatomic,retain) UnitTestHelper* unitTestHelper;
+@property (nonatomic, retain) UnitTestHelper* unitTestHelper;
+@property (nonatomic, retain) NSArray* dataMapFiles;
+@property (nonatomic, retain) NSString* dataMapDir;
+
+- (void)removeDataMaps;
 
 @end
