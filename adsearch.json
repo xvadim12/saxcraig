@@ -11,7 +11,9 @@
                 "type" : "Scalar",
                 "attributes" : {
                     "href": {
-                        "fieldName": "sublocationAbbrSel"
+                        "regexps": {
+                            "sublocationAbbrSel" : "/(.*?)(/|$)"
+                        }
                     }
                 }
             },
@@ -21,7 +23,9 @@
                 "type" : "Scalar",
                 "attributes" : {
                     "href": {
-                        "fieldName": "sublocationAbbr"
+                        "regexps": {
+                            "sublocationAbbr" : [".*?/search/.*?/(.*?)\\?", "(.*?)/search/.*?\\?"]
+                        }
                     }
                 }
             },
@@ -48,12 +52,20 @@
         "body.toc blockquote h4.ban b" :
             {
                 "fieldName": "listTitle",
-                "type" : "Scalar"
+                "type" : "Scalar",
+                "regexps": {
+                    "listTitleFound": "Found: (.*?) ",
+                    "listTitleDisplaying": "Displaying: (.*)$"
+                }
             },
         "body.toc blockquote h4.ban" :
             {
                 "fieldName": "listTitleFull",
-                "type" : "Scalar"
+                "type" : "Scalar",
+                "regexps": {
+                    "listTitleFound": "Found: (.*?) ",
+                    "listTitleDisplaying": "Displaying: (.*)$"
+                }
             },
         "body.toc blockquote p.row" :
             {
@@ -73,19 +85,25 @@
                 "type" : "Scalar",
                 "attributes" : {
                     "id": {
-                        "fieldName": "thumbnail"
+                        "regexps": {
+                            "thumbnail": "images:(.*)"
+                        }
                     }
                 }
             },
         "body.toc blockquote p.row a" :
             {
-                "fieldName": "title",
+                "fieldName": "title222",
                 "trimmedChars": " -",
                 "type" : "Scalar",
                 "attributes" : {
                     "href": {
                         "fieldName": "link"
                     }
+                },
+                "regexps" : {
+                    "price": ["(^\\$[0-9]* / [^ ]*)", "(^[0-9]*br) ", "(^\\$[0-9]*) ", "(\\$[0-9]+)$", "([0-9]+yr)$", "([0-9]+)$"],
+                    "title": ["^(.*?) - [0-9]+$", "^(.*?) - [0-9]+yr$", "^(.*) -$", "^(.*)$"]
                 }
             },
         "body.toc blockquote p a" :

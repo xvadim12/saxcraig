@@ -233,17 +233,27 @@ NSString* const TAG_HTML = @"html";
     }
 }
 
-- (NSString*) getDataFromString:(NSString*) stringData byRegexp:(NSString*)regexpString andTrimmedChars:(NSString*)trimmedChars {
+- (NSString*) getDataFromString:(NSString*) stringData byRegexp:(NSObject*)regexp andTrimmedChars:(NSString*)trimmedChars {
     NSString* value = nil;
-    NSError *error = NULL;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexpString
-                                                                           options:0
-                                                                             error:&error];
-    NSTextCheckingResult *match = [regex firstMatchInString:stringData options:0 range:NSMakeRange(0, [stringData length])];
-    if (match.numberOfRanges > 0)
-    {
-        NSRange range = match.numberOfRanges > 1 ? [match rangeAtIndex:1] : match.range;
-        value = [[stringData substringWithRange:range] trimChars:trimmedChars];
+    NSError* error = NULL;
+    NSArray* regexpsArray = nil;
+    
+    if ([regexp isKindOfClass:[NSString class]])
+        regexpsArray = [NSArray arrayWithObject:regexp];
+    else
+        regexpsArray = (NSArray*)regexp;
+    
+    for(NSString* regexpString in regexpsArray) {
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexpString
+                                                                               options:0
+                                                                                 error:&error];
+        NSTextCheckingResult *match = [regex firstMatchInString:stringData options:0 range:NSMakeRange(0, [stringData length])];
+        if (match.numberOfRanges > 0)
+        {
+            NSRange range = match.numberOfRanges > 1 ? [match rangeAtIndex:1] : match.range;
+            value = [[stringData substringWithRange:range] trimChars:trimmedChars];
+            break;
+        }
     }
     return value;
 }

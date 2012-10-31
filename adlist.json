@@ -11,7 +11,9 @@
                 "type" : "Scalar",
                 "attributes" : {
                     "href": {
-                        "fieldName": "sublocationAbbrSel"
+                        "regexps": {
+                            "sublocationAbbrSel" : "/(.*?)(/|$)"
+                        }
                     }
                 }
             },
@@ -21,7 +23,9 @@
             "type" : "Scalar",
             "attributes" : {
                 "href": {
-                    "fieldName": "sublocationAbbr"
+                    "regexps": {
+                        "sublocationAbbr" : ["(.*?/search/.*)", "/(.*?)/"]
+                    }
                 }
             }
         },
@@ -63,7 +67,9 @@
             "type" : "Scalar",
             "attributes" : {
                 "id": {
-                    "fieldName": "thumbnail"
+                    "regexps": {
+                        "thumbnail": "images:(.*)"
+                    }
                 }
             }
         },

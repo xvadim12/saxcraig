@@ -23,13 +23,9 @@
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_APPLIANCES_SEARCH];
     
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
-    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
     
-    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    */
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
+
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);
@@ -49,7 +45,8 @@
 	NSString* nextURL = [adsDict objectForKey:KEY_NEXT_URL];
 	STAssertTrue([nextURL isKindOfClass:[NSString class]],@"");
 	if ([nextURL isKindOfClass:[NSString class]]) {
-		STAssertTrue([nextURL isEqualToString:@"http://losangeles.craigslist.org/search/app?query=fridge&srchType=A&minAsk=&maxAsk=&s=100"],@"nextURL=%@",nextURL);
+		STAssertTrue([nextURL isEqualToString:@"http://losangeles.craigslist.org/search/app?query=fridge&srchType=A&minAsk=&maxAsk=&s=100"],
+                     @"nextURL=%@",nextURL);
 	}
 }
 
@@ -60,14 +57,9 @@
 
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
     parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/ppp/",KEY_TOP_CATEGORY_HREF,nil];
-    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
     
-    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
-    processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/ppp/",KEY_TOP_CATEGORY_HREF,nil];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-     */
+    NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
+
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);
@@ -85,7 +77,8 @@
     
 	adData = [group objectAtIndex:1];
 	STAssertTrue(IsStringWithAnyText(adData.title),@"");
-	STAssertNil(adData.price,@"price=%@",adData.price);
+	//STAssertNil(adData.price,@"price=%@",adData.price);
+    STAssertTrue([adData.price isEqualToString:@""],@"price=%@",adData.price);
 	STAssertTrue([adData.place isEqualToString:@"WEST LA"],@"place=%@",adData.place);
     
 	NSString* nextURL = [adsDict objectForKey:KEY_NEXT_URL];
@@ -100,12 +93,7 @@
 
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
-    
-    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-     */
+
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);
@@ -117,12 +105,14 @@
 	AdData* adData = [group objectAtIndex:0];
 	STAssertTrue(IsStringWithAnyText(adData.title),@"");
 	STAssertTrue([adData.title isEqualToString:@"Nov  9 - Call Center Agents- 1-800LoanMart"],@"title=%@",adData.title);
-	STAssertNil(adData.price,@"");
+	//STAssertNil(adData.price,@"");
+    STAssertTrue([adData.price isEqualToString:@""],@"price=%@",adData.price);
 	STAssertTrue([adData.place isEqualToString:@"Encino, CA"],@"place=%@",adData.place);
 	
 	adData = [group objectAtIndex:1];
 	STAssertTrue(IsStringWithAnyText(adData.title),@"");
-	STAssertNil(adData.price,@"price=%@",adData.price);
+	//STAssertNil(adData.price,@"price=%@",adData.price);
+    STAssertTrue([adData.price isEqualToString:@""],@"price=%@",adData.price);
 	STAssertTrue([adData.place isEqualToString:@"Encino, CA"],@"place=%@",adData.place);
 	
 	NSString* nextURL = [adsDict objectForKey:KEY_NEXT_URL];
@@ -137,12 +127,7 @@
 
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
-    
-    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-     */
+
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);
@@ -155,12 +140,12 @@
 	AdData* adData = [group objectAtIndex:0];
 	STAssertTrue(IsStringWithAnyText(adData.title),@"");
 	STAssertTrue([adData.title isEqualToString:@"Nov 10 - $800000 WANTED : A big lot house in the Valley - CASH Buyer - Owner Finance op"],@"title=%@",adData.title);
-    //	STAssertTrue([adData.price isEqualToString:@"$800000"],@"price=%@",adData.price);
+    STAssertTrue([adData.price isEqualToString:@"$800000"],@"price=%@",adData.price);
 	STAssertTrue([adData.place isEqualToString:@"Tarzana"],@"place=%@",adData.place);
 	
 	adData = [group objectAtIndex:1];
 	STAssertTrue(IsStringWithAnyText(adData.title),@"");
-    //	STAssertTrue([adData.price isEqualToString:@"$3000 / 3br"],@"price=%@",adData.price);
+    STAssertTrue([adData.price isEqualToString:@"$3000 / 3br"],@"price=%@",adData.price);
 	STAssertTrue([adData.place isEqualToString:@"Manhattan Beach"],@"place=%@",adData.place);
 	
 	NSString* nextURL = [adsDict objectForKey:KEY_NEXT_URL];
@@ -176,12 +161,7 @@
 
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
-    
-    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-     */
+
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==0,@"groupNames.count=%d",[groupNames count]);
@@ -195,12 +175,6 @@
 
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
-    
-    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-     */
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);
@@ -230,13 +204,7 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
     [parser.dataMap.resultsProcessor setURL:@"http://chicago.craigslist.org/search/pol?query=1&srchType=A"];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlStringAllOfPoliticsChicagoSearch];
-    /*
-    NSArray* resultArray = [parser parse:htmlStringAllOfPoliticsChicagoSearch];
-    
-    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
-	[processor setURL:@"http://chicago.craigslist.org/search/pol?query=1&srchType=A"];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    */
+
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
 
@@ -247,14 +215,7 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
     [parser.dataMap.resultsProcessor setURL:@"http://chicago.craigslist.org/search/bbb?query=1&srchType=A"];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlStringAllOfServicesChicagoSearch];
-    /*
-    
-    NSArray* resultArray = [parser parse:htmlStringAllOfServicesChicagoSearch];
-    
-    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
-	[processor setURL:@"http://chicago.craigslist.org/search/bbb?query=1&srchType=A"];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    */
+
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
 
@@ -265,13 +226,7 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
     [parser.dataMap.resultsProcessor setURL:@"http://chicago.craigslist.org/search/csr/chc?query=1&srchType=A"];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlStringCityOfChicagoSearch];
-    /*
-    NSArray* resultArray = [parser parse:htmlStringCityOfChicagoSearch];
-    
-    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
-	[processor setURL:@"http://chicago.craigslist.org/search/csr/chc?query=1&srchType=A"];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    */
+
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
 
@@ -282,13 +237,7 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
     [parser.dataMap.resultsProcessor setURL:@"http://losangeles.craigslist.org/app/index.html"];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
-    
-    AdSearchResultsProcessor* processor = [[[AdSearchResultsProcessor alloc] init] autorelease];
-	[processor setURL:@"http://losangeles.craigslist.org/app/index.html"];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    */
+
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
     NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==1,@"groupNames.count=%d",[groupNames count]);

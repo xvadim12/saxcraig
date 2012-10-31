@@ -116,9 +116,15 @@
 	return NSNotFound!=range.location;
 }
 
+NSArray* topCategoriesHrefs1 = nil;
+
 + (BOOL) abreviationIsTopCategory:(NSString*) abr{
     NSArray* topCategoriesHrefs = [NSArray arrayWithObjects:HREF_JOBS,HREF_FORSALE,HREF_HOUSING,HREF_GIGS,HREF_COMMUNITY,
                                    HREF_SERVICES,HREF_RESUMES,HREF_PERSONALS,nil];
+    
+    //if (!topCategoriesHrefs)
+    //    topCategoriesHrefs = [NSArray arrayWithObjects:HREF_JOBS,HREF_FORSALE,HREF_HOUSING,HREF_GIGS,HREF_COMMUNITY,
+    //                          HREF_SERVICES,HREF_RESUMES,HREF_PERSONALS,nil];
     return [topCategoriesHrefs containsObject:abr];
 }
 

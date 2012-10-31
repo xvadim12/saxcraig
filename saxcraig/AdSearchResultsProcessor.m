@@ -10,8 +10,6 @@
 #import "Translate.h"
 #import "NSStringAdditions.h"
 #import "AdData.h"
-#import "CategoryMatcher.h"
-#import "ParsingHelper.h"
 #import "AdListResultsProcessor_Protected.h"
 #import "AdSearchResultsProcessor.h"
 #import "ParsedDataFields.h"
@@ -21,26 +19,18 @@
 
 NSString* const FIELD_LIST_TITLE = @"listTitle";
 NSString* const FIELD_LIST_TITLE_FULL = @"listTitleFull";
+NSString* const FIELD_LIST_TITLE_FOUND = @"listTitleFound";
+NSString* const FIELD_LIST_TITLE_DISPLAYING = @"listTitleDisplaying";
 
-NSString* const SUB_TITLE_FOUND = @"Found: ";
-NSString* const SUB_TITLE_DISPLAING = @"Displaying: ";
-
-@interface AdSearchResultsProcessor ()
-
--(NSString*)parseGroupNameFromString:(NSString*)listTitle;
-
-@end
-
-@implementation AdSearchResultsProcessor {
-    
-    CategoryMatcher* _matcher;
-    ParsingHelper* _parsingHelper;
-}
+@implementation AdSearchResultsProcessor
 
 - (NSObject*) parseResultArray:(NSArray*)resultArray {
     //NSLog(@"RESULT %@", resultArray);
     
     BOOL isFirstTitleFound = NO;
+    NSString* listTitleFound = nil;
+    NSString* listTitleDisplaying = nil;
+    
     NSMutableArray* groupNames = [NSMutableArray array];
     NSMutableArray* groups = [NSMutableArray array];
     NSMutableArray* group = nil;
@@ -58,39 +48,24 @@ NSString* const SUB_TITLE_DISPLAING = @"Displaying: ";
     NSString* neighborhoodsVal;
     NSString* neighborhoodsName;
     
-    _matcher = [[CategoryMatcher alloc] initWithHref:[self.requestInfo objectForKey:KEY_TOP_CATEGORY_HREF]];
-    _parsingHelper = [[ParsingHelper alloc] init];
-    
     for (id item in resultArray)
     {
         NSString* fieldName = [item objectForKey:kFieldNameKey];
-        if ([fieldName isEqualToString:FIELD_LIST_TITLE])
+        if ([fieldName isEqualToString:FIELD_LIST_TITLE_FOUND])
+            listTitleFound = [item objectForKey:kDataKey];
+        else if ([fieldName isEqualToString:FIELD_LIST_TITLE_DISPLAYING]) {
+            listTitleDisplaying = [item objectForKey:kDataKey];
+        }
+        else if (([fieldName isEqualToString:FIELD_LIST_TITLE] && nil != listTitleDisplaying) ||
+                 ([fieldName isEqualToString:FIELD_LIST_TITLE_FULL] && !isFirstTitleFound))
         {
-            //fist we try to extract group name from <h4> like 'Found: x Displaying 1-y'
-            NSString* groupName = [NSString stringWithString:[item objectForKey:kDataKey]];
-            NSRange foundRange = [groupName rangeOfString:SUB_TITLE_FOUND];
-            if (NSNotFound != foundRange.location)
-            {
-                groupName = [self parseGroupNameFromString:groupName];
-                if (nil != groupName)
-                {
-                    isFirstTitleFound = YES;
-                    [groupNames s_addObject:groupName];
-                    group = [NSMutableArray array];
-                    [groups s_addObject:group];
-                }
-            }
-        }if ([fieldName isEqualToString:FIELD_LIST_TITLE_FULL] && !isFirstTitleFound)
-        {
-            //if we did not find group name - extract it from full <h4> data
-            NSString* groupName = [self parseGroupNameFromString:[item objectForKey:kDataKey]];
-            if (nil != groupName)
-            {
-                isFirstTitleFound = YES;
-                [groupNames s_addObject:groupName];
-                group = [NSMutableArray array];
-                [groups s_addObject:group];
-            }
+            isFirstTitleFound = YES;
+            [groupNames s_addObject:[self buildGroupNameFromDisplaying:listTitleDisplaying found:listTitleFound andDefault:[item objectForKey:kDataKey]]];
+            group = [NSMutableArray array];
+            [groups s_addObject:group];
+            listTitleDisplaying = nil;
+            listTitleFound = nil;
+            
         }
         else if ([fieldName isEqualToString:FIELD_NEXT] && nil == next100)   //parse only first 'next url'
         {
@@ -142,9 +117,6 @@ NSString* const SUB_TITLE_DISPLAING = @"Displaying: ";
     [groupNames removeLastObject];
     [groups removeLastObject];
     
-    [_matcher release];
-    [_parsingHelper release];
-    
     return [NSDictionary dictionaryWithObjectsAndKeys:groupNames,KEY_GROUP_NAMES,
 			groups,KEY_GROUPS,
 			(nil!=next100 ? (id)next100:(id)[NSNull null]), KEY_NEXT_URL,
@@ -156,50 +128,10 @@ NSString* const SUB_TITLE_DISPLAING = @"Displaying: ";
             nil];
 }
 
-- (NSDictionary*)parseSublocationsFromAbbrs:(NSArray*)abbrs andNames:(NSArray*)names andOtherAbbrs:(NSArray*)otherAbbrs andOtherNames:(NSArray*)otherNames {
-    
-    NSDictionary* searchSublocations = [super parseSublocationsFromAbbrs:abbrs andNames:names andOtherAbbrs:otherAbbrs andOtherNames:otherNames];
-    
-    NSMutableArray* abreviations = [NSMutableArray array];
-    NSMutableArray* sublocationNames = [NSMutableArray array];
-    
-    for (NSString* key in [searchSublocations allKeys]){
-        NSArray *parsedKey = [key componentsSeparatedByString:@"/"];
-        NSRange queryRange = [[parsedKey lastObject] rangeOfString:@"?"];
-        
-        if (4==[parsedKey count] && NSNotFound!=queryRange.location) {
-            [abreviations s_addObject:[[parsedKey lastObject] substringToIndex:queryRange.location]];
-            [sublocationNames s_addObject:[searchSublocations objectForKey:key]];
-            
-        }  else if (1==[parsedKey count]) {
-            [abreviations s_addObject:key];
-            [sublocationNames s_addObject:[searchSublocations objectForKey:key]];
-        }
-    }
-    
-    return [[[NSDictionary alloc] initWithObjects:sublocationNames forKeys:abreviations] autorelease];
-}
-
--(NSString*)parseGroupNameFromString:(NSString*)listTitle {
-    
-    NSString* groupName = nil;
-    NSString* found = [listTitle substringBetweenFirst:SUB_TITLE_FOUND andSecond:@" "];
-    found = [found stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSRange displaingRange = [listTitle rangeOfString:SUB_TITLE_DISPLAING];
-    
-    if (NSNotFound != displaingRange.location)
-    {
-        groupName = [listTitle substringFromIndex:(displaingRange.location + displaingRange.length)];
-        groupName = [groupName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    }
-    if (nil!=groupName) {
-        groupName = [NSString stringWithFormat:@"%@ %@ %@ %@",T_LISTINGS,groupName,T_OUT_OF,found];
-    } else {
-        //then let's take what we've got in h4 without the tags
-        groupName = [NSString stringWithString:listTitle];
-    }
-
-    return groupName;
+- (NSString*)buildGroupNameFromDisplaying:(NSString*) displaying found:(NSString*)found andDefault:(NSString*) defaultName {
+    return nil != displaying ?
+        [NSString stringWithFormat:@"%@ %@ %@ %@",T_LISTINGS, displaying,T_OUT_OF,found] :
+        defaultName;
 }
 
 NSString* const FIELD_AD_SEPARATOR = @"separator";
@@ -211,13 +143,7 @@ NSString* const FIELD_AD_SEPARATOR = @"separator";
     NSString* adDate = [adDict objectForKey:FIELD_AD_DATE]; 
     NSString* separator = [adDict objectForKey:FIELD_AD_SEPARATOR];
     separator = nil != separator ? [NSString stringWithFormat:@"%@ ", separator] : @"";
-    NSString* title = [NSString stringWithFormat:@"%@ %@%@", adDate, separator, adData.title];
-    if (nil == adData.price || 0 == [adData.price length])
-    {
-        adData.price = [_parsingHelper parseOutPriceForTitle:&title withMatcher:_matcher];
-    }
-    adData.title = title;
-    
+    adData.title = [NSString stringWithFormat:@"%@ %@%@", adDate, separator, adData.title];
     return adData;
 }
 

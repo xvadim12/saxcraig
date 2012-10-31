@@ -29,8 +29,6 @@ NSString* const FIELD_SUBLOCATION_NAME = @"sublocationName";
 NSString* const FIELD_NEIGHBORHOODS_VALUE = @"neighborhoodsValue";
 NSString* const FIELD_NEIGHBORHOODS_KEYNAME = @"neighborhoodsKeyName";
 
-NSString* const ABBR_DELIMITER = @"/";
-
 @implementation AdListResultsProcessor
 
 - (NSObject*) parseResultArray:(NSArray*)resultArray {
@@ -118,9 +116,6 @@ NSString* const ABBR_DELIMITER = @"/";
 
 }
 
-NSString* const THUMBNAIL_PREFIX = @"images:";
-int const THUMBNAIL_PREFIX_LEN = 7;
-
 - (AdData*)parseAdFromDictionary:(NSDictionary*)adDict {
     
     AdData* adData = [[[AdData alloc] init] autorelease];
@@ -131,9 +126,7 @@ int const THUMBNAIL_PREFIX_LEN = 7;
     adData.place =[adDict objectForKey:FIELD_AD_LOCATION];
     
     NSString* thumb_src =[adDict objectForKey:FIELD_AD_THUMBNAIL];
-    if ([thumb_src hasPrefix:THUMBNAIL_PREFIX])
-        thumb_src = [thumb_src substringFromIndex:THUMBNAIL_PREFIX_LEN];
-    if (nil!=thumb_src) {
+    if (IsStringWithAnyText(thumb_src)) {
         thumb_src = [NSString stringWithFormat:CRAIGSLIST_MEDIUM_THUMBNAIL_FORMAT,thumb_src];
     }
     adData.thumbnailLink = thumb_src;
@@ -172,14 +165,14 @@ int const THUMBNAIL_PREFIX_LEN = 7;
     for(i = 0; i < abbrsCount; i++)
     {
         abbr = [abbrs objectAtIndex:i];
-        if (![abbr isEqualToString:ABBR_DELIMITER]) {
-            abbr = [abbr substringBetweenFirst:ABBR_DELIMITER andSecond:ABBR_DELIMITER];
+        if (IsStringWithAnyText(abbr)) {
             NSString* subName = [names objectAtIndex:i];
             
             if([CategoryMatcher abreviationIsTopCategory:abbr])
             {
                 break;
-            } else if(IsStringWithAnyText(abbr) && IsStringWithAnyText(subName) ){
+            }
+            else if(IsStringWithAnyText(abbr) && IsStringWithAnyText(subName) ){
                 [abreviations s_addObject:abbr];
                 [sublocationNames s_addObject:subName];
                 passFirst = YES;
@@ -192,10 +185,11 @@ int const THUMBNAIL_PREFIX_LEN = 7;
     abbrsCount = [otherAbbrs count];
     for(i = 0; i < abbrsCount; i++)
     {
-        abbr = [[otherAbbrs objectAtIndex:i] substringBetweenFirst:ABBR_DELIMITER andSecond:ABBR_DELIMITER];
+        abbr = [otherAbbrs objectAtIndex:i];
         NSString* subName = [otherNames objectAtIndex:i];
         if(IsStringWithAnyText(abbr) && IsStringWithAnyText(subName) && !passFirst && ![CategoryMatcher abreviationIsTopCategory:abbr]){
-            [abreviations s_addObject:[abbr isEqualToString:@"search"] ? [otherAbbrs objectAtIndex:i]: abbr];
+            //[abreviations s_addObject:[abbr isEqualToString:@"search"] ? [otherAbbrs objectAtIndex:i]: abbr];
+            [abreviations s_addObject:abbr];
             [sublocationNames s_addObject:subName];
         }
         passFirst = NO;

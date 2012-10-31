@@ -25,13 +25,7 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
-    /**
-    NSArray* resultArray = [parser parse:htmlString];
-
-    AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
-    processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
-    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-    */
+    
     STAssertTrue([adData.title isEqualToString:@"TATTOO KIT"],@"adData.title=%@",adData.title);
 	STAssertTrue([adData.body length]>0,@"your body is empty");
 	STAssertTrue([adData.imageURLs count]==4,@"adData.imageURLs.count=%d",[adData.imageURLs count]);
@@ -60,13 +54,7 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
     
-	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
-	processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
-    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-     */
 	STAssertTrue([adData.title isEqualToString:@"^^  Modernised ^^ Sparkling Swimming Pool  ^^ CLOSE 2 COUNTRY Club ^^ Appropriat"],
 				 @"adData.title=%@",adData.title);
 	STAssertTrue([adData.body length]>0,@"your body is empty");
@@ -93,13 +81,6 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
-    
-	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
-	processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/sss/",KEY_TOP_CATEGORY_HREF,nil];
-    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-	*/
 	STAssertTrue([adData.title isEqualToString:@"ADMIRAL REFRIGERATOR IN EXCELLENT CONDTION"],
 				 @"adData.title=%@",adData.title);
 	STAssertTrue([adData.body length]>0,@"your body is empty");
@@ -126,13 +107,6 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
-    
-	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
-	processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
-    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-	*/
 	STAssertTrue([adData.title isEqualToString:@"BREATHTAKING Hollywood Home: Private, Gated, Resort Living"],
 				 @"adData.title=%@",adData.title);
 	STAssertTrue([adData.price isEqualToString:@"$1650 / 2br"],@"adData.price=%@",adData.price);
@@ -153,36 +127,13 @@
 
 - (void) testRusAdImages3 {
     //return;
-    /*
-    NSString* dateString = @"2012-09-22, 11:20PM EEST";
-    //NSString* dateString = @"2012-09-25,  2:13AM PDT";
-    //@"yyyy-MM-dd','  h:mma zzz"
-    NSString* dateFormat = @"yyyy-MM-dd,  h:mma zzz";
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:dateFormat];
-    NSLocale* enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"];
-    assert(enUSPOSIXLocale != nil);
-    [dateFormatter setLocale:enUSPOSIXLocale];
-    NSDate* adDate = [dateFormatter dateFromString:dateString];
-    [dateFormatter release];
-    NSLog(@"DATE %@", adDate);
-    
-    return;
-     */
     
 	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_RUS_AD_IMAGES3];
     
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://ukraine.craigslist.org/phd",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
-    
-	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
-    processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://ukraine.craigslist.org/phd",KEY_TOP_CATEGORY_HREF,nil];
-    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-    */
+
     NSString* descr = @"Слід dolly Камера dolly 750 USD Будь ласка відвідувати нас http://trackdolly.com/ Buy camera dolly for $99 Track dolly 750 Dealers well come http://trackdolly.com/ Buy camera dolly for $99 Track dolly 750 Dealers well come http://trackdolly.com/";
     STAssertEqualObjects(adData.descr, descr, @"Wrong descr $@", adData.descr);
     STAssertTrue(5 == [adData.imageURLs count],@"adData.imageURLs.count=%d",[adData.imageURLs count]);
@@ -204,17 +155,10 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
-    
-	AdResultsProcessor* processor = [[[AdResultsProcessor alloc] init] autorelease];
-    processor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
-    AdData* adData=(AdData*)[processor parseResultArray:resultArray];
-    */
     STAssertEqualObjects(@"2012-09-25 09:13:00 +0000", [adData.date description], @"adData.date %@", [adData.date description]);
-    STAssertEqualObjects(adData.title, @"Who Moved My Cheese - $10", @"adData.title %@", adData.title);
+    STAssertEqualObjects(adData.title, @"Who Moved My Cheese", @"adData.title %@", adData.title);
     STAssertEqualObjects(adData.descr, @"BRAND NEW. Crispy pages, no damages. Please reply by email. Thank you.", @"adData.descr %@", adData.descr);
-    //NSLog(@"PRICE %@", adData.price); - price was not extracted from title
+    STAssertTrue([adData.price isEqualToString:@"$10"],@"adData.price=%@",adData.price);
     STAssertEqualObjects(adData.postingID, @"3283339813", @"adData.postingID %@", adData.postingID);
     STAssertTrue([[adData.date description] isEqualToString:@"2012-09-25 09:13:00 +0000"], @"adData.date=%@",[adData.date description]);
 }

@@ -9,7 +9,6 @@
 #import "NSStringAdditions.h"
 #import "GlobalFunctions.h"
 #import "CategoryMatcher.h"
-#import "ParsingHelper.h"
 #import "AdResultsProcessor.h"
 #import "AdData.h"
 #import "ParsedDataFields.h"
@@ -24,7 +23,9 @@
 */
 - (NSDictionary*) createDictioanryFromArray:(NSArray*)resultArray;
 
-- (NSString*) parseLocationFromDictionary:(NSDictionary*)dict defaultLocation:(NSString*)defLocation;
+- (NSString*) parseLocationFromDictionary:(NSDictionary*)dict;
+
+- (NSString*) parsePriceFromDictionary:(NSDictionary*)dict;
 
 - (NSString*) parseBodyFromDictionary:(NSDictionary*)dict;
 
@@ -69,19 +70,11 @@
     if (nil != item)
         title = [[item objectAtIndex:0] objectForKey:kDataKey];
     
-    ParsingHelper* parsingHelper = [[ParsingHelper alloc] init];
-	NSString* place = [parsingHelper parseOutPlace:&title];
-	if ([place isEqualToString:@"map"]) {
-		place = [parsingHelper parseOutPlace:&title];
-	}
-    
-	CategoryMatcher* matcher = [[CategoryMatcher alloc] initWithHref:[self.requestInfo objectForKey:KEY_TOP_CATEGORY_HREF]];
-	adData.price = [parsingHelper parseOutPriceForTitle:&title withMatcher:matcher];
-	[parsingHelper release];
-    
     adData.title = title;
     
-    adData.place = [self parseLocationFromDictionary:resultDict defaultLocation:place];
+    adData.price = [self parsePriceFromDictionary:resultDict];
+    
+    adData.place = [self parseLocationFromDictionary:resultDict];
     
     adData.body = [self parseBodyFromDictionary:resultDict];
     
@@ -133,14 +126,23 @@
     return body;
 }
 
-- (NSString*)parseLocationFromDictionary:(NSDictionary*)dict defaultLocation:(NSString*)defLocation {
+- (NSString*)parseLocationFromDictionary:(NSDictionary*)dict {
     NSString* location;
     location = @"";
     NSArray* locs = [dict objectForKey:FIELD_AD_LOCATION];
     if (nil != locs) {
         location = [[locs objectAtIndex:0] objectForKey:kDataKey];
-    } 
-    return [location length] > 0 ? location : defLocation;
+    }
+    return location;
+}
+
+- (NSString*)parsePriceFromDictionary:(NSDictionary*)dict {
+    NSString* price = nil;
+    NSArray* prices = [dict objectForKey:FIELD_AD_PRICE];
+    if (nil != prices) {
+        price = [[prices objectAtIndex:0] objectForKey:kDataKey];
+    }
+    return price;
 }
 
 - (NSString*)parseMailtoFromDictionary:(NSDictionary*)dict {

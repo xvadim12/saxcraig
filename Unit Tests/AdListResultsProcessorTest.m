@@ -27,21 +27,12 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_LIST] autorelease];
     [parser.dataMap.resultsProcessor setURL:@"http://sfbay.craigslist.org/pen/hhh/"];
     NSDictionary* adsDict1 = (NSDictionary*)[parser parseHtmlString:htmlString1];
-    /*
-    NSArray* resultArray = [parser parse:htmlString1];
-    
-    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
-	[processor setURL:@"http://sfbay.craigslist.org/pen/hhh/"];
-    NSDictionary* adsDict1 = (NSDictionary*)[processor parseResultArray:resultArray];
-    */
+
 	NSDictionary* neighborhoodsDict1 = [adsDict1 objectForKey:KEY_NEIGHBORHOODS];
 	STAssertTrue([neighborhoodsDict1 count]==23,@"neighborhoods count=%d",[neighborhoodsDict1 count]);
 	STAssertTrue([[neighborhoodsDict1 objectForKey:@"foster city"] intValue] == 77,
 				 @"your dictionary is incorrect, your foster city value is %d",[[neighborhoodsDict1 objectForKey:@"foster city"] intValue]);
 
-	//[processor setURL:@"http://losangeles.craigslist.org/app/index.html"];
-    //resultArray = [parser parse:htmlString2];
-    //NSDictionary* adsDict2 = (NSDictionary*)[processor parseResultArray:resultArray];
     [parser.dataMap.resultsProcessor setURL:@"http://losangeles.craigslist.org/app/index.html"];
     NSDictionary* adsDict2 = (NSDictionary*)[parser parseHtmlString:htmlString2];
 	NSDictionary* neighborhoodsDict2 = [adsDict2 objectForKey:KEY_NEIGHBORHOODS];
@@ -55,14 +46,7 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_LIST] autorelease];
     [parser.dataMap.resultsProcessor setURL:@"http://losangeles.craigslist.org/app/index.html"];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
-    
-    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
-	[processor setURL:@"http://losangeles.craigslist.org/app/index.html"];
-    
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    */
+
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
 	STAssertTrue([groupNames count]==2,@"groupNames.count=%d",[groupNames count]);
@@ -91,20 +75,10 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_LIST] autorelease];
     [parser.dataMap.resultsProcessor setURL:@"http://sfbay.craigslist.org/off/"];
     NSDictionary* adsDict1 = (NSDictionary*)[parser parseHtmlString:htmlString1];
-    /*
-    NSArray* resultArray = [parser parse:htmlString1];
-    
-    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
-	
-	[processor setURL:@"http://sfbay.craigslist.org/off/"];
-    NSDictionary* adsDict1 = (NSDictionary*)[processor parseResultArray:resultArray];
-     */
+
 	NSNumber* sqft1 = [adsDict1 objectForKey:KEY_SQFT];
 	STAssertTrue([sqft1 boolValue],@"for this list sqft must be true");
 	
-	//[processor setURL:@"http://losangeles.craigslist.org/app/index.html"];
-    //resultArray = [parser parse:htmlString2];
-    //NSDictionary* adsDict2 = (NSDictionary*)[processor parseResultArray:resultArray];
     [parser.dataMap.resultsProcessor setURL:@"http://losangeles.craigslist.org/app/index.html"];
     NSDictionary* adsDict2 = (NSDictionary*)[parser parseHtmlString:htmlString2];
 	NSNumber* sqft2 = [adsDict2 objectForKey:KEY_SQFT];
@@ -132,36 +106,19 @@
     
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_LIST] autorelease];
     [parser.dataMap.resultsProcessor setURL:@"http://chicago.craigslist.org/pol/"];
+
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlStringAllOfPoliticsChicago];
-    /*
-    NSArray* resultArray = [parser parse:htmlStringAllOfPoliticsChicago];
-    
-    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
-    
-	[processor setURL:@"http://chicago.craigslist.org/pol/"];
-     
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    */
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
 
 - (void) testAllOfTopCategorySublocationParsing {
     //return;
-    
 	NSString* htmlStringAllOfServicesChicago = [self.unitTestHelper contentsOfFile:FILE_CHICAGO_ALLOFF_SERVICES];
     
-    //ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithDataMap:dataMap] autorelease];
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_LIST] autorelease];
     [parser.dataMap.resultsProcessor setURL:@"http://chicago.craigslist.org/bbb/"];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlStringAllOfServicesChicago];
-    /*
-    NSArray* resultArray = [parser parse:htmlStringAllOfServicesChicago];
-    
-    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
 
-	[processor setURL:@"http://chicago.craigslist.org/bbb/"];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    */
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
 
@@ -172,14 +129,7 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_LIST] autorelease];
     [parser.dataMap.resultsProcessor setURL:@"http://chicago.craigslist.org/chc/csr/"];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlStringCityOfChicago];
-    /*
-    NSArray* resultArray = [parser parse:htmlStringCityOfChicago];
-    
-    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
-    
-	[processor setURL:@"http://chicago.craigslist.org/chc/csr/"];
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-     */
+
     [self sublocationNamesDictionatyTesting:[adsDict objectForKey:KEY_SUBLOCATIONS]];
 }
 
@@ -190,14 +140,7 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_LIST] autorelease];
     [parser.dataMap.resultsProcessor setURL:@"http://losangeles.craigslist.org/app/index.html"];
     NSDictionary* adsDict = (NSDictionary*)[parser parseHtmlString:htmlString];
-    /*
-    NSArray* resultArray = [parser parse:htmlString];
-    
-    AdListResultsProcessor* processor = [[[AdListResultsProcessor alloc] init] autorelease];
-	[processor setURL:@"http://losangeles.craigslist.org/app/index.html"];
-    
-    NSDictionary* adsDict = (NSDictionary*)[processor parseResultArray:resultArray];
-    */
+
 	NSArray* groupNames = [adsDict objectForKey:KEY_GROUP_NAMES];
     
 	NSArray* groups = [adsDict objectForKey:KEY_GROUPS];
@@ -218,7 +161,8 @@
     STAssertEqualObjects(adData.place, @"Rio Hondo", @"adData.place=%@", adData.place);
     STAssertEqualObjects(adData.link, @"http://losangeles.craigslist.org/sgv/bks/3254846603.html", @"adData.place=%@", adData.place);
     
-    STAssertEqualObjects([adsDict objectForKey:KEY_NEXT_URL], @"http://losangeles.craigslist.org/app/index100.html", @"Link next=%@", [adsDict objectForKey:KEY_NEXT_URL]);
+    STAssertEqualObjects([adsDict objectForKey:KEY_NEXT_URL], @"http://losangeles.craigslist.org/app/index100.html", @"Link next=%@",
+                         [adsDict objectForKey:KEY_NEXT_URL]);
 }
 
 @end

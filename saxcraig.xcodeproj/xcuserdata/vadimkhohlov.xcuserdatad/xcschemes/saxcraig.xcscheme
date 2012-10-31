@@ -37,6 +37,29 @@
                BlueprintName = "Unit Tests"
                ReferencedContainer = "container:saxcraig.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "DataMapLoaderTest">
+               </Test>
+               <Test
+                  Identifier = "DataMapManagerTest">
+               </Test>
+               <Test
+                  Identifier = "DataMapTest">
+               </Test>
+               <Test
+                  Identifier = "ParametrizedSAXParserTest">
+               </Test>
+               <Test
+                  Identifier = "PathItemTest">
+               </Test>
+               <Test
+                  Identifier = "SAXParserTest">
+               </Test>
+               <Test
+                  Identifier = "UnitTestHelper">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

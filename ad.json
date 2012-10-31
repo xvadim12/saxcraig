@@ -7,8 +7,13 @@
     {
         "body.posting h2" :
             {
-                "fieldName": "title",
-                "type" : "Scalar"
+                "fieldName": "title222",
+                "type" : "Scalar",
+                "regexps" : {
+                    "location": "\\((.*?)\\)( \\(map\\))?$",
+                    "price" : [" - (\\$.*?) \\(.*?\\)( \\(map\\))?$", "(^\\$[0-9]* / [^ ]*) - "],
+                    "title" : ["^(.*?) - \\$.*? \\(.*?\\)( \\(map\\))?$", "^\\$[0-9]* / [^ ]* - (.*?) \\(.*?\\)( \\(map\\))?$", "^(.*)$"]
+                }
             },
         "body.posting span.postingdate" :
             {
