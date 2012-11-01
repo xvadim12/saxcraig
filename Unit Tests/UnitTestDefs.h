@@ -51,6 +51,7 @@
 #define FILE_BOOKS_SEARCH @"BookSearch"
 #define FILE_BROKEN_AD @"BrokenAd"
 #define FILE_BROKEN_AD_LIST @"BrokenAdList"
+#define FILE_W4W_SINGLE @"w4wSingle"
 
 #define FILE_CHICAGO_ALLOFF_POLITICS @"ChicagoAllOfPolitics"
 #define FILE_CHICAGO_CITY_CUSTOMERSURVICE @"ChicagoCityCustomerSurvice"

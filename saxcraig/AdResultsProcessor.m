@@ -21,19 +21,9 @@
  Converts result array to dictionary:
  fieldname: [data]
 */
-- (NSDictionary*) createDictioanryFromArray:(NSArray*)resultArray;
+- (NSDictionary*) createDictionaryFromArray:(NSArray*)resultArray;
 
-- (NSString*) parseLocationFromDictionary:(NSDictionary*)dict;
-
-- (NSString*) parsePriceFromDictionary:(NSDictionary*)dict;
-
-- (NSString*) parseBodyFromDictionary:(NSDictionary*)dict;
-
-- (NSString*) parseMailtoFromDictionary:(NSDictionary*)dict;
-
-- (NSString*) parsePostingIDFromDictionary:(NSDictionary*)dict;
-
-- (NSString*) parseReplyURLFromDictionary:(NSDictionary*)dict;
+- (NSString*) parseDataFromDictionary:(NSDictionary*)dict byKey:(NSString*)dataKey;
 
 - (NSArray*) parseImagesFromDictionary:(NSDictionary*)dict;
 
@@ -56,7 +46,7 @@
     
     //NSLog(@"Result array %@", resultArray);
 
-    NSDictionary* resultDict = [self createDictioanryFromArray:resultArray];
+    NSDictionary* resultDict = [self createDictionaryFromArray:resultArray];
     
     AdData* adData = [self.requestInfo objectForKey:KEY_AD_DATA];
     if (nil==adData) {
@@ -64,42 +54,37 @@
     }
 	adData.link = [self URL];
     
-    //extract from title price and location and cleanup title
-    NSString* title = nil;
-    NSArray *item = [resultDict objectForKey:FIELD_AD_TITLE];
-    if (nil != item)
-        title = [[item objectAtIndex:0] objectForKey:kDataKey];
+    adData.title = [self parseDataFromDictionary:resultDict byKey:FIELD_AD_TITLE];
     
-    adData.title = title;
+    adData.price = [self parseDataFromDictionary:resultDict byKey:FIELD_AD_PRICE];
     
-    adData.price = [self parsePriceFromDictionary:resultDict];
+    adData.place = [self parseDataFromDictionary:resultDict byKey:FIELD_AD_LOCATION];
     
-    adData.place = [self parseLocationFromDictionary:resultDict];
+    adData.body = [self parseDataFromDictionary:resultDict byKey:FIELD_AD_BODY];
     
-    adData.body = [self parseBodyFromDictionary:resultDict];
-    
-    adData.postingID = [self parsePostingIDFromDictionary:resultDict];
-    
+    adData.postingID = [self parseDataFromDictionary:resultDict byKey:FIELD_AD_POSTINGID];
     
     adData.imageURLs = [self parseImagesFromDictionary:resultDict];
     
     adData.date = [self parseDateFromDictionary:resultDict];
     
-    //the same is true for descr as well;
+    //parsing out the description - just call the property - it will parse the data by itself
 	[adData descr];
 	//the same is true for relativeTime
 	[adData relativeTime];
 	//the same is true for phone
 	[adData phone];
     
-    adData.mailto = [self parseMailtoFromDictionary:resultDict];
+    adData.mailto = [self parseDataFromDictionary:resultDict byKey:FIELD_AD_MAILTO];
+    
+    adData.replyURL = [self parseDataFromDictionary:resultDict byKey:FIELD_AD_REPLYURL];
     
     [resultDict release];
     
     return adData;
 }
 
-- (NSDictionary*)createDictioanryFromArray:(NSArray*)resultArray {
+- (NSDictionary*)createDictionaryFromArray:(NSArray*)resultArray {
     
     NSMutableDictionary* resultDict = [[NSMutableDictionary alloc] init];
     for(id item in resultArray)
@@ -118,60 +103,12 @@
     return resultDict;
 }
 
-- (NSString*)parseBodyFromDictionary:(NSDictionary*)dict {
-    NSString* body = nil;
-    NSArray* bodies = [dict objectForKey:FIELD_AD_BODY];
-    if (nil != bodies)
-        body = [[bodies objectAtIndex:0] objectForKey:kDataKey];
-    return body;
-}
-
-- (NSString*)parseLocationFromDictionary:(NSDictionary*)dict {
-    NSString* location;
-    location = @"";
-    NSArray* locs = [dict objectForKey:FIELD_AD_LOCATION];
-    if (nil != locs) {
-        location = [[locs objectAtIndex:0] objectForKey:kDataKey];
-    }
-    return location;
-}
-
-- (NSString*)parsePriceFromDictionary:(NSDictionary*)dict {
-    NSString* price = nil;
-    NSArray* prices = [dict objectForKey:FIELD_AD_PRICE];
-    if (nil != prices) {
-        price = [[prices objectAtIndex:0] objectForKey:kDataKey];
-    }
-    return price;
-}
-
-- (NSString*)parseMailtoFromDictionary:(NSDictionary*)dict {
-    NSString* mailto = nil;
-    NSArray* mailtos = [dict objectForKey:FIELD_AD_MAILTO];
-    if (nil != mailtos) {
-        mailto = [[mailtos objectAtIndex:0] objectForKey:kDataKey];
-    } 
-    return mailto;
-}
-
-- (NSString*)parsePostingIDFromDictionary:(NSDictionary*)dict {
-    NSString* postingId = nil;
-    NSArray* ids = [dict objectForKey:FIELD_AD_POSTINGID];
-    
-    if (nil != ids){
-        postingId = [[ids objectAtIndex:0] objectForKey:kDataKey];
-    } 
-    return postingId;
-}
-
-- (NSString*) parseReplyURLFromDictionary:(NSDictionary*)dict {
-    NSString* replyURL = nil;
-    NSArray* replyURLs = [dict objectForKey:FIELD_AD_POSTINGID];
-    
-    if (nil != replyURLs){
-        replyURL = [[replyURLs objectAtIndex:0] objectForKey:kDataKey];
-    }
-    return replyURL;
+- (NSString*) parseDataFromDictionary:(NSDictionary*)dict byKey:(NSString*)dataKey {
+    NSString* data = nil;
+    NSArray* datas = [dict objectForKey:dataKey];
+    if (nil != datas)
+        data = [[datas objectAtIndex:0] objectForKey:kDataKey];
+    return data;
 }
 
 - (NSArray*)parseImagesFromDictionary:(NSDictionary*)dict {

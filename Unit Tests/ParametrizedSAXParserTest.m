@@ -15,7 +15,7 @@
 @implementation ParametrizedSAXParserTest
 
 - (void) testSimpleAdList {
-    //return;
+    
     NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_SIMPLE_AD_LIST];
 
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_LIST] autorelease];
@@ -68,7 +68,6 @@
 }
 
 - (void) testManyCategoriesAdList {
-    //return;
     NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_MANY_CATEGORIES];
     
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_LIST] autorelease];
@@ -78,14 +77,13 @@
 }
 
 - (void) testSimpleAdSearch {
-    //return;
     
     NSString* htmlString = [self.unitTestHelper contentsOfFile:@"SimpleBookSearch"];
 
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SEARCH] autorelease];
     NSArray* ads =[parser parse:htmlString];
 
-    STAssertTrue(6 == [ads count], @"Expected count of items %lu", [ads count]);
+    STAssertTrue(8 == [ads count], @"Expected count of items %lu", [ads count]);
 
     NSString *value;
     NSDictionary *data;
@@ -127,117 +125,114 @@
                          @"Wrong link %@", [obj objectForKey: kDataKey]);
     
     //List title
-    obj = [ads objectAtIndex: 3];
+    obj = [ads objectAtIndex: 5];
     STAssertEqualObjects(@"listTitle", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"Found: 1000 Displaying: 1 - 100", [obj objectForKey: kDataKey],
                          @"Wrong list title %@", [obj objectForKey: kDataKey]);
 }
 
 - (void) testAdWithoutImages {
-    //return;
     
     NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_RUS_AD_NO_IMAGES];
     
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     NSArray* ad =[parser parse:htmlString];
 
-    //7 items: title, date, mailto,  location, body, posting id, unparsed
-    STAssertTrue(7 == [ad count], @"Expected five items but found %lu", [ad count]);
+    //9 items: price, location from title, title, date, mailto,  location, body, posting id, unparsed
+    STAssertTrue(9 == [ad count], @"Expected five items but found %lu", [ad count]);
     
     NSDictionary *obj;
     
-    obj = [ad objectAtIndex: 0];
+    obj = [ad objectAtIndex: 2];
     STAssertEqualObjects(@"title", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"i-phone 5 совершенно - UAH100 (киев)", [obj objectForKey: kDataKey], @"Wrong title %@", [obj objectForKey: kDataKey]);
+    STAssertEqualObjects(@"i-phone 5 совершенно", [obj objectForKey: kDataKey], @"Wrong title %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 3];
+    obj = [ad objectAtIndex: 1];
     STAssertEqualObjects(@"location", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"киев", [obj objectForKey: kDataKey], @"Wrong location %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 4];
+    obj = [ad objectAtIndex: 6];
     STAssertEqualObjects(@"body", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"i-phone 5 совершенно новый , количество практически неограничено .обращатесь!",
                          [obj objectForKey: kDataKey], @"Wrong body %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 5];
+    obj = [ad objectAtIndex: 7];
     STAssertEqualObjects(@"postingID", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"3292136338", [obj objectForKey: kDataKey], @"Wrong postinfID %@", [obj objectForKey: kDataKey]);
 }
 
 - (void) testAdImages1 {
-    //return;
     
     NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_EN_AD_IMAGES1];
     
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     NSArray* ad =[parser parse:htmlString];
 
-    STAssertTrue(13 == [ad count], @"Expected five items but found %lu", [ad count]);
+    STAssertTrue(15 == [ad count], @"Expected five items but found %lu", [ad count]);
     
     NSDictionary *obj;
     
-    obj = [ad objectAtIndex: 10];
+    obj = [ad objectAtIndex: 12];
     STAssertEqualObjects(@"body", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"BRAND NEW. \n\nCrispy pages, no damages.\n\n\n\n\n\n\n\nPlease reply by email.\n\nThank you.", [obj objectForKey: kDataKey],
                          @"Wrong body %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 3];
+    obj = [ad objectAtIndex: 5];
     STAssertEqualObjects(@"images", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"http://i50.tinypic.com/xe50k5.jpg", [obj objectForKey: kDataKey],
                          @"Wrong image URL %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 5];
+    obj = [ad objectAtIndex: 7];
     STAssertEqualObjects(@"images", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"http://i47.tinypic.com/eg3ek1.jpg", [obj objectForKey: kDataKey],
                          @"Wrong image URL %@", [obj objectForKey: kDataKey]);
 }
 
 - (void) testAdImages2 {
-    //return;
     
     NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_EN_AD_IMAGES2];
     
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     NSArray* ad =[parser parse:htmlString];
-    STAssertTrue(15 == [ad count], @"Expected five items but found %lu", [ad count]);
+    
+    STAssertTrue(17 == [ad count], @"Expected five items but found %lu", [ad count]);
     
     NSDictionary *obj;
     
-    obj = [ad objectAtIndex: 0];
+    obj = [ad objectAtIndex: 2];
     STAssertEqualObjects(@"title", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
-    STAssertEqualObjects(@"GAINT MOUNTAIN BIKE - $699 ( SO. BAY $ 699)", [obj objectForKey: kDataKey], @"Wrong date %@", [obj objectForKey: kDataKey]);
+    STAssertEqualObjects(@"GAINT MOUNTAIN BIKE", [obj objectForKey: kDataKey], @"Wrong date %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 1];
+    obj = [ad objectAtIndex: 3];
     STAssertEqualObjects(@"date", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"2012-09-25,  4:46AM PDT", [obj objectForKey: kDataKey], @"Wrong date %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 3];
+    obj = [ad objectAtIndex: 5];
     STAssertEqualObjects(@"images", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"http://images.craigslist.org/thumb/5I45K25P33Ef3Gc3J8c9hb1345756f604187a.jpg", [obj objectForKey: kDataKey],
                          @"Wrong image URL %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 9];
+    obj = [ad objectAtIndex: 11];
     STAssertEqualObjects(@"images", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"http://images.craigslist.org/thumb/5Ie5G95Fd3G53Me3pec9h1c988bc294781bb5.jpg", [obj objectForKey: kDataKey],
                          @"Wrong image URL %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 11];
+    obj = [ad objectAtIndex: 13];
     STAssertEqualObjects(@"location", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"SO. BAY $ 699", [obj objectForKey: kDataKey], @"Wrong posting ID %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 12];
+    obj = [ad objectAtIndex: 14];
     STAssertEqualObjects(@"body", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     //STAssertEqualObjects(@"GAINT MOUNTAIN BIKE (AC) SRAM, XTR, SHAMANO, COMPONENTS  ROC SHOCK PHYCO, BLUE, GREAT CONDO PAYED $ 1499oo ASKING $ 699 .",
       //                   [obj objectForKey: kDataKey], @"Wrong body %@", [obj objectForKey: kDataKey]);
     
-    obj = [ad objectAtIndex: 13];
+    obj = [ad objectAtIndex: 15];
     STAssertEqualObjects(@"postingID", [obj objectForKey: kFieldNameKey], @"Wrong field name %@", [obj objectForKey: kFieldNameKey]);
     STAssertEqualObjects(@"3276932378", [obj objectForKey: kDataKey], @"Wrong posting ID %@", [obj objectForKey: kDataKey]);
 
 }
 
 - (void) testAdImages3 {
-    //return;
     
     NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_RUS_AD_IMAGES3];
     

@@ -155,12 +155,26 @@
     ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
     parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
     AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
-    STAssertEqualObjects(@"2012-09-25 09:13:00 +0000", [adData.date description], @"adData.date %@", [adData.date description]);
+    STAssertEqualObjects([adData.date description], @"2012-09-25 09:13:00 +0000", @"adData.date %@", [adData.date description]);
     STAssertEqualObjects(adData.title, @"Who Moved My Cheese", @"adData.title %@", adData.title);
     STAssertEqualObjects(adData.descr, @"BRAND NEW. Crispy pages, no damages. Please reply by email. Thank you.", @"adData.descr %@", adData.descr);
     STAssertTrue([adData.price isEqualToString:@"$10"],@"adData.price=%@",adData.price);
     STAssertEqualObjects(adData.postingID, @"3283339813", @"adData.postingID %@", adData.postingID);
-    STAssertTrue([[adData.date description] isEqualToString:@"2012-09-25 09:13:00 +0000"], @"adData.date=%@",[adData.date description]);
+}
+
+- (void) testW4WSingle {
+    //return;
+    
+	NSString* htmlString = [self.unitTestHelper contentsOfFile:FILE_W4W_SINGLE];
+    
+    ParametrizedSAXParser* parser = [[[ParametrizedSAXParser alloc] initWithType:DM_TYPE_SINGLE] autorelease];
+    parser.dataMap.resultsProcessor.requestInfo = [NSDictionary dictionaryWithObjectsAndKeys:@"http://losangeles.craigslist.org/hhh/",KEY_TOP_CATEGORY_HREF,nil];
+    AdData* adData=(AdData*)[parser parseHtmlString:htmlString];
+    STAssertEqualObjects([adData.date description], @"2012-10-30 06:53:00 +0000",  @"adData.date %@", [adData.date description]);
+    STAssertEqualObjects(adData.title, @"I'll tell you later", @"adData.title %@", adData.title);
+    STAssertEqualObjects(adData.descr, @"looking for a long term or short term relationship. im a fun sexy girl that loves to eat out, movies and Vegas! a partner in crime", @"adData.descr %@", adData.descr);
+    STAssertEqualObjects(adData.price, @"26", @"adData.price=%@",adData.price);
+    STAssertEqualObjects(adData.postingID, @"3374211906", @"adData.postingID %@", adData.postingID);
 }
 
 @end

@@ -40,6 +40,7 @@
 		AC8D9256162571B10000E1ED /* PathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9254162571B10000E1ED /* PathItem.m */; };
 		AC8F05A4164121F400DB7218 /* HousingSearchingSimple.html in Resources */ = {isa = PBXBuildFile; fileRef = AC8F05A3164121F300DB7218 /* HousingSearchingSimple.html */; };
 		AC8F05A71641506100DB7218 /* w4wSearchSimlpe.html in Resources */ = {isa = PBXBuildFile; fileRef = AC8F05A61641506000DB7218 /* w4wSearchSimlpe.html */; };
+		AC8F05AC16429C3100DB7218 /* w4wSingle.html in Resources */ = {isa = PBXBuildFile; fileRef = AC8F05AB16429C2F00DB7218 /* w4wSingle.html */; };
 		AC901C72163AB50D004146CE /* adnewer.json in Resources */ = {isa = PBXBuildFile; fileRef = AC901C71163AB50D004146CE /* adnewer.json */; };
 		AC901C75163ABC41004146CE /* adolder.json in Resources */ = {isa = PBXBuildFile; fileRef = AC901C74163ABC41004146CE /* adolder.json */; };
 		AC901C76163AC696004146CE /* PathItemTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AC8D9258162587F90000E1ED /* PathItemTest.m */; };
@@ -195,6 +196,7 @@
 		AC8D9258162587F90000E1ED /* PathItemTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PathItemTest.m; sourceTree = "<group>"; };
 		AC8F05A3164121F300DB7218 /* HousingSearchingSimple.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HousingSearchingSimple.html; sourceTree = "<group>"; };
 		AC8F05A61641506000DB7218 /* w4wSearchSimlpe.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = w4wSearchSimlpe.html; sourceTree = "<group>"; };
+		AC8F05AB16429C2F00DB7218 /* w4wSingle.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = w4wSingle.html; sourceTree = "<group>"; };
 		AC901C71163AB50D004146CE /* adnewer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = adnewer.json; sourceTree = "<group>"; };
 		AC901C74163ABC41004146CE /* adolder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = adolder.json; sourceTree = "<group>"; };
 		AC928C141611DEEB0079D6B0 /* RusAdImages3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RusAdImages3.html; sourceTree = "<group>"; };
@@ -535,6 +537,7 @@
 				AC0B47D816285EBC0006D399 /* BrokenAdList.html */,
 				AC8F05A3164121F300DB7218 /* HousingSearchingSimple.html */,
 				AC8F05A61641506000DB7218 /* w4wSearchSimlpe.html */,
+				AC8F05AB16429C2F00DB7218 /* w4wSingle.html */,
 			);
 			name = UnitTestResources;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				AC901C75163ABC41004146CE /* adolder.json in Resources */,
 				AC8F05A4164121F400DB7218 /* HousingSearchingSimple.html in Resources */,
 				AC8F05A71641506100DB7218 /* w4wSearchSimlpe.html in Resources */,
+				AC8F05AC16429C3100DB7218 /* w4wSingle.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
